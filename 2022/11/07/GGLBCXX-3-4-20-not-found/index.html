@@ -28,7 +28,7 @@
 <meta property="og:description" content="Error: &#x2F;lib64&#x2F;libstdc++.so.6: version &#96;GLIBCXX_3.4.20’ not found">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-07T12:57:53.000Z">
-<meta property="article:modified_time" content="2022-11-07T12:58:31.959Z">
+<meta property="article:modified_time" content="2022-11-07T13:16:50.778Z">
 <meta property="article:author" content="Zeyu Wu">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Bug">
@@ -193,7 +193,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-11-07 20:57:53 / Modified: 20:58:31" itemprop="dateCreated datePublished" datetime="2022-11-07T20:57:53+08:00">2022-11-07</time>
+              <time title="Created: 2022-11-07 20:57:53 / Modified: 21:16:50" itemprop="dateCreated datePublished" datetime="2022-11-07T20:57:53+08:00">2022-11-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,6 +229,9 @@
 <p>经搜索解决方法，了解到需要更新 <code>libstdc++.so.6</code>，通过尝试大佬的办法成功解决，记录过程：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">sudo yum provides libstdc++.so.6</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Out:</span></span><br><span class="line">Loaded plugins: fastestmirror, langpacks</span><br><span class="line">Determining fastest mirrors</span><br><span class="line">libstdc++-4.8.5-39.el7.i686 : GNU Standard C++ Library</span><br><span class="line">Repo        : base</span><br><span class="line">Matched from:</span><br><span class="line">Provides    : libstdc++.so.6</span><br><span class="line"></span><br><span class="line">2.</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入目录</span></span><br><span class="line">cd /usr/local/lib64</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载最新版本的libstdc.so_.6.0.26</span></span><br><span class="line">sudo wget http://www.vuln.cn/wp-content/uploads/2019/08/libstdc.so_.6.0.26.zip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yum install unzip (CentOS)</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">apt install unzip (Ubuntu)</span></span><br><span class="line">unzip libstdc.so_.6.0.26.zip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将下载的版本拷贝到 /usr/lib64</span></span><br><span class="line">cp libstdc++.so.6.0.26 /usr/lib64</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换目录</span></span><br><span class="line">cd  /usr/lib64</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除/usr/lib64原来的软连接libstdc++.so.6</span></span><br><span class="line">sudo rm libstdc++.so.6</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">链接新的版本</span></span><br><span class="line">sudo ln -s libstdc++.so.6.0.26 libstdc++.so.6</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看新版本</span></span><br><span class="line">strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>[version &#96;GLIBCXX_3.4.20’ not found 解决方法 - 简书 (jianshu.com)](<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/050b2b777b9d">https://www.jianshu.com/p/050b2b777b9d</a>)</p>
+</blockquote>
 
     </div>
 
@@ -251,7 +254,10 @@
     <a href="/2022/11/07/hello-world/" rel="prev" title="Hello World">
       <i class="fa fa-chevron-left"></i> Hello World
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/07/title-rename/" rel="next" title="Solved: 更改 hexo new <title> 自动生成的文章标题">
+      Solved: 更改 hexo new <title> 自动生成的文章标题 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -325,7 +331,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -338,7 +344,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
