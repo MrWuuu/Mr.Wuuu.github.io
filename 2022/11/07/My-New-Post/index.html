@@ -1,252 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>My New Post | MrWuuu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="RNA-seq tumor immunity analysis1. Pre-processing of bulk RNA-seq data1.1 Read AlignmentBuild the STAR index: 12345678export PATH&#x3D;&#x2F;home&#x2F;appl&#x2F;anaconda3&#x2F;bin:$PATHSTAR \ --runThreadN 16 \ --runMode genome">
-<meta property="og:type" content="article">
-<meta property="og:title" content="My New Post">
-<meta property="og:url" content="https://mrwuuu.github.io/2022/11/07/My-New-Post/index.html">
-<meta property="og:site_name" content="MrWuuu">
-<meta property="og:description" content="RNA-seq tumor immunity analysis1. Pre-processing of bulk RNA-seq data1.1 Read AlignmentBuild the STAR index: 12345678export PATH&#x3D;&#x2F;home&#x2F;appl&#x2F;anaconda3&#x2F;bin:$PATHSTAR \ --runThreadN 16 \ --runMode genome">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-11-07T02:16:51.000Z">
-<meta property="article:modified_time" content="2022-11-07T03:16:03.141Z">
-<meta property="article:author" content="Zeyu Wu">
-<meta property="article:tag" content="Bioinformatics">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="MrWuuu" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">MrWuuu</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mrwuuu.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-My-New-Post" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/07/My-New-Post/" class="article-date">
-  <time class="dt-published" datetime="2022-11-07T02:16:51.000Z" itemprop="datePublished">2022-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      My New Post
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="RNA-seq-tumor-immunity-analysis"><a href="#RNA-seq-tumor-immunity-analysis" class="headerlink" title="RNA-seq tumor immunity analysis"></a>RNA-seq tumor immunity analysis</h2><h3 id="1-Pre-processing-of-bulk-RNA-seq-data"><a href="#1-Pre-processing-of-bulk-RNA-seq-data" class="headerlink" title="1. Pre-processing of bulk RNA-seq data"></a>1. Pre-processing of bulk RNA-seq data</h3><h4 id="1-1-Read-Alignment"><a href="#1-1-Read-Alignment" class="headerlink" title="1.1 Read Alignment"></a>1.1 Read Alignment</h4><p>Build the STAR index:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export PATH=/home/appl/anaconda3/bin:$PATH</span><br><span class="line"></span><br><span class="line">STAR \</span><br><span class="line"> --runThreadN 16 \</span><br><span class="line"> --runMode genomeGenerate \</span><br><span class="line"> --genomeDir /data/zywu/RIMA/ref_files/v22_index \</span><br><span class="line"> --genomeFastaFiles GRCh38.d1.vd1.fa \</span><br><span class="line"> --sjdbGTFfile gencode.v22.annotation.gtf</span><br></pre></td></tr></table></figure>
-
-<p>Start Mapping:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">STAR --runThreadN 20 --genomeDir /data/zywu/RIMA/ref_files/v22_index \</span><br><span class="line"> --outReadsUnmapped None \</span><br><span class="line"> --chimSegmentMin 12 \</span><br><span class="line"> --chimJunctionOverhangMin 12 \</span><br><span class="line"> --chimOutJunctionFormat 1 \</span><br><span class="line"> --alignSJDBoverhangMin 10 \</span><br><span class="line"> --alignMatesGapMax 1000000 \</span><br><span class="line"> --alignIntronMax 1000000 \</span><br><span class="line"> --alignSJstitchMismatchNmax 5 -1 5 5 \</span><br><span class="line"> --outSAMstrandField intronMotif \</span><br><span class="line"> --outSAMunmapped Within \</span><br><span class="line"> --outSAMtype BAM Unsorted \</span><br><span class="line"> --readFilesIn /data/zywu/RIMA/data/SRR8281251_1.fastq /data/zywu/RIMA/data/SRR8281251_2.fastq \</span><br><span class="line"> --chimMultimapScoreRange 10 \</span><br><span class="line"> --chimMultimapNmax 10 \</span><br><span class="line"> --chimNonchimScoreDropMin 10 \</span><br><span class="line"> --peOverlapNbasesMin 12 \</span><br><span class="line"> --peOverlapMMp 0.1 \</span><br><span class="line"> --genomeLoad NoSharedMemory \</span><br><span class="line"> --outSAMheaderHD @HD VN:1.4\</span><br><span class="line"> --outFileNamePrefix /data/zywu/RIMA/star/SRR8281251 \</span><br><span class="line"> --quantMode TranscriptomeSAM \</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-Quality-Control"><a href="#1-2-Quality-Control" class="headerlink" title="1.2 Quality Control"></a>1.2 Quality Control</h4><p>Downsampling alignment BAMs:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">export PATH=/home/appl/software/samtools-1.14/bin:$PATH</span><br><span class="line">export PATH=/data/zywu/appl/bedtools2/bin:$PATH</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Example of subsampling 50% of input alignments</span></span><br><span class="line">samtools view -s 0.5 -b ./SRR8281251Aligned.out.bam &gt; ./SRR8281251_downsampling.bam</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extract the alignment of housekeeping genes</span></span><br><span class="line">bedtools intersect -a ./SRR8281251_downsampling.bam  -b /data/zywu/RIMA/ref_files/HouseKeepingGenes.bed &gt; ./SRR8281251_downsampling_housekeeping.bam </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Sort BAM</span></span><br><span class="line">samtools sort ./SRR8281251_downsampling_housekeeping.bam -o ./SRR8281251_downsampling_housekeeping_sorted.bam</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Index BAM</span></span><br><span class="line">samtools index ./SRR8281251_downsampling_housekeeping.bam  &gt; ./SRR8281251_downsampling_housekeeping.bam.bai</span><br></pre></td></tr></table></figure>
-
-<p>RseQC Quality Matrics:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">python /data/zywu/RIMA/RseQC/Scripts/tin.py \</span><br><span class="line"> --input=./SRR8281251_downsampling_housekeeping.bam \</span><br><span class="line"> --refgene=/data/zywu/RIMA/ref_files/HouseKeepingGenes.bed \</span><br><span class="line"> --minCov=10 \</span><br><span class="line"> --sample-size=100 </span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Output:</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&#123;sample&#125;.summary.txt</span>	</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&#123;sample&#125;.tin.xls</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">mv</span> &#123;sample&#125;.tin.xls &#123;sample&#125;.tin_score.txt</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python /data/zywu/RIMA/RseQC/Scripts/read_distribution.py \</span><br><span class="line"> --input-file=./SRR8281251_downsampling_housekeeping.bam \</span><br><span class="line"> --refgene=/data/zywu/RIMA/ref_files/HouseKeepingGenes.bed &gt; ./SRR8281251.txt</span><br></pre></td></tr></table></figure>
-
-<p>Merge Quality Matrics:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">perl /data/zywu/RIMA/RseQC/Scripts/read_distrib_matrix.pl \</span><br><span class="line"> -f /data/zywu/RIMA/RseQC/SRR8281218/SRR8281218.txt \</span><br><span class="line"> -f /data/zywu/RIMA/RseQC/SRR8281219/SRR8281219.txt \</span><br><span class="line"> -f /data/zywu/RIMA/RseQC/SRR8281230/SRR8281230.txt \</span><br><span class="line"> -f /data/zywu/RIMA/RseQC/SRR8281233/SRR8281233.txt \</span><br><span class="line"> -f /data/zywu/RIMA/RseQC/SRR8281243/SRR8281243.txt \</span><br><span class="line"> -f /data/zywu/RIMA/RseQC/SRR8281244/SRR8281244.txt \</span><br><span class="line"> -f /data/zywu/RIMA/RseQC/SRR8281245/SRR8281245.txt \</span><br><span class="line"> -f /data/zywu/RIMA/RseQC/SRR8281251/SRR8281251.txt &gt; ./read_distrib.matrix.tab</span><br></pre></td></tr></table></figure>
-
-<p>Gene Body Coverage Plots:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">R environment</span></span><br><span class="line">export PATH=/home/appl/anaconda3/envs/hicpro/bin:$PATH</span><br><span class="line"></span><br><span class="line">python /data/zywu/RIMA/RseQC/Scripts/geneBody_coverage.py \</span><br><span class="line"> -i /data/zywu/RIMA/RseQC/SRR8281251/SRR8281251_downsampling_housekeeping.bam \</span><br><span class="line"> -r /data/zywu/RIMA/ref_files/HouseKeepingGenes.bed \</span><br><span class="line"> -f png \</span><br><span class="line"> -o /data/zywu/RIMA/RseQC/gene_body_cvg/SRR8281251 &amp;</span><br><span class="line"> </span><br><span class="line">perl /data/zywu/RIMA/RseQC/Scripts/plot_gene_body_cvg.pl \</span><br><span class="line"> --rfile /data/zywu/RIMA/RseQC/gene_body_cvg/geneBodyCoverage.r \</span><br><span class="line"> --curves_png /data/zywu/RIMA/RseQC/gene_body_cvg/geneBodyCoverage.curves.pdf \</span><br><span class="line"> /data/zywu/RIMA/RseQC/gene_body_cvg/SRR8281218/SRR8281218.geneBodyCoverage.r \</span><br><span class="line"> /data/zywu/RIMA/RseQC/gene_body_cvg/SRR8281219/SRR8281219.geneBodyCoverage.r \</span><br><span class="line"> /data/zywu/RIMA/RseQC/gene_body_cvg/SRR8281230/SRR8281230.geneBodyCoverage.r \</span><br><span class="line"> /data/zywu/RIMA/RseQC/gene_body_cvg/SRR8281233/SRR8281233.geneBodyCoverage.r \</span><br><span class="line"> /data/zywu/RIMA/RseQC/gene_body_cvg/SRR8281243/SRR8281243.geneBodyCoverage.r \</span><br><span class="line"> /data/zywu/RIMA/RseQC/gene_body_cvg/SRR8281244/SRR8281244.geneBodyCoverage.r \</span><br><span class="line"> /data/zywu/RIMA/RseQC/gene_body_cvg/SRR8281245/SRR8281245.geneBodyCoverage.r \</span><br><span class="line"> /data/zywu/RIMA/RseQC/gene_body_cvg/SRR8281251/SRR8281251.geneBodyCoverage.r </span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-Gene-quantification"><a href="#1-3-Gene-quantification" class="headerlink" title="1.3 Gene quantification"></a>1.3 Gene quantification</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">SALMON environment</span></span><br><span class="line">export PATH=/home/appl/anaconda3/envs/Trinity/bin:$PATH</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">SALMON index</span></span><br><span class="line">salmon index -t /data/zywu/RIMA/ref_files/GRCh38.d1.vd1.fa -i salmon_index</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">gffread environment</span></span><br><span class="line">export PATH=/data/zywu/appl/gffread-0.12.7:$PATH</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extracting transcript sequences</span></span><br><span class="line">gffread -w gencode.v22.ts.fa \</span><br><span class="line"> -g /data/zywu/RIMA/ref_files/GRCh38.d1.vd1.fa /data/zywu/RIMA/ref_files/gencode.v22.annotation.gtf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">SALMON quant</span></span><br><span class="line">nohup salmon quant -t /data/zywu/RIMA/ref_files/gencode.v22.ts.fa \</span><br><span class="line"> -l A -a /data/zywu/RIMA/star/SRR8281251/SRR8281251Aligned.toTranscriptome.out.bam \</span><br><span class="line"> -o /data/zywu/RIMA/RseQC/SRR8281251/SRR8281251.quant.sf &amp;</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">SALMON cohort csv</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>Merge Samples’ TPM:</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#### Merge TPM From SALMON ####</span></span><br><span class="line"><span class="comment"># Author: Mr.Wuuu</span></span><br><span class="line"><span class="comment"># Date: 2022-11-01</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Clear all</span></span><br><span class="line">rm<span class="punctuation">(</span><span class="built_in">list</span> <span class="operator">=</span> ls<span class="punctuation">(</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Install packages ------------------------------</span></span><br><span class="line"><span class="keyword">if</span> <span class="punctuation">(</span><span class="operator">!</span>require<span class="punctuation">(</span><span class="string">&quot;BiocManager&quot;</span><span class="punctuation">,</span> quietly <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  install.packages<span class="punctuation">(</span><span class="string">&quot;BiocManager&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">BiocManager<span class="operator">::</span>install<span class="punctuation">(</span><span class="string">&quot;TxDb.Hsapiens.UCSC.hg19.knownGene&quot;</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load library ---------------------------------</span></span><br><span class="line"><span class="comment"># TxDb.Hsapiens.UCSC.hg38.knownGene version 3.14.0</span></span><br><span class="line">library<span class="punctuation">(</span>TxDb.Hsapiens.UCSC.hg19.knownGene<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># DESeq2 version 4.1.1</span></span><br><span class="line">library<span class="punctuation">(</span>DESeq2<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># dplyr version 1.0.10</span></span><br><span class="line">library<span class="punctuation">(</span>dplyr<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># tximport version 1.22.0</span></span><br><span class="line">library<span class="punctuation">(</span>tximport<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># GenomicFeatures version 1.46.5</span></span><br><span class="line">library<span class="punctuation">(</span>GenomicFeatures<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Clear All Packages:</span></span><br><span class="line"><span class="comment"># pacman::p_unload(pacman::p_loaded(), character.only = TRUE)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make data.frame:tx2gene</span></span><br><span class="line">samples <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;SRR8281218&#x27;</span><span class="punctuation">,</span> <span class="string">&#x27;SRR8281219&#x27;</span><span class="punctuation">,</span> <span class="string">&#x27;SRR8281230&#x27;</span><span class="punctuation">,</span> <span class="string">&#x27;SRR8281233&#x27;</span><span class="punctuation">,</span></span><br><span class="line">             <span class="string">&#x27;SRR8281243&#x27;</span><span class="punctuation">,</span> <span class="string">&#x27;SRR8281244&#x27;</span><span class="punctuation">,</span> <span class="string">&#x27;SRR8281245&#x27;</span><span class="punctuation">,</span> <span class="string">&#x27;SRR8281251&#x27;</span><span class="punctuation">)</span></span><br><span class="line">dir <span class="operator">&lt;-</span> <span class="string">&#x27;F:/Bioinformatics/RIMA/Log_Out/03Salmon&#x27;</span></span><br><span class="line">files <span class="operator">&lt;-</span> file.path<span class="punctuation">(</span>dir<span class="punctuation">,</span> paste0<span class="punctuation">(</span>samples<span class="punctuation">,</span> <span class="string">&#x27;.quant.sf&#x27;</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="built_in">names</span><span class="punctuation">(</span>files<span class="punctuation">)</span> <span class="operator">&lt;-</span> samples</span><br><span class="line"><span class="built_in">all</span><span class="punctuation">(</span>file.exists<span class="punctuation">(</span>files<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">txdb <span class="operator">&lt;-</span> makeTxDbFromGFF<span class="punctuation">(</span></span><br><span class="line">  file <span class="operator">=</span> <span class="string">&#x27;F:/Bioinformatics/RIMA/ref/gencode.v22.annotation.gtf&#x27;</span><span class="punctuation">,</span></span><br><span class="line">  format <span class="operator">=</span> <span class="string">&#x27;gtf&#x27;</span></span><br><span class="line"><span class="punctuation">)</span></span><br><span class="line">k <span class="operator">&lt;-</span> keys<span class="punctuation">(</span>txdb<span class="punctuation">,</span> keytype <span class="operator">=</span> <span class="string">&quot;TXNAME&quot;</span><span class="punctuation">)</span></span><br><span class="line">tx2gene <span class="operator">&lt;-</span> select<span class="punctuation">(</span>txdb<span class="punctuation">,</span> k<span class="punctuation">,</span> <span class="string">&quot;GENEID&quot;</span><span class="punctuation">,</span> <span class="string">&quot;TXNAME&quot;</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">txi <span class="operator">&lt;-</span> tximport<span class="punctuation">(</span>files<span class="punctuation">,</span> type <span class="operator">=</span> <span class="string">&#x27;salmon&#x27;</span><span class="punctuation">,</span> tx2gene <span class="operator">=</span> tx2gene<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">exprsn <span class="operator">&lt;-</span> txi<span class="operator">$</span>abundance</span><br><span class="line">write.table<span class="punctuation">(</span>exprsn<span class="punctuation">,</span> <span class="string">&#x27;F:/Bioinformatics/RIMA/Log_Out/03Salmon/tpm.genesymbol.csv&#x27;</span><span class="punctuation">,</span> <span class="built_in">quote</span> <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;,&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-Batch-effect-removal"><a href="#1-4-Batch-effect-removal" class="headerlink" title="1.4 Batch effect removal"></a>1.4 Batch effect removal</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">VMware 虚拟机</span></span><br><span class="line"></span><br><span class="line">Rscript ./batch_removal.R -e ./tpm.genesymbol.csv \</span><br><span class="line"> -c syn_batch \</span><br><span class="line"> -d Group \</span><br><span class="line"> -m ./metasheet.csv \</span><br><span class="line"> -b ./Group_syn_batch_tpm.genesymbol.batchremoved.csv \</span><br><span class="line"> -a ./Group_syn_batch_tpm.genesymbol.csv \</span><br><span class="line"> &amp;&amp; cp ./Group_syn_batch_tpm.genesymbol.csv ./tpm.genesymbol.batchremoved.csv</span><br></pre></td></tr></table></figure>
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mrwuuu.github.io/2022/11/07/My-New-Post/" data-id="cla67cir90000ecin323sbcao" data-title="My New Post" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bioinformatics/" rel="tag">Bioinformatics</a></li></ul>
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2022/11/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
-
-  
-</article>
+{% block page_class %}page-post-detail{% endblock %}
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+{% block content %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bioinformatics/" rel="tag">Bioinformatics</a></li></ul>
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
+
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Bioinformatics/" style="font-size: 10px;">Bioinformatics</a>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/11/07/My-New-Post/">My New Post</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/07/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2022 Zeyu Wu<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}
