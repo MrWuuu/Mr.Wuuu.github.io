@@ -20,30 +20,34 @@
     var CONFIG = {"hostname":"mrwuuu.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="使人疲惫的不是远方的高山，而是鞋子里的一粒沙子。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MrWuuu&#39;s blog">
-<meta property="og:url" content="https://mrwuuu.github.io/index.html">
+  <meta name="description" content="本文利用 iris 数据集使用偏最小二乘法-判别分析 (PLS-DA) 进行数据分类，在学习的同时，记录过程。 偏最小二乘法-判别分析 (PLS-DA)一些栗子Example 1. People’s occupational choices might be influenced by their parents’ occupations and their own education level">
+<meta property="og:type" content="article">
+<meta property="og:title" content="偏最小二乘法-判别分析 (PLS-DA)">
+<meta property="og:url" content="https://mrwuuu.github.io/2022/11/09/PLS-DA/index.html">
 <meta property="og:site_name" content="MrWuuu&#39;s blog">
-<meta property="og:description" content="使人疲惫的不是远方的高山，而是鞋子里的一粒沙子。">
+<meta property="og:description" content="本文利用 iris 数据集使用偏最小二乘法-判别分析 (PLS-DA) 进行数据分类，在学习的同时，记录过程。 偏最小二乘法-判别分析 (PLS-DA)一些栗子Example 1. People’s occupational choices might be influenced by their parents’ occupations and their own education level">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-09T14:53:33.000Z">
+<meta property="article:modified_time" content="2022-11-09T14:56:32.328Z">
 <meta property="article:author" content="Zeyu Wu">
+<meta property="article:tag" content="R">
+<meta property="article:tag" content="Discriminant Analysis">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://mrwuuu.github.io/">
+<link rel="canonical" href="https://mrwuuu.github.io/2022/11/09/PLS-DA/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>MrWuuu's blog</title>
+  <title>偏最小二乘法-判别分析 (PLS-DA) | MrWuuu's blog</title>
   
 
 
@@ -158,9 +162,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -176,10 +181,9 @@
       <meta itemprop="name" content="MrWuuu's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/09/PLS-DA/" class="post-title-link" itemprop="url">偏最小二乘法-判别分析 (PLS-DA)</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          偏最小二乘法-判别分析 (PLS-DA)
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -230,7 +234,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>本文利用 <code>iris</code> 数据集使用偏最小二乘法-判别分析 (PLS-DA) 进行数据分类，在学习的同时，记录过程。</p>
+        <p>本文利用 <code>iris</code> 数据集使用偏最小二乘法-判别分析 (PLS-DA) 进行数据分类，在学习的同时，记录过程。</p>
 <h2 id="偏最小二乘法-判别分析-PLS-DA"><a href="#偏最小二乘法-判别分析-PLS-DA" class="headerlink" title="偏最小二乘法-判别分析 (PLS-DA)"></a>偏最小二乘法-判别分析 (PLS-DA)</h2><h3 id="一些栗子"><a href="#一些栗子" class="headerlink" title="一些栗子"></a>一些栗子</h3><p>Example 1. People’s occupational choices might be influenced by their parents’ occupations and their own education level. We can study the relationship of one’s occupation choice with education level and father’s occupation. The occupational choices will be the outcome variable which consists of categories of occupations.</p>
 <p>Example 2. A biologist may be interested in food choices that alligators make. Adult alligators might have different preferences from young ones. The outcome variable here will be the types of food, and the predictor variables might be size of the alligators and other environmental variables.</p>
 <p>Example 3. Entering high school students make program choices among general program, vocational program and academic program. Their choice might be modeled using their writing score and their social economic status.</p>
@@ -252,471 +256,63 @@
 <p><a target="_blank" rel="noopener" href="https://mdatools.com/docs/plsda.html">PLS Discriminant Analysis | Getting started with mdatools for R</a></p>
 </blockquote>
 
-      
     </div>
 
     
     
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2022/11/09/MLR/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Zeyu Wu">
-      <meta itemprop="description" content="使人疲惫的不是远方的高山，而是鞋子里的一粒沙子。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MrWuuu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/09/MLR/" class="post-title-link" itemprop="url">多分类逻辑回归 (Multinomial Logistic Regression)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-11-09 20:24:55 / Modified: 22:56:37" itemprop="dateCreated datePublished" datetime="2022-11-09T20:24:55+08:00">2022-11-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/R/" itemprop="url" rel="index"><span itemprop="name">R</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/R/Neural-Network/" itemprop="url" rel="index"><span itemprop="name">Neural Network</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/R/Neural-Network/Discriminant-Analysis/" itemprop="url" rel="index"><span itemprop="name">Discriminant Analysis</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本文利用 <code>hsdbemo</code> 数据集使用多分类逻辑回归 (Multinomial Logistic Regression) 进行数据分类，在学习的同时，记录过程。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/09/MLR/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
+    <script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >Loading....</span></div>
         
-      
-    </div>
 
-    
-    
-    
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zeyu Wu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://mrwuuu.github.io/2022/11/09/PLS-DA/" title="偏最小二乘法-判别分析 (PLS-DA)">https://mrwuuu.github.io/2022/11/09/PLS-DA/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/R/" rel="tag"># R</a>
+              <a href="/tags/Discriminant-Analysis/" rel="tag"># Discriminant Analysis</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2022/11/08/R-read-table-no-regular/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Zeyu Wu">
-      <meta itemprop="description" content="使人疲惫的不是远方的高山，而是鞋子里的一粒沙子。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MrWuuu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/08/R-read-table-no-regular/" class="post-title-link" itemprop="url">Solved: R中read_table读取不规则数据</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-11-08 20:46:23 / Modified: 21:17:42" itemprop="dateCreated datePublished" datetime="2022-11-08T20:46:23+08:00">2022-11-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bug/" itemprop="url" rel="index"><span itemprop="name">Bug</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>799</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><code>R</code> 使用 <code>read_table</code> 函数读取数据时，当数据不是规则时，想让数据读取时不报错，缺少数据自动填充为 <code>NA</code>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/08/R-read-table-no-regular/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2022/11/07/title-rename/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Zeyu Wu">
-      <meta itemprop="description" content="使人疲惫的不是远方的高山，而是鞋子里的一粒沙子。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MrWuuu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/07/title-rename/" class="post-title-link" itemprop="url">Solved: 更改 hexo new title 自动生成的文章标题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-11-07 21:06:08" itemprop="dateCreated datePublished" datetime="2022-11-07T21:06:08+08:00">2022-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-11-08 20:49:21" itemprop="dateModified" datetime="2022-11-08T20:49:21+08:00">2022-11-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bug/" itemprop="url" rel="index"><span itemprop="name">Bug</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>615</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><code>Hexo</code>  新建文章后在&#x2F;path&#x2F;to&#x2F;hexo_blog&#x2F;source&#x2F;_post目录下生成 <code>Markdown </code> 文件中 <code>Front-matter</code> 的 <code>title</code> 会自动生成与 <code>Markdown </code> 文件名相同的字段。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/07/title-rename/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/09/MLR/" rel="prev" title="多分类逻辑回归 (Multinomial Logistic Regression)">
+      <i class="fa fa-chevron-left"></i> 多分类逻辑回归 (Multinomial Logistic Regression)
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2022/11/07/GGLBCXX-3-4-20-not-found/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Zeyu Wu">
-      <meta itemprop="description" content="使人疲惫的不是远方的高山，而是鞋子里的一粒沙子。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MrWuuu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/07/GGLBCXX-3-4-20-not-found/" class="post-title-link" itemprop="url">Solved: GLIBCXX_3.4.20 not found</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-11-07 20:57:53 / Modified: 22:10:02" itemprop="dateCreated datePublished" datetime="2022-11-07T20:57:53+08:00">2022-11-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bug/" itemprop="url" rel="index"><span itemprop="name">Bug</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>993</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Error: &#x2F;lib64&#x2F;libstdc++.so.6: version &#96;GLIBCXX_3.4.20’ not found</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/07/GGLBCXX-3-4-20-not-found/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2022/11/07/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Zeyu Wu">
-      <meta itemprop="description" content="使人疲惫的不是远方的高山，而是鞋子里的一粒沙子。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MrWuuu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/07/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-11-07 09:28:27 / Modified: 16:29:43" itemprop="dateCreated datePublished" datetime="2022-11-07T09:28:27+08:00">2022-11-07</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>367</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/07/hello-world/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -769,6 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%8F%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95-%E5%88%A4%E5%88%AB%E5%88%86%E6%9E%90-PLS-DA"><span class="nav-number">1.</span> <span class="nav-text">偏最小二乘法-判别分析 (PLS-DA)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%A0%97%E5%AD%90"><span class="nav-number">1.1.</span> <span class="nav-text">一些栗子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R-%E9%9C%80%E8%A6%81%E7%9A%84%E5%8C%85"><span class="nav-number">1.2.</span> <span class="nav-text">R 需要的包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BD%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.</span> <span class="nav-text">载入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E8%A1%8C%E5%88%A4%E5%88%AB%E5%88%86%E6%9E%90"><span class="nav-number">1.4.</span> <span class="nav-text">进行判别分析</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
