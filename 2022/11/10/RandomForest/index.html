@@ -28,12 +28,12 @@
 <meta property="og:description" content="本文利用 readingSkills 数据集使用随机森林 (Random Forest) 进行数据分类，在学习的同时，记录过程。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Sample-Data-Set-Random-Forest-In-R-Edureka-528x258.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWuuu/Blog_Image@main/img/Bootstrapped-Data-Set-Random-Forest-In-R-Edureka-528x258.png">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Bootstrapped-Data-Set-Random-Forest-In-R-Edureka-528x258.png">
 <meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Random-Forest-Algorithm-Random-Forest-In-R-Edureka-501x300.png">
 <meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Random-Forest-Random-Forest-In-R-Edureka-513x300.png">
 <meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Output-Random-Forest-In-R-Edureka-528x227.png">
 <meta property="article:published_time" content="2022-11-10T02:54:02.000Z">
-<meta property="article:modified_time" content="2022-11-10T12:11:24.344Z">
+<meta property="article:modified_time" content="2022-11-10T12:16:12.723Z">
 <meta property="article:author" content="Zeyu Wu">
 <meta property="article:tag" content="Discriminant Analysis">
 <meta property="article:tag" content="R">
@@ -199,7 +199,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-11-10 10:54:02 / Modified: 20:11:24" itemprop="dateCreated datePublished" datetime="2022-11-10T10:54:02+08:00">2022-11-10</time>
+              <time title="Created: 2022-11-10 10:54:02 / Modified: 20:16:12" itemprop="dateCreated datePublished" datetime="2022-11-10T10:54:02+08:00">2022-11-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,7 +251,7 @@
 <p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Sample-Data-Set-Random-Forest-In-R-Edureka-528x258.png" alt="Sample-Data-Set-Random-Forest-In-R-Edureka-528x258"></p>
 <p>这些变量被用于预测样本中的此人是否患有心脏病。我们接下来利用此数据集去创建随机森林去预测样本是否患有心脏病。</p>
 <h3 id="Creating-A-Random-Forest"><a href="#Creating-A-Random-Forest" class="headerlink" title="Creating A Random Forest"></a>Creating A Random Forest</h3><h4 id="Step-1-Create-a-Bootstrapped-Dataset"><a href="#Step-1-Create-a-Bootstrapped-Dataset" class="headerlink" title="Step 1: Create a Bootstrapped Dataset"></a>Step 1: Create a Bootstrapped Dataset</h4><p>Bootstrapping 是一种被用来进行数据集预测的估算方法，通过重新采样完成：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWuuu/Blog_Image@main/img/Bootstrapped-Data-Set-Random-Forest-In-R-Edureka-528x258.png" alt="Bootstrapped Data Set - Random Forest In R - Edureka"></p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Bootstrapped-Data-Set-Random-Forest-In-R-Edureka-528x258.png" alt="Bootstrapped-Data-Set-Random-Forest-In-R-Edureka-528x258"></p>
 <p>在上图中，我们从原始数据集中随机挑选了样本创建了 Bootstrapped Dataset 。</p>
 <h4 id="Step-2-Creating-Decision-Trees"><a href="#Step-2-Creating-Decision-Trees" class="headerlink" title="Step 2: Creating Decision Trees"></a>Step 2: Creating Decision Trees</h4><p>每一步挑选一个预测变量，依次进行操作，可以得到决策树：</p>
 <p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Random-Forest-Algorithm-Random-Forest-In-R-Edureka-501x300.png" alt="Random Forest Algorithm - Random Forest In R - Edureka"></p>
