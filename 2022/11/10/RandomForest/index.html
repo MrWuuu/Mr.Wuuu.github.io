@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mrwuuu.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文利用 readingSkills 数据集使用随机森林 (Random Forest) 进行数据分类，在学习的同时，记录过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Random Forest (随机森林)">
+<meta property="og:url" content="https://mrwuuu.github.io/2022/11/10/RandomForest/index.html">
+<meta property="og:site_name" content="MrWuuu&#39;s blog">
+<meta property="og:description" content="本文利用 readingSkills 数据集使用随机森林 (Random Forest) 进行数据分类，在学习的同时，记录过程。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="e:/Appl/Typora/Image/Sample-Data-Set-Random-Forest-In-R-Edureka-528x258.png">
+<meta property="og:image" content="e:/Appl/Typora/Image/Bootstrapped-Data-Set-Random-Forest-In-R-Edureka-528x258.png">
+<meta property="og:image" content="e:/Appl/Typora/Image/Random-Forest-Algorithm-Random-Forest-In-R-Edureka-501x300.png">
+<meta property="og:image" content="e:/Appl/Typora/Image/Random-Forest-Random-Forest-In-R-Edureka-513x300.png">
+<meta property="og:image" content="e:/Appl/Typora/Image/Output-Random-Forest-In-R-Edureka-528x227.png">
+<meta property="article:published_time" content="2022-11-10T02:54:02.000Z">
+<meta property="article:modified_time" content="2022-11-10T02:56:14.223Z">
+<meta property="article:author" content="Zeyu Wu">
+<meta property="article:tag" content="R">
+<meta property="article:tag" content="Discriminant Analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="e:/Appl/Typora/Image/Sample-Data-Set-Random-Forest-In-R-Edureka-528x258.png">
+
+<link rel="canonical" href="https://mrwuuu.github.io/2022/11/10/RandomForest/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Random Forest (随机森林) | MrWuuu's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MrWuuu's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2022/11/10/RandomForest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Zeyu Wu">
+      <meta itemprop="description" content="使人疲惫的不是远方的高山，而是鞋子里的一粒沙子。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MrWuuu's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Random Forest (随机森林)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-11-10 10:54:02 / Modified: 10:56:14" itemprop="dateCreated datePublished" datetime="2022-11-10T10:54:02+08:00">2022-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index"><span itemprop="name">R</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文利用 <code>readingSkills</code> 数据集使用随机森林 (Random Forest) 进行数据分类，在学习的同时，记录过程。</p>
+<span id="more"></span>
+
+<h2 id="Random-Forest-随机森林"><a href="#Random-Forest-随机森林" class="headerlink" title="Random Forest (随机森林)"></a>Random Forest (随机森林)</h2><h3 id="What-Is-Random-Forest"><a href="#What-Is-Random-Forest" class="headerlink" title="What Is Random Forest?"></a>What Is Random Forest?</h3><p>随机森林是一种有监督的分类和回归的算法，正如它的名字一样，该算法随机创建拥有许多 trees 的 forest。</p>
+<p>通常来说，一个森林中的树越多，那么这个森林系统就会越稳定。同样，在随机森林分类系统中，forest 中的 trees 越多，那么分类结果的准确性就会越高。 </p>
+<h3 id="How-Does-Random-Forest-Work"><a href="#How-Does-Random-Forest-Work" class="headerlink" title="How Does Random Forest Work?"></a>How Does Random Forest Work?</h3><p>为了更好地去理解随机森林，考虑以下样本数据集，在该数据集中，我们拥有4个预测变量：</p>
+<ul>
+<li>Weight</li>
+<li>Blood flow</li>
+<li>Blocked Arteries</li>
+<li>Chest pain</li>
+</ul>
+<p><img src="E:/Appl/Typora/Image/Sample-Data-Set-Random-Forest-In-R-Edureka-528x258.png" alt="Sample Data Set - Random Forest In R - Edureka"></p>
+<p>这些变量被用于预测样本中的此人是否患有心脏病。我们接下来利用此数据集去创建随机森林去预测样本是否患有心脏病。</p>
+<h3 id="Creating-A-Random-Forest"><a href="#Creating-A-Random-Forest" class="headerlink" title="Creating A Random Forest"></a>Creating A Random Forest</h3><h4 id="Step-1-Create-a-Bootstrapped-Dataset"><a href="#Step-1-Create-a-Bootstrapped-Dataset" class="headerlink" title="Step 1: Create a Bootstrapped Dataset"></a>Step 1: Create a Bootstrapped Dataset</h4><p>Bootstrapping 是一种被用来进行数据集预测的估算方法，通过重新采样完成：</p>
+<p><img src="E:/Appl/Typora/Image/Bootstrapped-Data-Set-Random-Forest-In-R-Edureka-528x258.png" alt="Bootstrapped Data Set - Random Forest In R - Edureka"></p>
+<p>在上图中，我们从原始数据集中随机挑选了样本创建了 Bootstrapped Dataset 。</p>
+<h4 id="Step-2-Creating-Decision-Trees"><a href="#Step-2-Creating-Decision-Trees" class="headerlink" title="Step 2: Creating Decision Trees"></a>Step 2: Creating Decision Trees</h4><p>每一步挑选一个预测变量，依次进行操作，可以得到决策树：</p>
+<p><img src="E:/Appl/Typora/Image/Random-Forest-Algorithm-Random-Forest-In-R-Edureka-501x300.png" alt="Random Forest Algorithm - Random Forest In R - Edureka"></p>
+<h4 id="Step4-Go-Back-to-Step1-and-Repeat"><a href="#Step4-Go-Back-to-Step1-and-Repeat" class="headerlink" title="Step4: Go Back to Step1 and Repeat"></a>Step4: Go Back to Step1 and Repeat</h4><p>正如上文中提到，随机森林是许多决策树的集合，每一个决策树预测的结果都是基于该树中选择代表性的变量。最后，随机森林中所有的决策树的预测结果都会被记录，并且所有决策树预测结果中出现最多的结果会被作为最终的输出结果。</p>
+<p>为了得到众多的决策树，我们重回 Step1，创建 bootstrapped dataset，然后通过考虑特定的子集变量来创建决策树，通过一直重复以上步骤，我们最终创建的随机森林 be like:</p>
+<p><img src="E:/Appl/Typora/Image/Random-Forest-Random-Forest-In-R-Edureka-513x300.png" alt="Random Forest - Random Forest In R - Edureka"></p>
+<h4 id="Step-4-Predicting-the-Outcome-of-a-new-data-point"><a href="#Step-4-Predicting-the-Outcome-of-a-new-data-point" class="headerlink" title="Step 4: Predicting the Outcome of a new data point"></a>Step 4: Predicting the Outcome of a new data point</h4><p>现在我们已经创建完进行预测的随机森林，接下来我们来看看它如何被用来预测新的样本：</p>
+<p><img src="E:/Appl/Typora/Image/Output-Random-Forest-In-R-Edureka-528x227.png" alt="Output - Random Forest In R - Edureka"></p>
+<p>上图只是通过一个随机森林中一个决策树进行预测的结果，通过以上方法同样将此样本输入到其它决策树中进行预测，将得到的所有预测结果进行记录，统计出现频率最多的输出结果作为整个随机森林的预测输出结果。</p>
+<h4 id="Step-5-Evaluate-the-Model"><a href="#Step-5-Evaluate-the-Model" class="headerlink" title="Step 5: Evaluate the Model"></a>Step 5: Evaluate the Model</h4><p>最后一个步骤就是对我们建立的模型进行评估，之前我们在创建 bootstrapped dataset 时，有些数据没有包括在其中，一般而言，大约 1&#x2F;3 的原始数据不会被包括在 bootstrapped dataset， 一般我们将这类数据称为 Out-Of-Bag (OOB) dataset。OOB dataset 就是用于评估模型的准确性。</p>
+<h3 id="Practical-Implementation-of-Random-Forest-in-R"><a href="#Practical-Implementation-of-Random-Forest-in-R" class="headerlink" title="Practical Implementation of Random Forest in R"></a>Practical Implementation of Random Forest in R</h3><h4 id="Load-R-Packages"><a href="#Load-R-Packages" class="headerlink" title="Load R Packages"></a>Load R Packages</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require<span class="punctuation">(</span>randomforest<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h4><p>The basic syntax for random forest in R:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">randomForest<span class="punctuation">(</span>formula<span class="punctuation">,</span> data<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p> Following is the description of the parameters used:</p>
+<ul>
+<li><strong>formula</strong> is a formula describing the predictor and response variables.</li>
+<li><strong>data</strong> is the name of the data set used.</li>
+</ul>
+<h4 id="Input-data"><a href="#Input-data" class="headerlink" title="Input data"></a>Input data</h4><p>本文中我们使用 <code>readingSkills</code> 数据集进行分析：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>party<span class="punctuation">)</span></span><br><span class="line">print<span class="punctuation">(</span>head<span class="punctuation">(</span>readingSkills<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># nativeSpeaker age shoeSize    score</span></span><br><span class="line"><span class="comment"># 1           yes   5 24.83189 32.29385</span></span><br><span class="line"><span class="comment"># 2           yes   6 25.95238 36.63105</span></span><br><span class="line"><span class="comment"># 3            no  11 30.42170 49.60593</span></span><br><span class="line"><span class="comment"># 4           yes   7 28.66450 40.28456</span></span><br><span class="line"><span class="comment"># 5           yes  11 31.88207 55.46085</span></span><br><span class="line"><span class="comment"># 6           yes  10 30.07843 52.83124</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>我们使用 <code>randomForest::randomForest</code> 函数创建决策树：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">output.forest <span class="operator">&lt;-</span> randomForest<span class="punctuation">(</span>nativeSpeaker <span class="operator">~</span> age <span class="operator">+</span> shoeSize <span class="operator">+</span> score<span class="punctuation">,</span></span><br><span class="line">                              data <span class="operator">=</span> readingSkills<span class="punctuation">)</span></span><br><span class="line"><span class="comment">## View the forest results</span></span><br><span class="line">print<span class="punctuation">(</span>output.forest<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># Call:</span></span><br><span class="line"><span class="comment">#   randomForest(formula = nativeSpeaker ~ age + shoeSize + score,      data = readingSkills) </span></span><br><span class="line"><span class="comment"># Type of random forest: classification</span></span><br><span class="line"><span class="comment"># Number of trees: 500</span></span><br><span class="line"><span class="comment"># No. of variables tried at each split: 1</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># OOB estimate of  error rate: 1%</span></span><br><span class="line"><span class="comment"># Confusion matrix:</span></span><br><span class="line"><span class="comment">#   no yes class.error</span></span><br><span class="line"><span class="comment"># no  99   1        0.01</span></span><br><span class="line"><span class="comment"># yes  1  99        0.01</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到通过 OOB dataset 进行模型检验，可以发现误差率仅有1%，说明该模型准确性高。</p>
+<p>随后，我们利用建立的模型进行对新样本的预测：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">newData <span class="operator">&lt;-</span> readingSkills<span class="punctuation">[</span><span class="number">1</span><span class="operator">:</span><span class="number">5</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">predict<span class="punctuation">(</span>output.forest<span class="punctuation">,</span> newData<span class="punctuation">,</span> type <span class="operator">=</span> <span class="string">&#x27;response&#x27;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 1   2   3   4   5 </span></span><br><span class="line"><span class="comment"># yes yes  no yes yes </span></span><br><span class="line"><span class="comment"># Levels: no yes</span></span><br><span class="line">predict<span class="punctuation">(</span>output.forest<span class="punctuation">,</span> newData<span class="punctuation">,</span> type <span class="operator">=</span> <span class="string">&#x27;prob&#x27;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># no   yes</span></span><br><span class="line"><span class="comment"># 1 0.188 0.812</span></span><br><span class="line"><span class="comment"># 2 0.038 0.962</span></span><br><span class="line"><span class="comment"># 3 0.878 0.122</span></span><br><span class="line"><span class="comment"># 4 0.170 0.830</span></span><br><span class="line"><span class="comment"># 5 0.026 0.974</span></span><br><span class="line"><span class="comment"># attr(,&quot;class&quot;)</span></span><br><span class="line"><span class="comment"># [1] &quot;matrix&quot; &quot;array&quot;  &quot;votes&quot; </span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://dzone.com/articles/a-comprehensive-guide-to-random-forest-in-r">A Comprehensive Guide to Random Forest in R - DZone AI</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/r/r_random_forest.htm">R - Random Forest (tutorialspoint.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.rdocumentation.org/packages/randomForest/versions/4.7-1.1/topics/randomForest">randomForest function - RDocumentation</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.rdocumentation.org/packages/randomForest/versions/4.7-1.1/topics/predict.randomForest">predict.randomForest function - RDocumentation</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    <script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >Loading....</span></div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zeyu Wu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://mrwuuu.github.io/2022/11/10/RandomForest/" title="Random Forest (随机森林)">https://mrwuuu.github.io/2022/11/10/RandomForest/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/R/" rel="tag"># R</a>
+              <a href="/tags/Discriminant-Analysis/" rel="tag"># Discriminant Analysis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/09/PLS-DA/" rel="prev" title="偏最小二乘法-判别分析 (PLS-DA)">
+      <i class="fa fa-chevron-left"></i> 偏最小二乘法-判别分析 (PLS-DA)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Random-Forest-%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97"><span class="nav-number">1.</span> <span class="nav-text">Random Forest (随机森林)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-Is-Random-Forest"><span class="nav-number">1.1.</span> <span class="nav-text">What Is Random Forest?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-Does-Random-Forest-Work"><span class="nav-number">1.2.</span> <span class="nav-text">How Does Random Forest Work?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-A-Random-Forest"><span class="nav-number">1.3.</span> <span class="nav-text">Creating A Random Forest</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-1-Create-a-Bootstrapped-Dataset"><span class="nav-number">1.3.1.</span> <span class="nav-text">Step 1: Create a Bootstrapped Dataset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-2-Creating-Decision-Trees"><span class="nav-number">1.3.2.</span> <span class="nav-text">Step 2: Creating Decision Trees</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step4-Go-Back-to-Step1-and-Repeat"><span class="nav-number">1.3.3.</span> <span class="nav-text">Step4: Go Back to Step1 and Repeat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-4-Predicting-the-Outcome-of-a-new-data-point"><span class="nav-number">1.3.4.</span> <span class="nav-text">Step 4: Predicting the Outcome of a new data point</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-5-Evaluate-the-Model"><span class="nav-number">1.3.5.</span> <span class="nav-text">Step 5: Evaluate the Model</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Practical-Implementation-of-Random-Forest-in-R"><span class="nav-number">1.4.</span> <span class="nav-text">Practical Implementation of Random Forest in R</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Load-R-Packages"><span class="nav-number">1.4.1.</span> <span class="nav-text">Load R Packages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Syntax"><span class="nav-number">1.4.2.</span> <span class="nav-text">Syntax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-data"><span class="nav-number">1.4.3.</span> <span class="nav-text">Input data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.4.4.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zeyu Wu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Zeyu Wu</p>
+  <div class="site-description" itemprop="description">使人疲惫的不是远方的高山，而是鞋子里的一粒沙子。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/MrWuuu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;MrWuuu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1848172042@qq.com" title="E-Mail → mailto:1848172042@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeyu Wu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">12k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">11 mins.</span>
+</div>
+
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://lib.baomitu.com/canvas-nest.js/1.0.1/canvas-nest.js"></script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
