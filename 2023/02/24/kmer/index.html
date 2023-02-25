@@ -29,15 +29,15 @@
 <meta property="og:site_name" content="Zell Wu&#39;s blog">
 <meta property="og:description" content="What is a k-mer anyway? A k-mer is just a sequence of k characters in a string (or nucleotides in a DNA sequence).">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="e:/Appl/Typora/Image/image-20230225110240171.png">
-<meta property="og:image" content="e:/Appl/Typora/Image/image-20230225110302474.png">
-<meta property="og:image" content="e:/Appl/Typora/Image/image-20230225111313003.png">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230225110240171.png">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230225110302474.png">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230225111313003.png">
 <meta property="article:published_time" content="2023-02-24T08:25:43.000Z">
-<meta property="article:modified_time" content="2023-02-25T03:19:54.051Z">
+<meta property="article:modified_time" content="2023-02-25T06:13:48.012Z">
 <meta property="article:author" content="Zell Wu">
 <meta property="article:tag" content="Bioinformatics">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="e:/Appl/Typora/Image/image-20230225110240171.png">
+<meta name="twitter:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230225110240171.png">
 
 <link rel="canonical" href="https://mrwuuu.github.io/2023/02/24/kmer/">
 
@@ -206,7 +206,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-25 11:19:54" itemprop="dateModified" datetime="2023-02-25T11:19:54+08:00">2023-02-25</time>
+                <time title="Modified: 2023-02-25 14:13:48" itemprop="dateModified" datetime="2023-02-25T14:13:48+08:00">2023-02-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -302,10 +302,10 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>seq1 = <span class="string">&#x27;ATGGACCAGATATAGGGAGAGCCAGGTAGGACA&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>seq2 = <span class="string">&#x27;ATGGACCAGATATTGGGAGAGCCGGGTAGGACA&#x27;</span></span><br><span class="line"><span class="comment">#     differences:       ^         ^</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>K = <span class="number">10</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>kmers1 = build_kmers(seq1, K)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>kmers2 = build_kmers(seq2, K)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(K, jaccard_similarity(kmers1, kmers2))</span><br><span class="line"><span class="number">10</span> <span class="number">0.09090909090909091</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="How-can-K-mer-distribution-estimate-genome-characteristics"><a href="#How-can-K-mer-distribution-estimate-genome-characteristics" class="headerlink" title="How can K-mer distribution estimate genome characteristics?"></a>How can K-mer distribution estimate genome characteristics?</h2><p>K-mer 的频率分布通常用于评估测序后的基因组的特征，k-mer 的频率近似服从 pseudo-normal 分布（实际上是一个 Poisson 分布）。以下是两张 K-mer 的频率分布图，横坐标表示出现某一频率的 K-mer，纵坐标表示出现该频率 K-mer 的数量。</p>
-<p><img src="E:/Appl/Typora/Image/image-20230225110240171.png" alt="image-20230225110240171"></p>
-<p><img src="E:/Appl/Typora/Image/image-20230225110302474.png" alt="image-20230225110302474"></p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230225110240171.png" alt="image-20230225110240171"></p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230225110302474.png" alt="image-20230225110302474"></p>
 <p>第一张图中的第一个峰值，也就是红色区域，它主要是由于测序错误导致的，因为测序错误会产生错误的碱基，从而产生基因组中不存在的 K-mer，它们在k-mer分布中属于低频 K-mer，如果我们把红色区域中低频的 K-mer 去除掉，则可排除测序错误的干扰，第二张图则为我们排除测序错误干扰后的频率分布。</p>
-<p><img src="E:/Appl/Typora/Image/image-20230225111313003.png" alt="image-20230225111313003"></p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230225111313003.png" alt="image-20230225111313003"></p>
 <p>上图中我们可以看出，随着 Heterozygous rate 不断增加，图中的主峰逐渐向左边移动，这是由于双倍体生物中同源染色体上的同源位置出现杂合位点，导致相同 K-mer 的数量下降。</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://bioinfologics.github.io/post/2018/09/17/k-mer-counting-part-i-introduction/">https://bioinfologics.github.io/post/2018/09/17/k-mer-counting-part-i-introduction/</a></p>

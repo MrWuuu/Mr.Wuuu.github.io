@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://mrwuuu.github.io/2023/02/24/kmer/</loc>
+    <loc>https://mrwuuu.github.io/about/index.html</loc>
     
     <lastmod>2023-02-25</lastmod>
     
@@ -11,9 +11,9 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/about/index.html</loc>
+    <loc>https://mrwuuu.github.io/2023/02/24/kmer/</loc>
     
-    <lastmod>2023-02-24</lastmod>
+    <lastmod>2023-02-25</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -215,20 +215,6 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/Medician/</loc>
-    <lastmod>2023-02-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrwuuu.github.io/tags/Immunology/</loc>
-    <lastmod>2023-02-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/tags/R/</loc>
     <lastmod>2023-02-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -243,6 +229,27 @@
   </url>
   
   <url>
+    <loc>https://mrwuuu.github.io/tags/Medician/</loc>
+    <lastmod>2023-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/Immunology/</loc>
+    <lastmod>2023-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/Writing/</loc>
+    <lastmod>2023-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://mrwuuu.github.io/tags/Life/</loc>
     <lastmod>2023-02-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -251,13 +258,6 @@
   
   <url>
     <loc>https://mrwuuu.github.io/tags/Hello-World/</loc>
-    <lastmod>2023-02-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrwuuu.github.io/tags/Writing/</loc>
     <lastmod>2023-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -294,14 +294,14 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Medician/</loc>
+    <loc>https://mrwuuu.github.io/categories/R/</loc>
     <lastmod>2023-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/R/</loc>
+    <loc>https://mrwuuu.github.io/categories/Medician/</loc>
     <lastmod>2023-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
