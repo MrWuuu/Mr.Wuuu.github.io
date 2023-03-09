@@ -22,24 +22,26 @@
     var CONFIG = {"hostname":"mrwuuu.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":{"enable":true,"caption":false},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="随着研究技术和生信数据分析的进步，免疫组库的研究对于临床上很多疾病的诊断以及预后判断与治疗都非常有前途，这是当今前沿医学的热点和亮点，特别是肿瘤免疫治疗，免疫组库将会给其带来更多的理论支持。">
+  <meta name="description" content="Chapter 4 Recursion">
 <meta property="og:type" content="article">
-<meta property="og:title" content="免疫组库 (Immune Repertoire)">
-<meta property="og:url" content="https://mrwuuu.github.io/2022/11/13/IR/index.html">
+<meta property="og:title" content="Chapter 4 Recursion">
+<meta property="og:url" content="https://mrwuuu.github.io/2023/03/09/recursion/index.html">
 <meta property="og:site_name" content="Zell Wu&#39;s blog">
-<meta property="og:description" content="随着研究技术和生信数据分析的进步，免疫组库的研究对于临床上很多疾病的诊断以及预后判断与治疗都非常有前途，这是当今前沿医学的热点和亮点，特别是肿瘤免疫治疗，免疫组库将会给其带来更多的理论支持。">
+<meta property="og:description" content="Chapter 4 Recursion">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/nejmsa022766_f1.jpeg">
-<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/nejmsa022766_f2.jpeg">
-<meta property="article:published_time" content="2022-11-13T09:07:49.000Z">
-<meta property="article:modified_time" content="2022-11-13T12:24:11.286Z">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309185156870-1678373487540-1.png">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309192847473-1678373487540-2.png">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309193746741-1678373487541-3.png">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309194036967-1678373487541-4.png">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309195715294-1678373487541-5.png">
+<meta property="article:published_time" content="2023-03-09T14:50:55.000Z">
+<meta property="article:modified_time" content="2023-03-09T14:52:19.593Z">
 <meta property="article:author" content="Zell Wu">
-<meta property="article:tag" content="Medician">
-<meta property="article:tag" content="Immunology">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/nejmsa022766_f1.jpeg">
+<meta name="twitter:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309185156870-1678373487540-1.png">
 
-<link rel="canonical" href="https://mrwuuu.github.io/2022/11/13/IR/">
+<link rel="canonical" href="https://mrwuuu.github.io/2023/03/09/recursion/">
 
 
 <script id="page-configurations">
@@ -52,7 +54,7 @@
   };
 </script>
 
-  <title>免疫组库 (Immune Repertoire) | Zell Wu's blog</title>
+  <title>Chapter 4 Recursion | Zell Wu's blog</title>
   
 
 
@@ -176,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2022/11/13/IR/">
+    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2023/03/09/recursion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -189,7 +191,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          免疫组库 (Immune Repertoire)
+          Chapter 4 Recursion
         </h1>
 
         <div class="post-meta">
@@ -200,7 +202,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-11-13 17:07:49 / Modified: 20:24:11" itemprop="dateCreated datePublished" datetime="2022-11-13T17:07:49+08:00">2022-11-13</time>
+              <time title="Created: 2023-03-09 22:50:55 / Modified: 22:52:19" itemprop="dateCreated datePublished" datetime="2023-03-09T22:50:55+08:00">2023-03-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,7 +210,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Medician/" itemprop="url" rel="index"><span itemprop="name">Medician</span></a>
+                  <a href="/categories/Data-Structures-Algorithm/" itemprop="url" rel="index"><span itemprop="name">Data Structures & Algorithm</span></a>
                 </span>
             </span>
 
@@ -225,14 +227,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.3k</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -244,21 +246,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>随着研究技术和生信数据分析的进步，免疫组库的研究对于临床上很多疾病的诊断以及预后判断与治疗都非常有前途，这是当今前沿医学的热点和亮点，特别是肿瘤免疫治疗，免疫组库将会给其带来更多的理论支持。</p>
+        <p>Chapter 4 Recursion</p>
 <span id="more"></span>
 
-<h2 id="Immune-Repertoire"><a href="#Immune-Repertoire" class="headerlink" title="Immune Repertoire"></a>Immune Repertoire</h2><h3 id="What-is-the-Immune-Repertoire"><a href="#What-is-the-Immune-Repertoire" class="headerlink" title="What is the Immune Repertoire?"></a>What is the Immune Repertoire?</h3><p>免疫组库 (immune repertoire, IR) 是指一个人在任何特定时间的循环系统中具有功能多样性的 B 细胞和 T 细胞的总和。免疫细胞驻留在微环境中，负责保护人体，包括 T 细胞、B 细胞、巨噬细胞 (macrophages) 和树突细胞 (dendritic cell) 。这些都说明免疫细胞具有特有的结构和功能。T 细胞和 B 细胞是主要的淋巴细胞，它们分别负责细胞内和体液中的免疫作用。T 细胞受体 (T cell receptor) 和 B 细胞受体 (B cell receptor) 是由抗原中特异性的多肽链组成，肽链的每个互补决定区 (complementarity-determining region) (包括 CDR1, CDR2 和 CDR3) 的氨基酸组成和排列顺序更为丰富，这给 TCRs 和 BCRs 提供了广阔的文库。</p>
-<h3 id="Diversity-of-the-Immune-Repertpore"><a href="#Diversity-of-the-Immune-Repertpore" class="headerlink" title="Diversity of the Immune Repertpore"></a>Diversity of the Immune Repertpore</h3><h4 id="Recombination-of-Variable-Region-Genes"><a href="#Recombination-of-Variable-Region-Genes" class="headerlink" title="Recombination of Variable-Region Genes"></a>Recombination of Variable-Region Genes</h4><p>抗原受体 B 细胞和 T 细胞各自都由两个部分组成：B 细胞具有 heavy chain 和 light chain ，大多数 T 细胞具有 $\alpha$ chain 和 $\beta$ chain 。整个人体大约包含 $10^{10}$ 淋巴细胞，每个细胞都有各自独特的基因片段组合来指定可变区域 (variable region)，这个区域可以作为与抗原相结合的受体的一部分。</p>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/nejmsa022766_f1.jpeg" alt="img"></p>
-<h4 id="Complementarity-Determining-Regions"><a href="#Complementarity-Determining-Regions" class="headerlink" title="Complementarity-Determining Regions"></a>Complementarity-Determining Regions</h4><p>30 多年前，Kabat 和 Wu 鉴定出可变区域 (variable region) 中间的一段子区域，称为互补决定区 (complementarity-determining region) 。事实上，人群中抗体的所有变异都是由这些区域决定的。它们在可变区域中形成的 pocket 可以以互补形态 (complementary shape) 结合抗原。在新形成的 B 细胞中，不相关的配体 (epitopes)   似乎可以匹配到由互补决定区形成的 pocket 结构中。</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/nejmsa022766_f2.jpeg" alt="img" style="zoom:150%;" />
+<p>Recursion is a technique by which a function makes one or more calls to itself during execution, or by which a data structure relies upon smaller instances of the very same type of structure in its representation.</p>
+<h3 id="Illustrative-Examples"><a href="#Illustrative-Examples" class="headerlink" title="Illustrative Examples"></a>Illustrative Examples</h3><p><strong>The Factorial Function</strong></p>
+<p>The factorial of a positive integer $n$, denoted $n!$, is defined as the product of the integers from 1 to $n$. If $n&#x3D;0$, then $n!$ is defined as 1 by convention. More formally, for any integer $n \geq 0$,<br>$$<br>n!&#x3D;<br>\begin{cases}<br>1 &amp;&amp;&amp;&amp; if \ n &#x3D; 0 \<br>n \cdot (n-1) \cdot (n-2) \cdots 3 \cdot 2\cdot 1 &amp;&amp;&amp;&amp; if \ n \geq 1.<br>\end{cases}<br>$$<br>There is a natural recursive definition  for the factorial function. To see this, observe that $5!&#x3D;5\cdot(4\cdot3\cdot2\cdot1)&#x3D;5\cdot4!$. More generally, for a positive integer $n$, we can define $n!$ to be $n\cdot(n-1)!$. This recursive definition can be formalized as<br>$$<br>n!&#x3D;<br>\begin{cases}<br>1 &amp;&amp;&amp;&amp; if \ n &#x3D; 0 \<br>n\cdot(n-1)! &amp;&amp;&amp;&amp; if \ n \geq 1.<br>\end{cases}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">factorial</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> n * factorial(n-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
-<h4 id="Somatic-Mutation-of-Variable-Region-Genes"><a href="#Somatic-Mutation-of-Variable-Region-Genes" class="headerlink" title="Somatic Mutation of Variable-Region Genes"></a>Somatic Mutation of Variable-Region Genes</h4><p>B 细胞的作用就是产生具有高亲和度的保护性抗体，为了成功达到目的，它通过突变它的可变区域的基因去提高对于免疫抗原受体的亲和力。事实上，所有的突变都会影响互补决定区，成功提高亲和力的突变能够迫使出现进化，克隆产生的 B 细胞可以产生高亲和力的抗体。</p>
-<p>T 细胞的可变区域恰恰相反，它们不能直接结合抗原，并且它们的基因没有发生突变，被抗原激活的 T 细胞通过重组其质膜形成对免疫抗原具有高度亲和力的受体簇。这些富含受体的膜微域很有可能解释抗原激活 T 细胞的克隆选择。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.nejm.org/doi/full/10.1056/NEJMsa022766">Diversity of the Immune Repertoire and Immunoregulation | NEJM</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.sohu.com/a/295776893_120051885">【海普周报】一文读懂热议词汇——“免疫组库”_细胞 (sohu.com)</a></p>
-</blockquote>
+<p>We illustrate the execution of a recursive function using a <strong>recursion trace</strong>. Each entry of the trace corresponds to a recursive call. Each new recursive function call is indicated by a downward arrow to a new invocation. When the function returns, an arrow showing this return is drawn and the return value may be indicated alongside this arrow. An example of such a trace for the factorial function is shown in Figure 1.</p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309185156870-1678373487540-1.png" alt="image-20230309185156870" style="zoom:50%;" />
+
+<center>Figure 1. A recursion trace for the call factorial(5)</center>
+
+<p><strong>Drawing an English Ruler</strong></p>
+<p>As a more complex example of the use of recursion, consider how to draw the markings of a typical English ruler. For each inch, we place a tick with a numeric label. We denote the length of the tick designating a whole inch as the <strong>major tick length</strong>. Between the marks for whole inches, the ruler contains a series of <strong>minor ticks</strong>, placed at intervals of 1&#x2F;2 inch, 1&#x2F;4 inch, and so on. As the size of the interval decreases by half, the tick length decreases by one. Figure 2 demonstrates several such rulers with varying major tick lengths (although not drawn to scale).</p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309192847473-1678373487540-2.png" alt="image-20230309192847473" style="zoom:50%;" />
+
+<center>Figure 2. Three sample outputs of an English ruler drawing: (a) a 2-inch ruler with major tick length 4; (b) a 1-inch ruler with major tick length 5; (c) a 3-inch ruler with major tick length 3.</center>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">draw_line</span>(<span class="params">tick_length, tick_label=<span class="string">&#x27;&#x27;</span></span>):</span><br><span class="line">    line = <span class="string">&#x27;-&#x27;</span> * tick_length</span><br><span class="line">    <span class="keyword">if</span> tick_label:</span><br><span class="line">        line += <span class="string">&#x27; &#x27;</span> * tick_label</span><br><span class="line">    <span class="built_in">print</span>(line)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_interval</span>(<span class="params">center_length</span>):</span><br><span class="line">    <span class="keyword">if</span> center_length &gt; <span class="number">0</span>:</span><br><span class="line">    	draw_interval(center_length - <span class="number">1</span>)</span><br><span class="line">   	 	draw_interval_line(center_length - <span class="number">1</span>)</span><br><span class="line">   	 	draw_interval(center_length - <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw_ruler</span>(<span class="params">num_inches, major_length</span>):</span><br><span class="line">    draw_line(major_inches, <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">1</span> + num_inches):</span><br><span class="line">        draw_interval(major_length - <span class="number">1</span>)</span><br><span class="line">        draw_line(major_length, <span class="built_in">str</span>(j))</span><br></pre></td></tr></table></figure>
+
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309193746741-1678373487541-3.png" alt="image-20230309193746741" style="zoom:50%;" />
+
+<center>Figure 3. A partial recursion trace for the call draw_interval(3). The second pattern of calls for draw_interval(2) is not shown, but it is identical too the first.</center>
+
+<p><strong>Binary Search</strong></p>
+<p>In this section, we describe a classic recursive algorithm, <strong>binary search</strong>, that is used to efficiently locate a target value within a sorted sequence of n elements. This is among the most important of computer algorithms, and it is the reason that we so often store data in sorted order (as in Figure 4).</p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309194036967-1678373487541-4.png" alt="image-20230309194036967" style="zoom:50%;" />
+
+<center>Figure 4. Values stored in sorted order within an indexable sequence, such as a Python list. The numbers at top are the indices</center>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">binary_search</span>(<span class="params">data, target, low, high</span>):</span><br><span class="line">    <span class="keyword">if</span> low &gt; high:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        mid = (low + high) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> target == mid:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">elif</span> target &lt; data[mid]:</span><br><span class="line">            <span class="keyword">return</span> binary_search(data, target, low, mid - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span> target &gt; data[mid]:</span><br><span class="line">            <span class="keyword">return</span> binary_search(data, target, mid + <span class="number">1</span>, high)</span><br></pre></td></tr></table></figure>
+
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230309195715294-1678373487541-5.png" alt="image-20230309195715294" style="zoom:50%;" />
+
+<center>Figure 5. Example of a binary search for target value 22.</center>
+
+<h3 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h3><p>#1 Write a recursive function that will output all the subsets of a set of $n$ elements (without repeating any subsets).</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_subsets</span>(<span class="params">s</span>):</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(s) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> [[]]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> get_subsets(s[<span class="number">1</span>:]) + [[s[<span class="number">0</span>]] + i <span class="keyword">for</span> i <span class="keyword">in</span> get_subsets(s[<span class="number">1</span>:])]</span><br></pre></td></tr></table></figure>
+
+<p>#2 Give a recursive algorithm to compute the product of two positive integers, $m$ and $n$, using only addition and subtraction.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">integers_product</span>(<span class="params">m, n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> m</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> integers_product(m, n - <span class="number">1</span>) + m</span><br></pre></td></tr></table></figure>
+
+<p>#3 Write a short recursive Python function that finds the minimum and maximum values in a sequence without using any loops. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_maxmin</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(s) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">10000</span>, -<span class="number">10000</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(get_maxmin(s[<span class="number">1</span>:])[<span class="number">0</span>], s[<span class="number">0</span>]), <span class="built_in">max</span>(get_maxmin(s[<span class="number">1</span>:])[<span class="number">1</span>], s[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -286,7 +318,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="https://mrwuuu.github.io/2022/11/13/IR/" title="免疫组库 (Immune Repertoire)">https://mrwuuu.github.io/2022/11/13/IR/</a>
+    <a href="https://mrwuuu.github.io/2023/03/09/recursion/" title="Chapter 4 Recursion">https://mrwuuu.github.io/2023/03/09/recursion/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -297,8 +329,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Medician/" rel="tag"># Medician</a>
-              <a href="/tags/Immunology/" rel="tag"># Immunology</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
           </div>
 
         
@@ -307,13 +338,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/11/12/ICIs/" rel="prev" title="免疫检查点抑制剂 (Immune checkpoint inhibitors)">
-      <i class="fa fa-chevron-left"></i> 免疫检查点抑制剂 (Immune checkpoint inhibitors)
+    <a href="/2023/03/06/Algorithm-Analysis/" rel="prev" title="Chapter 3 Algorithm Analysis">
+      <i class="fa fa-chevron-left"></i> Chapter 3 Algorithm Analysis
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/11/16/GSEA/" rel="next" title="基因集富集分析 (Gene Set Enrichment Analysis, GSEA)">
-      基因集富集分析 (Gene Set Enrichment Analysis, GSEA) <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -372,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Immune-Repertoire"><span class="nav-number">1.</span> <span class="nav-text">Immune Repertoire</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-Immune-Repertoire"><span class="nav-number">1.1.</span> <span class="nav-text">What is the Immune Repertoire?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diversity-of-the-Immune-Repertpore"><span class="nav-number">1.2.</span> <span class="nav-text">Diversity of the Immune Repertpore</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Recombination-of-Variable-Region-Genes"><span class="nav-number">1.2.1.</span> <span class="nav-text">Recombination of Variable-Region Genes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Complementarity-Determining-Regions"><span class="nav-number">1.2.2.</span> <span class="nav-text">Complementarity-Determining Regions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Somatic-Mutation-of-Variable-Region-Genes"><span class="nav-number">1.2.3.</span> <span class="nav-text">Somatic Mutation of Variable-Region Genes</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Illustrative-Examples"><span class="nav-number">1.</span> <span class="nav-text">Illustrative Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercises"><span class="nav-number">2.</span> <span class="nav-text">Exercises</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
