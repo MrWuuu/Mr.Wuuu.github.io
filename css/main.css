@@ -1293,7 +1293,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #63cb06;
+  background: #306bff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2617,4 +2617,11 @@ hr {
   height: 1px;
   background: rgba(0,0,0,0);
   border-bottom: 3px dashed rgba(65,105,225,0.3);
+}
+/* 自定义的引用样式 */
+blockquote.question {
+  color: #555;
+  border-left: 4px solid #1098ad;
+  background-color: #e3f2fd;
+  margin-bottom: 20px;
 }
