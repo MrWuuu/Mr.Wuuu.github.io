@@ -32,8 +32,8 @@
 <meta property="article:published_time" content="2022-11-08T12:46:23.000Z">
 <meta property="article:modified_time" content="2022-11-08T13:17:42.113Z">
 <meta property="article:author" content="Zell Wu">
-<meta property="article:tag" content="Bug">
 <meta property="article:tag" content="R">
+<meta property="article:tag" content="Bug">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://mrwuuu.github.io/2022/11/08/R-read-table-no-regular/">
@@ -243,19 +243,14 @@
       
         <p><code>R</code> 使用 <code>read_table</code> 函数读取数据时，当数据不是规则时，想让数据读取时不报错，缺少数据自动填充为 <code>NA</code>。</p>
 <span id="more"></span>
-
 <p>笔者在使用 <code>R</code> 使用 <code>read_table</code> 函数读取不规则的数据时，出现报错：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error <span class="keyword">in</span> scan<span class="punctuation">(</span>file <span class="operator">=</span> file<span class="punctuation">,</span> what <span class="operator">=</span> what<span class="punctuation">,</span> sep <span class="operator">=</span> sep<span class="punctuation">,</span> <span class="built_in">quote</span> <span class="operator">=</span> <span class="built_in">quote</span><span class="punctuation">,</span> dec <span class="operator">=</span> dec<span class="punctuation">,</span>  <span class="operator">:</span> </span><br><span class="line">  line <span class="number">2</span> did not have <span class="number">3</span> elements</span><br></pre></td></tr></table></figure>
-
 <p>经搜索解决办法后解决问题，记录过程：</p>
 <p>比如，有一个 <code>Test.txt</code> :</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1	2	3</span><br><span class="line">1	2	3	4</span><br><span class="line">1	2	3	4	5</span><br><span class="line">1	2</span><br><span class="line">1</span><br><span class="line">1	2	3	4	5	6</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">test <span class="operator">&lt;-</span> read.table<span class="punctuation">(</span>Test.txt<span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;\t&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec,  : </span></span><br><span class="line"><span class="comment">#   line 1 did not have 6 elements</span></span><br><span class="line"></span><br><span class="line">test <span class="operator">&lt;-</span> read.table<span class="punctuation">(</span>Text.txt<span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;\t&quot;</span><span class="punctuation">,</span> fill <span class="operator">=</span> <span class="built_in">T</span><span class="punctuation">)</span></span><br><span class="line">test</span><br><span class="line"><span class="comment"># V1	V2	V3	V4	V5</span></span><br><span class="line"><span class="comment"># 1	  2	  3	  NA	NA</span></span><br><span class="line"><span class="comment"># 1	  2	  3	  4	  NA</span></span><br><span class="line"><span class="comment"># 1	  2	  3	  4	  5</span></span><br><span class="line"><span class="comment"># 1	  2	  NA	NA	NA</span></span><br><span class="line"><span class="comment"># 1	  NA	NA	NA	NA</span></span><br><span class="line"><span class="comment"># 1	  2	  3	  4	  5</span></span><br><span class="line"><span class="comment"># 6	  NA	NA	NA	NA	</span></span><br></pre></td></tr></table></figure>
-
 <p>单独使用 <code>fill = T</code> 默认通过前五行的数据来判断变量数量，也就是列数，因此只需要我们指定数据的列名和列数就可以解决问题。</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">test <span class="operator">&lt;-</span> read.table<span class="punctuation">(</span>Text.txt<span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;\t&quot;</span><span class="punctuation">,</span> fill <span class="operator">=</span> <span class="built_in">T</span><span class="punctuation">,</span> col.names <span class="operator">=</span> paste<span class="punctuation">(</span><span class="string">&quot;V&quot;</span><span class="punctuation">,</span> <span class="number">1</span><span class="operator">:</span><span class="number">6</span><span class="punctuation">,</span> sep <span class="operator">=</span> <span class="string">&quot;&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">test</span><br><span class="line"><span class="comment"># V1	V2	V3	V4	V5	V6</span></span><br><span class="line"><span class="comment"># 1	  2	  3	  NA	NA</span></span><br><span class="line"><span class="comment"># 1	  2	  3	  4	  NA</span></span><br><span class="line"><span class="comment"># 1	  2	  3	  4	  5</span></span><br><span class="line"><span class="comment"># 1	  2	  NA	NA	NA</span></span><br><span class="line"><span class="comment"># 1	  NA	NA	NA	NA</span></span><br><span class="line"><span class="comment"># 1	  2	  3	  4	  5	6</span></span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://bbs.pinggu.org/thread-2137520-1-1.html">R里如何读取行列不规则数据 - R语言论坛 - 经管之家(原人大经济论坛) (pinggu.org)</a></p>
 </blockquote>
@@ -297,8 +292,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Bug/" rel="tag"># Bug</a>
               <a href="/tags/R/" rel="tag"># R</a>
+              <a href="/tags/Bug/" rel="tag"># Bug</a>
           </div>
 
         
