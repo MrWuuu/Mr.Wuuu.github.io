@@ -1293,7 +1293,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #bdd026;
+  background: #b39cb0;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2587,10 +2587,8 @@ mjx-container + br {
 p {
   margin: 0 0 10px 0;
 }
-/* 行内代码块的自定义样式 */
-code {
-  color: #d500fc;
-  background: rgba(78,240,233,0.42);
+p code {
+  color: #c71585;
+  background: #fffafa;
   margin: 2px;
-  border: 1px solid #d6d6d6;
 }
