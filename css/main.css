@@ -1293,7 +1293,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #306bff;
+  background: #74ba67;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2624,4 +2624,36 @@ blockquote.question {
   border-left: 4px solid #1098ad;
   background-color: #e3f2fd;
   margin-bottom: 20px;
+}
+/*修改h1前面圖標*/
+.posts-expand .post-body h1:before {
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  content: "🌈";
+  font-size: 18px;
+  line-height: 18px;
+  margin-right: 16px;
+}
+/*修改h2前面圖標*/
+.posts-expand .post-body h2:before {
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  content: "🌞";
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 18px;
+  line-height: 18px;
+  margin-right: 16px;
+}
+/*修改h3前面圖標*/
+.posts-expand .post-body h3:before {
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  content: "🔍";
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 18px;
+  line-height: 18px;
+  margin-right: 16px;
 }
