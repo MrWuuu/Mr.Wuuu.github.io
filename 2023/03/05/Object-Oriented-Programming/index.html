@@ -22,17 +22,17 @@
     var CONFIG = {"hostname":"mrwuuu.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":{"enable":true,"caption":false},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Chapter 2 Object-Oriented Programming">
+  <meta name="description" content="As the name implies, the main “actors” in the object-oriented paradigm are called objects. Each object is an instance of a class. Each class presents to the outside world a concise and consistent view">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chapter 2 Object-Oriented Programming">
 <meta property="og:url" content="https://mrwuuu.github.io/2023/03/05/Object-Oriented-Programming/index.html">
 <meta property="og:site_name" content="Zell Wu&#39;s blog">
-<meta property="og:description" content="Chapter 2 Object-Oriented Programming">
+<meta property="og:description" content="As the name implies, the main “actors” in the object-oriented paradigm are called objects. Each object is an instance of a class. Each class presents to the outside world a concise and consistent view">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230304103844642-1678003865529-1.png">
 <meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230305150454069-1678003865529-2.png">
 <meta property="article:published_time" content="2023-03-05T08:09:14.000Z">
-<meta property="article:modified_time" content="2023-03-05T08:11:50.869Z">
+<meta property="article:modified_time" content="2023-03-15T00:10:35.383Z">
 <meta property="article:author" content="Zell Wu">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -197,10 +197,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-03-05 16:09:14 / Modified: 16:11:50" itemprop="dateCreated datePublished" datetime="2023-03-05T16:09:14+08:00">2023-03-05</time>
+              <time title="Created: 2023-03-05 16:09:14" itemprop="dateCreated datePublished" datetime="2023-03-05T16:09:14+08:00">2023-03-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-15 08:10:35" itemprop="dateModified" datetime="2023-03-15T08:10:35+08:00">2023-03-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -224,7 +230,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8.7k</span>
+              <span>9.2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -243,15 +249,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Chapter 2 Object-Oriented Programming</p>
+        <p>As the name implies, the main “actors” in the object-oriented paradigm are called objects. Each object is an instance of a class. Each class presents to the outside world a concise and consistent view of the objects that are instances of this class, without going into too much unnecessary detail or giving others access to the inner workings of the objects. The class definition typically specifies instance variables, also known as data members, that the object contains, as well as the methods, also known as member functions, that the object can execute.</p>
 <span id="more"></span>
 <h3 id="Operator-Overloading-and-Python’s-Special-Methods"><a href="#Operator-Overloading-and-Python’s-Special-Methods" class="headerlink" title="Operator Overloading and Python’s Special Methods"></a>Operator Overloading and Python’s Special Methods</h3><p>Python’s build-in classes provide natural semantics (语义) for many operators. For example, the syntax <code>a + b</code> invokes addition for numeric types. When defining a new class, we must consider whether a syntax like <code>a + b</code> should be defined <u>when a or b in an instance of that class</u>.<br>        By default, the <code>+</code> operator is undefined for a new class. However, the author of a class may provide a definition using a technique known as <strong>operator overloading</strong>. This is done by implementing a specially named method. In particular, the operator is overloaded by implementing a method named add , which takes the right-hand operand as a parameter and which returns the result of the expression. That is, the syntax, <code>a + b</code>, is converted to a method call on object a of the form, <code>a.__add__(b)</code>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python Program illustrate how</span></span><br><span class="line"><span class="comment"># to overload an binary + operator</span></span><br><span class="line"><span class="comment"># And how it actually works</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, a</span>):</span><br><span class="line">        self.a = a</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># adding two objects</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__add__</span>(<span class="params">self, o</span>):</span><br><span class="line">        <span class="keyword">return</span> self.a + o.a</span><br><span class="line">ob1 = A(<span class="number">1</span>)</span><br><span class="line">ob2 = A(<span class="number">2</span>)</span><br><span class="line">ob3 = A(<span class="string">&quot;Geeks&quot;</span>)</span><br><span class="line">ob4 = A(<span class="string">&quot;For&quot;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span>(ob1 + ob2)</span><br><span class="line"><span class="built_in">print</span>(ob3 + ob4)</span><br><span class="line"><span class="comment"># Actual working when Binary Operator is used.</span></span><br><span class="line"><span class="built_in">print</span>(A.__add__(ob1 , ob2))</span><br><span class="line"><span class="built_in">print</span>(A.__add__(ob3,ob4))</span><br><span class="line"><span class="comment">#And can also be Understand as :</span></span><br><span class="line"><span class="built_in">print</span>(ob1.__add__(ob2))</span><br><span class="line"><span class="built_in">print</span>(ob3.__add__(ob4))</span><br></pre></td></tr></table></figure>
 <p><strong>Output:</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line">GeeksFor</span><br><span class="line"><span class="number">3</span></span><br><span class="line">GeeksFor</span><br><span class="line"><span class="number">3</span></span><br><span class="line">GeeksFor</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/operator-overloading-in-python/">Operator Overloading in Python - GeeksforGeeks</a></p>
-</blockquote>
 <p><strong>Non-Operator Overloads</strong></p>
 <p>In addition to traditional operator overloading, Python relies on specially named methods to control the behavior of various other functionality, when applied to user-defined classes. For example, the syntax,  <code>str(foo)</code> , is formally a call to the constructor for the string class. Of course, if the parameter is an instance of a user-defined class, the original authors of the string class could not have known how that instance should be portrayed. So the string constructor calls a specially named method, <code>foo.__str_()</code>, that must return an appropriate string representation.</p>
 <p><strong>Example: Range Class</strong></p>
@@ -272,6 +275,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">GeometricProgression</span>(<span class="title class_ inherited__">Progression</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot; Iterator producing a geometric progression. &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, base=<span class="number">2</span>, start=<span class="number">1</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Create a new geometric progression.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        base    the fixed constant multiplied to each term (default 2)</span></span><br><span class="line"><span class="string">        start   the first term of the progression (default 1)</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(start)             <span class="comment"># initialize base class</span></span><br><span class="line">        self._base = base</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_advance</span>(<span class="params">self</span>):                     <span class="comment"># override inherited version</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot; Update current value by multiplying it by the base value. &quot;&quot;&quot;</span></span><br><span class="line">        self._current *= self._base</span><br></pre></td></tr></table></figure>
 <p><strong>A Fibonacci Progression Class</strong>:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">FibonacciProgression</span>(<span class="title class_ inherited__">Progression</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot; Iterator producing a generalized Fibonacci progression. &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, first=<span class="number">0</span>, second=<span class="number">1</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Create a new fibonacci progression. </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        first	the first term of the progression (default 0)</span></span><br><span class="line"><span class="string">        second	the second term of the progression (default 1)</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(first)				<span class="comment"># start progression at first</span></span><br><span class="line">        self._prev = second - first			<span class="comment"># fictitious value preceding the first</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_advance</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Update current value by taking sum of previous two. &quot;&quot;&quot;</span></span><br><span class="line">        self._prev, self._current = self._current, self._prev + self._current</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/operator-overloading-in-python/">https://www.geeksforgeeks.org/operator-overloading-in-python/</a></p>
+</blockquote>
 
     </div>
 
@@ -384,7 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Operator-Overloading-and-Python%E2%80%99s-Special-Methods"><span class="nav-number">1.</span> <span class="nav-text">Operator Overloading and Python’s Special Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inheritance"><span class="nav-number">2.</span> <span class="nav-text">Inheritance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hierarchy-of-Numeric-Progressions"><span class="nav-number">2.1.</span> <span class="nav-text">Hierarchy of Numeric Progressions</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Operator-Overloading-and-Python%E2%80%99s-Special-Methods"><span class="nav-number">1.</span> <span class="nav-text">Operator Overloading and Python’s Special Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inheritance"><span class="nav-number">2.</span> <span class="nav-text">Inheritance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hierarchy-of-Numeric-Progressions"><span class="nav-number">2.1.</span> <span class="nav-text">Hierarchy of Numeric Progressions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number"></span> <span class="nav-text">Reference</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -400,7 +406,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -460,12 +466,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">61k</span>
+    <span title="Symbols count total">72k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">55 mins.</span>
+    <span title="Reading time total">1:06</span>
 </div>
 
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
