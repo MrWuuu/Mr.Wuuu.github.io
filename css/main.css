@@ -1293,7 +1293,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #dacbff;
+  background: #1faa95;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2603,13 +2603,11 @@ hr {
 }
 /* webkit, opera, IE9 */
 ::selection {
-  background: #ff8000;
-  color: #f7f7f7;
+  background: #d7d4f0;
 }
 /* firefox */
 ::-moz-selection {
-  background: #ff8000;
-  color: #f7f7f7;
+  background: #d7d4f0;
 }
 .posts-expand .post-eof {
   margin: 80px auto 60px;
@@ -2647,28 +2645,6 @@ blockquote.question {
   margin-right: 16px;
 }
 /*修改h3前面圖標*/
-.posts-expand .post-body h3:before {
-  top: 10px;
-  width: 18px;
-  height: 18px;
-  content: "🔍";
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: 18px;
-  line-height: 18px;
-  margin-right: 16px;
-}
-/*修改h4前面圖標*/
-.posts-expand .post-body h3:before {
-  top: 10px;
-  width: 18px;
-  height: 18px;
-  content: "🔍";
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: 18px;
-  line-height: 18px;
-  margin-right: 16px;
-}
-/*修改h5前面圖標*/
 .posts-expand .post-body h3:before {
   top: 10px;
   width: 18px;
