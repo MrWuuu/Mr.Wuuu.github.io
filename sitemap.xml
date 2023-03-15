@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://mrwuuu.github.io/2023/03/05/Object-Oriented-Programming/</loc>
+    <loc>https://mrwuuu.github.io/2023/03/15/Object-Oriented-Programming-1/</loc>
     
     <lastmod>2023-03-15</lastmod>
     
@@ -243,13 +243,6 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/LaTeX/</loc>
-    <lastmod>2023-03-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/tags/Matlab/</loc>
     <lastmod>2023-03-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -265,6 +258,13 @@
   
   <url>
     <loc>https://mrwuuu.github.io/tags/Discriminant-Analysis/</loc>
+    <lastmod>2023-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/LaTeX/</loc>
     <lastmod>2023-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -334,13 +334,6 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/Writing/</loc>
-    <lastmod>2023-03-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/tags/Life/</loc>
     <lastmod>2023-03-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -349,6 +342,13 @@
   
   <url>
     <loc>https://mrwuuu.github.io/tags/Hello-World/</loc>
+    <lastmod>2023-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/Writing/</loc>
     <lastmod>2023-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -371,14 +371,14 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/LaTeX/</loc>
+    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
     <lastmod>2023-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
+    <loc>https://mrwuuu.github.io/categories/LaTeX/</loc>
     <lastmod>2023-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
