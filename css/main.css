@@ -167,8 +167,8 @@ template {
   display: none;
 }
 ::selection {
-  background: #262a30;
-  color: #eee;
+  background: #d7d4f0;
+  color: #000;
 }
 html,
 body {
@@ -1293,7 +1293,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #b4ffbd;
+  background: #1463cb;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2588,7 +2588,7 @@ p {
   margin: 0 0 20px 0;
 }
 p {
-  line-height: 135%;
+  line-height: 140%;
 }
 p code {
   color: #c71585;
