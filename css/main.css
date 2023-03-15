@@ -1293,7 +1293,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #cb4aff;
+  background: #e2ffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2607,12 +2607,10 @@ hr {
 /* webkit, opera, IE9 */
 ::selection {
   background: #d7d4f0;
-  color: #000;
 }
 /* firefox */
 ::-moz-selection {
   background: #d7d4f0;
-  color: #000;
 }
 .posts-expand .post-eof {
   margin: 80px auto 60px;
