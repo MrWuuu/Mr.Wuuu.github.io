@@ -194,6 +194,13 @@ h1 {
   margin-bottom: 22px;
   border-bottom: 1px solid #f3f3f3;
 }
+h2 {
+  font-family: 'Cinzel Decorative', "Amstelvar", 'Noto Serif SC', sans-serif;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-top: 32px;
+  margin-bottom: 22px;
+}
 h2,
 h3,
 h4,
@@ -1299,7 +1306,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f18ad4;
+  background: #3cf18a;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2618,6 +2625,13 @@ hr {
 ::-moz-selection {
   background: #e5edef;
 }
+.posts-expand .post-eof {
+  margin: 80px auto 60px;
+  width: 100%;
+  height: 1px;
+  background: rgba(0,0,0,0);
+  border-bottom: solid #b0c4de;
+}
 /* 自定义的引用样式 */
 blockquote.question {
   color: #555;
@@ -2626,7 +2640,7 @@ blockquote.question {
   margin-bottom: 20px;
 }
 /*修改h1前面圖標*/
-.posts-expand .post-body h1:before {
+.posts-expand .post-body h3:before {
   top: 10px;
   width: 18px;
   height: 18px;
@@ -2636,7 +2650,7 @@ blockquote.question {
   margin-right: 16px;
 }
 /*修改h2前面圖標*/
-.posts-expand .post-body h2:before {
+.posts-expand .post-body h4:before {
   top: 10px;
   width: 18px;
   height: 18px;
@@ -2647,7 +2661,7 @@ blockquote.question {
   margin-right: 16px;
 }
 /*修改h3前面圖標*/
-.posts-expand .post-body h3:before {
+.posts-expand .post-body h5:before {
   top: 10px;
   width: 18px;
   height: 18px;
