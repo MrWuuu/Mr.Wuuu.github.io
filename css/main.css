@@ -201,7 +201,6 @@ h2 {
   margin-top: 32px;
   margin-bottom: 22px;
 }
-h2,
 h3,
 h4,
 h5,
@@ -1306,7 +1305,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #3cf18a;
+  background: #6a7e7e;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
