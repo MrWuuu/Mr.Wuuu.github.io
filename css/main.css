@@ -192,7 +192,7 @@ h1 {
   line-height: 1.5;
   margin-top: 32px;
   margin-bottom: 22px;
-  border-bottom: 1px solid #b0c4de;
+  border-bottom: 1px solid #f3f3f3;
 }
 h2,
 h3,
@@ -1299,7 +1299,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #3bfa25;
+  background: #324f71;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
