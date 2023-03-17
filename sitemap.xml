@@ -250,6 +250,20 @@
   </url>
   
   <url>
+    <loc>https://mrwuuu.github.io/tags/Linux/</loc>
+    <lastmod>2023-03-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/Bug/</loc>
+    <lastmod>2023-03-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://mrwuuu.github.io/tags/Matlab/</loc>
     <lastmod>2023-03-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -265,20 +279,6 @@
   
   <url>
     <loc>https://mrwuuu.github.io/tags/Discriminant-Analysis/</loc>
-    <lastmod>2023-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrwuuu.github.io/tags/Linux/</loc>
-    <lastmod>2023-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrwuuu.github.io/tags/Bug/</loc>
     <lastmod>2023-03-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -313,13 +313,6 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/Algorithm/</loc>
-    <lastmod>2023-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/tags/Sequencing/</loc>
     <lastmod>2023-03-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -327,14 +320,14 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/Literature/</loc>
+    <loc>https://mrwuuu.github.io/tags/Algorithm/</loc>
     <lastmod>2023-03-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/Writing/</loc>
+    <loc>https://mrwuuu.github.io/tags/Literature/</loc>
     <lastmod>2023-03-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -349,6 +342,13 @@
   
   <url>
     <loc>https://mrwuuu.github.io/tags/Hello-World/</loc>
+    <lastmod>2023-03-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/Writing/</loc>
     <lastmod>2023-03-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -378,14 +378,14 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
+    <loc>https://mrwuuu.github.io/categories/Bug/</loc>
     <lastmod>2023-03-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Bug/</loc>
+    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
     <lastmod>2023-03-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
