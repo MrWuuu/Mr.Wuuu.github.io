@@ -209,7 +209,7 @@ h3 {
   margin-top: 32px;
   margin-bottom: 22px;
   border-top: 1px solid #b0c4de;
-  font-size: 1.5em;
+  font-size: 1.5em !important;
 }
 h4 {
   color: #002379 !important;
@@ -219,7 +219,7 @@ h4 {
   margin-top: 32px;
   margin-bottom: 22px;
   border-top: 1px solid #b0c4de;
-  font-size: 1.4em;
+  font-size: 1.4em !important;
 }
 h5,
 h6 {
@@ -230,7 +230,7 @@ h6 {
   margin-top: 32px;
   margin-bottom: 22px;
   border-top: 1px solid #b0c4de;
-  font-size: 1.3em;
+  font-size: 1.3em !important;
 }
 h1 {
   font-size: 1.5em;
@@ -1324,7 +1324,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #cd1734;
+  background: #ff630b;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
