@@ -201,8 +201,26 @@ h2 {
   margin-top: 32px;
   margin-bottom: 22px;
 }
-h3,
-h4,
+h3 {
+  color: #002379 !important;
+  font-family: 'Cinzel Decorative', "Amstelvar", 'Noto Serif SC', sans-serif;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-top: 32px;
+  margin-bottom: 22px;
+  border-top: 1px solid #b0c4de;
+  font-size: 1.5em;
+}
+h4 {
+  color: #002379 !important;
+  font-family: 'Cinzel Decorative', "Amstelvar", 'Noto Serif SC', sans-serif;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-top: 32px;
+  margin-bottom: 22px;
+  border-top: 1px solid #b0c4de;
+  font-size: 1.4em;
+}
 h5,
 h6 {
   color: #002379 !important;
@@ -212,24 +230,25 @@ h6 {
   margin-top: 32px;
   margin-bottom: 22px;
   border-top: 1px solid #b0c4de;
+  font-size: 1.3em;
 }
 h1 {
-  font-size: 14.875em;
+  font-size: 1.5em;
 }
 h2 {
-  font-size: 14.75em;
+  font-size: 1.375em;
 }
 h3 {
-  font-size: 14.625em;
+  font-size: 1.25em;
 }
 h4 {
-  font-size: 14.5em;
+  font-size: 1.125em;
 }
 h5 {
-  font-size: 14.375em;
+  font-size: 1em;
 }
 h6 {
-  font-size: 14.25em;
+  font-size: 0.875em;
 }
 p {
   margin: 0 0 20px 0;
@@ -1305,7 +1324,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff90ff;
+  background: #ffffd5;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
