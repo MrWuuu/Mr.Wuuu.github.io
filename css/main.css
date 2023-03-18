@@ -233,22 +233,22 @@ h6 {
   font-size: 1.3em !important;
 }
 h1 {
-  font-size: 1.875em;
-}
-h2 {
-  font-size: 1.75em;
-}
-h3 {
-  font-size: 1.625em;
-}
-h4 {
   font-size: 1.5em;
 }
-h5 {
+h2 {
   font-size: 1.375em;
 }
-h6 {
+h3 {
   font-size: 1.25em;
+}
+h4 {
+  font-size: 1.125em;
+}
+h5 {
+  font-size: 1em;
+}
+h6 {
+  font-size: 0.875em;
 }
 p {
   margin: 0 0 20px 0;
@@ -1324,7 +1324,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff3365;
+  background: #c7636b;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2648,7 +2648,7 @@ hr {
   width: 100%;
   height: 1px;
   background: rgba(0,0,0,0);
-  border-bottom: solid #999;
+  border-bottom: solid rgba(201,201,201,0.2);
 }
 /* 自定义的引用样式 */
 blockquote.question {
