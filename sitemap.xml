@@ -287,27 +287,6 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/R/</loc>
-    <lastmod>2023-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrwuuu.github.io/tags/Medician/</loc>
-    <lastmod>2023-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrwuuu.github.io/tags/Immunology/</loc>
-    <lastmod>2023-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/tags/Matlab/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -323,6 +302,27 @@
   
   <url>
     <loc>https://mrwuuu.github.io/tags/Discriminant-Analysis/</loc>
+    <lastmod>2023-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/R/</loc>
+    <lastmod>2023-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/Medician/</loc>
+    <lastmod>2023-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/Immunology/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -401,14 +401,14 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Medician/</loc>
+    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
+    <loc>https://mrwuuu.github.io/categories/Medician/</loc>
     <lastmod>2023-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
