@@ -255,12 +255,9 @@
       
         <p>本文利用 <code>readingSkills</code> 数据集使用随机森林 (Random Forest) 进行数据分类，在学习的同时，记录过程。</p>
 <span id="more"></span>
-<h2 id="Random-Forest-随机森林">Random Forest (随机森林)</h2>
-<h3 id="What-Is-Random-Forest">What Is Random Forest?</h3>
-<p>随机森林是一种有监督的分类和回归的算法，正如它的名字一样，该算法随机创建拥有许多 trees 的 forest。</p>
-<p>通常来说，一个森林中的树越多，那么这个森林系统就会越稳定。同样，在随机森林分类系统中，forest 中的 trees 越多，那么分类结果的准确性就会越高。</p>
-<h3 id="How-Does-Random-Forest-Work">How Does Random Forest Work?</h3>
-<p>为了更好地去理解随机森林，考虑以下样本数据集，在该数据集中，我们拥有4个预测变量：</p>
+<h2 id="Random-Forest-随机森林"><a href="#Random-Forest-随机森林" class="headerlink" title="Random Forest (随机森林)"></a>Random Forest (随机森林)</h2><h3 id="What-Is-Random-Forest"><a href="#What-Is-Random-Forest" class="headerlink" title="What Is Random Forest?"></a>What Is Random Forest?</h3><p>随机森林是一种有监督的分类和回归的算法，正如它的名字一样，该算法随机创建拥有许多 trees 的 forest。</p>
+<p>通常来说，一个森林中的树越多，那么这个森林系统就会越稳定。同样，在随机森林分类系统中，forest 中的 trees 越多，那么分类结果的准确性就会越高。 </p>
+<h3 id="How-Does-Random-Forest-Work"><a href="#How-Does-Random-Forest-Work" class="headerlink" title="How Does Random Forest Work?"></a>How Does Random Forest Work?</h3><p>为了更好地去理解随机森林，考虑以下样本数据集，在该数据集中，我们拥有4个预测变量：</p>
 <ul>
 <li>Weight</li>
 <li>Blood flow</li>
@@ -269,40 +266,29 @@
 </ul>
 <p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Sample-Data-Set-Random-Forest-In-R-Edureka-528x258-1668092441815-1.png" alt="Sample-Data-Set-Random-Forest-In-R-Edureka-528x258"></p>
 <p>这些变量被用于预测样本中的此人是否患有心脏病。我们接下来利用此数据集去创建随机森林去预测样本是否患有心脏病。</p>
-<h3 id="Creating-A-Random-Forest">Creating A Random Forest</h3>
-<h4 id="Step-1-Create-a-Bootstrapped-Dataset">Step 1: Create a Bootstrapped Dataset</h4>
-<p>Bootstrapping 是一种被用来进行数据集预测的估算方法，通过重新采样完成：</p>
+<h3 id="Creating-A-Random-Forest"><a href="#Creating-A-Random-Forest" class="headerlink" title="Creating A Random Forest"></a>Creating A Random Forest</h3><h4 id="Step-1-Create-a-Bootstrapped-Dataset"><a href="#Step-1-Create-a-Bootstrapped-Dataset" class="headerlink" title="Step 1: Create a Bootstrapped Dataset"></a>Step 1: Create a Bootstrapped Dataset</h4><p>Bootstrapping 是一种被用来进行数据集预测的估算方法，通过重新采样完成：</p>
 <p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Bootstrapped-Data-Set-Random-Forest-In-R-Edureka-528x258-1668092441816-3.png" alt="Bootstrapped-Data-Set-Random-Forest-In-R-Edureka-528x258"></p>
 <p>在上图中，我们从原始数据集中随机挑选了样本创建了 Bootstrapped Dataset 。</p>
-<h4 id="Step-2-Creating-Decision-Trees">Step 2: Creating Decision Trees</h4>
-<p>每一步挑选一个预测变量，依次进行操作，可以得到决策树：</p>
+<h4 id="Step-2-Creating-Decision-Trees"><a href="#Step-2-Creating-Decision-Trees" class="headerlink" title="Step 2: Creating Decision Trees"></a>Step 2: Creating Decision Trees</h4><p>每一步挑选一个预测变量，依次进行操作，可以得到决策树：</p>
 <p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Random-Forest-Algorithm-Random-Forest-In-R-Edureka-501x300-1668092441816-5.png" alt="Random Forest Algorithm - Random Forest In R - Edureka"></p>
-<h4 id="Step4-Go-Back-to-Step1-and-Repeat">Step4: Go Back to Step1 and Repeat</h4>
-<p>正如上文中提到，随机森林是许多决策树的集合，每一个决策树预测的结果都是基于该树中选择代表性的变量。最后，随机森林中所有的决策树的预测结果都会被记录，并且所有决策树预测结果中出现最多的结果会被作为最终的输出结果。</p>
+<h4 id="Step4-Go-Back-to-Step1-and-Repeat"><a href="#Step4-Go-Back-to-Step1-and-Repeat" class="headerlink" title="Step4: Go Back to Step1 and Repeat"></a>Step4: Go Back to Step1 and Repeat</h4><p>正如上文中提到，随机森林是许多决策树的集合，每一个决策树预测的结果都是基于该树中选择代表性的变量。最后，随机森林中所有的决策树的预测结果都会被记录，并且所有决策树预测结果中出现最多的结果会被作为最终的输出结果。</p>
 <p>为了得到众多的决策树，我们重回 Step1，创建 bootstrapped dataset，然后通过考虑特定的子集变量来创建决策树，通过一直重复以上步骤，我们最终创建的随机森林 be like:</p>
 <p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Random-Forest-Random-Forest-In-R-Edureka-513x300-1668092441817-7.png" alt="Random Forest - Random Forest In R - Edureka"></p>
-<h4 id="Step-4-Predicting-the-Outcome-of-a-new-data-point">Step 4: Predicting the Outcome of a new data point</h4>
-<p>现在我们已经创建完进行预测的随机森林，接下来我们来看看它如何被用来预测新的样本：</p>
+<h4 id="Step-4-Predicting-the-Outcome-of-a-new-data-point"><a href="#Step-4-Predicting-the-Outcome-of-a-new-data-point" class="headerlink" title="Step 4: Predicting the Outcome of a new data point"></a>Step 4: Predicting the Outcome of a new data point</h4><p>现在我们已经创建完进行预测的随机森林，接下来我们来看看它如何被用来预测新的样本：</p>
 <p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Output-Random-Forest-In-R-Edureka-528x227-1668092441817-9.png" alt="Output - Random Forest In R - Edureka"></p>
 <p>上图只是通过一个随机森林中一个决策树进行预测的结果，通过以上方法同样将此样本输入到其它决策树中进行预测，将得到的所有预测结果进行记录，统计出现频率最多的输出结果作为整个随机森林的预测输出结果。</p>
-<h4 id="Step-5-Evaluate-the-Model">Step 5: Evaluate the Model</h4>
-<p>最后一个步骤就是对我们建立的模型进行评估，之前我们在创建 bootstrapped dataset 时，有些数据没有包括在其中，一般而言，大约 1/3 的原始数据不会被包括在 bootstrapped dataset， 一般我们将这类数据称为 Out-Of-Bag (OOB) dataset。OOB dataset 就是用于评估模型的准确性。</p>
-<h3 id="Practical-Implementation-of-Random-Forest-in-R">Practical Implementation of Random Forest in R</h3>
-<h4 id="Load-R-Packages">Load R Packages</h4>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require<span class="punctuation">(</span>randomforest<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<h4 id="Syntax">Syntax</h4>
-<p>The basic syntax for random forest in R:</p>
+<h4 id="Step-5-Evaluate-the-Model"><a href="#Step-5-Evaluate-the-Model" class="headerlink" title="Step 5: Evaluate the Model"></a>Step 5: Evaluate the Model</h4><p>最后一个步骤就是对我们建立的模型进行评估，之前我们在创建 bootstrapped dataset 时，有些数据没有包括在其中，一般而言，大约 1/3 的原始数据不会被包括在 bootstrapped dataset， 一般我们将这类数据称为 Out-Of-Bag (OOB) dataset。OOB dataset 就是用于评估模型的准确性。</p>
+<h3 id="Practical-Implementation-of-Random-Forest-in-R"><a href="#Practical-Implementation-of-Random-Forest-in-R" class="headerlink" title="Practical Implementation of Random Forest in R"></a>Practical Implementation of Random Forest in R</h3><h4 id="Load-R-Packages"><a href="#Load-R-Packages" class="headerlink" title="Load R Packages"></a>Load R Packages</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require<span class="punctuation">(</span>randomforest<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<h4 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h4><p>The basic syntax for random forest in R:</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">randomForest<span class="punctuation">(</span>formula<span class="punctuation">,</span> data<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>Following is the description of the parameters used:</p>
+<p> Following is the description of the parameters used:</p>
 <ul>
 <li><strong>formula</strong> is a formula describing the predictor and response variables.</li>
 <li><strong>data</strong> is the name of the data set used.</li>
 </ul>
-<h4 id="Input-data">Input data</h4>
-<p>本文中我们使用 <code>readingSkills</code> 数据集进行分析：</p>
+<h4 id="Input-data"><a href="#Input-data" class="headerlink" title="Input data"></a>Input data</h4><p>本文中我们使用 <code>readingSkills</code> 数据集进行分析：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>party<span class="punctuation">)</span></span><br><span class="line">print<span class="punctuation">(</span>head<span class="punctuation">(</span>readingSkills<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># nativeSpeaker age shoeSize    score</span></span><br><span class="line"><span class="comment"># 1           yes   5 24.83189 32.29385</span></span><br><span class="line"><span class="comment"># 2           yes   6 25.95238 36.63105</span></span><br><span class="line"><span class="comment"># 3            no  11 30.42170 49.60593</span></span><br><span class="line"><span class="comment"># 4           yes   7 28.66450 40.28456</span></span><br><span class="line"><span class="comment"># 5           yes  11 31.88207 55.46085</span></span><br><span class="line"><span class="comment"># 6           yes  10 30.07843 52.83124</span></span><br></pre></td></tr></table></figure>
-<h4 id="Example">Example</h4>
-<p>我们使用 <code>randomForest::randomForest</code> 函数创建决策树：</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>我们使用 <code>randomForest::randomForest</code> 函数创建决策树：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">output.forest <span class="operator">&lt;-</span> randomForest<span class="punctuation">(</span>nativeSpeaker <span class="operator">~</span> age <span class="operator">+</span> shoeSize <span class="operator">+</span> score<span class="punctuation">,</span></span><br><span class="line">                              data <span class="operator">=</span> readingSkills<span class="punctuation">)</span></span><br><span class="line"><span class="comment">## View the forest results</span></span><br><span class="line">print<span class="punctuation">(</span>output.forest<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># Call:</span></span><br><span class="line"><span class="comment">#   randomForest(formula = nativeSpeaker ~ age + shoeSize + score,      data = readingSkills) </span></span><br><span class="line"><span class="comment"># Type of random forest: classification</span></span><br><span class="line"><span class="comment"># Number of trees: 500</span></span><br><span class="line"><span class="comment"># No. of variables tried at each split: 1</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># OOB estimate of  error rate: 1%</span></span><br><span class="line"><span class="comment"># Confusion matrix:</span></span><br><span class="line"><span class="comment">#   no yes class.error</span></span><br><span class="line"><span class="comment"># no  99   1        0.01</span></span><br><span class="line"><span class="comment"># yes  1  99        0.01</span></span><br></pre></td></tr></table></figure>
 <p>可以看到通过 OOB dataset 进行模型检验，可以发现误差率仅有1%，说明该模型准确性高。</p>
 <p>随后，我们利用建立的模型进行对新样本的预测：</p>
@@ -442,20 +428,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -502,12 +488,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">65k</span>
+    <span title="Symbols count total">71k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">59 mins.</span>
+    <span title="Reading time total">1:05</span>
 </div>
 
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
