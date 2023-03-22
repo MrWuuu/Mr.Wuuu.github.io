@@ -22,27 +22,25 @@
     var CONFIG = {"hostname":"mrwuuu.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":{"enable":true,"caption":false},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="BLAST (Basic Local Alignment Search Tool) 是一种计算机算法，可以在 NCBI 网站以及许多其它网站上在线使用。BLAST 可以迅速将 query 序列与数据库中的序列进行比对。 BLAST 是基于 word 的启发式方法 (heuristic) ，BLAST 是建立在 Smith-Waterman 算法基础上，它比对的速度很快，因为它寻找短 word 的精">
+  <meta name="description" content="在计算机科学中，归并排序 (Merge Sort) 是一种基于比较的高效而通用的排序算法，大多数的执行会产生一个稳定的排序，即如果出现相同元素时，输入和输出的顺序是相同的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BLAST Algorithm">
-<meta property="og:url" content="https://mrwuuu.github.io/2023/03/17/BLAST-Algorithm/index.html">
+<meta property="og:title" content="归并排序算法 (Merge Sort Algorithm)">
+<meta property="og:url" content="https://mrwuuu.github.io/2023/03/22/Merge-Sort-Algorithm/index.html">
 <meta property="og:site_name" content="Zell Wu&#39;s blog">
-<meta property="og:description" content="BLAST (Basic Local Alignment Search Tool) 是一种计算机算法，可以在 NCBI 网站以及许多其它网站上在线使用。BLAST 可以迅速将 query 序列与数据库中的序列进行比对。 BLAST 是基于 word 的启发式方法 (heuristic) ，BLAST 是建立在 Smith-Waterman 算法基础上，它比对的速度很快，因为它寻找短 word 的精">
+<meta property="og:description" content="在计算机科学中，归并排序 (Merge Sort) 是一种基于比较的高效而通用的排序算法，大多数的执行会产生一个稳定的排序，即如果出现相同元素时，输入和输出的顺序是相同的。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blastalgroithm-1679104809024-3.png">
-<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0502.gif">
-<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0504.gif">
-<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0505.gif">
-<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0506.gif">
-<meta property="article:published_time" content="2023-03-17T13:51:24.000Z">
-<meta property="article:modified_time" content="2023-03-18T03:43:17.259Z">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/introduction-to-merge-sort-1679482236308-3.webp">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/dividing-example-array-merge-sort.webp">
+<meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/merging-example-array-merge-sort.webp">
+<meta property="article:published_time" content="2023-03-22T10:40:12.000Z">
+<meta property="article:modified_time" content="2023-03-22T12:25:48.908Z">
 <meta property="article:author" content="Zell Wu">
 <meta property="article:tag" content="Algorithm">
-<meta property="article:tag" content="Bioinformatics">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blastalgroithm-1679104809024-3.png">
+<meta name="twitter:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/introduction-to-merge-sort-1679482236308-3.webp">
 
-<link rel="canonical" href="https://mrwuuu.github.io/2023/03/17/BLAST-Algorithm/">
+<link rel="canonical" href="https://mrwuuu.github.io/2023/03/22/Merge-Sort-Algorithm/">
 
 
 <script id="page-configurations">
@@ -55,7 +53,7 @@
   };
 </script>
 
-  <title>BLAST Algorithm | Zell Wu's blog</title>
+  <title>归并排序算法 (Merge Sort Algorithm) | Zell Wu's blog</title>
   
 
 
@@ -179,7 +177,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2023/03/17/BLAST-Algorithm/">
+    <link itemprop="mainEntityOfPage" href="https://mrwuuu.github.io/2023/03/22/Merge-Sort-Algorithm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -192,7 +190,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          BLAST Algorithm
+          归并排序算法 (Merge Sort Algorithm)
         </h1>
 
         <div class="post-meta">
@@ -201,23 +199,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-03-17 21:51:24" itemprop="dateCreated datePublished" datetime="2023-03-17T21:51:24+08:00">2023-03-17</time>
+              <time title="Created: 2023-03-22 18:40:12 / Modified: 20:25:48" itemprop="dateCreated datePublished" datetime="2023-03-22T18:40:12+08:00">2023-03-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-18 11:43:17" itemprop="dateModified" datetime="2023-03-18T11:43:17+08:00">2023-03-18</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bioinformatics/" itemprop="url" rel="index"><span itemprop="name">Bioinformatics</span></a>
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
                 </span>
             </span>
 
@@ -234,14 +226,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.4k</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -253,89 +245,89 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>BLAST (<strong>B</strong>asic <strong>L</strong>ocal <strong>A</strong>lignment <strong>S</strong>earch <strong>T</strong>ool) 是一种计算机算法，可以在 <a target="_blank" rel="noopener" href="https://www.ncbi.nlm.nih.gov/">NCBI</a> 网站以及许多其它网站上在线使用。BLAST 可以迅速将 query 序列与数据库中的序列进行比对。</p>
-<p>BLAST 是基于 word 的启发式方法 (heuristic) ，BLAST 是建立在 Smith-Waterman 算法基础上，它比对的速度很快，因为它寻找短 word 的精确匹配，而不是寻找由于 gap 而匹配的相似序列，它使用的相似性矩阵中的数值来对每个匹配进行打分。</p>
-<p>由于目前对 BLAST 算法有各种拓展，所以本文将对 BLAST 算法的基本原理进行介绍。</p>
+        <p>在计算机科学中，归并排序 (Merge Sort) 是一种基于比较的高效而通用的排序算法，大多数的执行会产生一个稳定的排序，即如果出现相同元素时，输入和输出的顺序是相同的。</p>
 <span id="more"></span>
-<h3 id="Steps">Steps</h3>
-<p>BLAST 的基本步骤如下：</p>
+<h3 id="Introduction">Introduction</h3>
+<p>在归并排序中，首先把所给的数组拆分成数量上大致相同的子数组，这些子数组被进一步拆分，直到拆分成数组中只含有一个元素；之后我们将成对的子数组进行合并，最终得到完成排序的完整数组。整个算法的大致过程如下图：</p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/introduction-to-merge-sort-1679482236308-3.webp" alt="introduction to merge sort in python" style="zoom:33%;" />
+<h4 id="How-does-Divide-and-Conquer-Work">How does Divide and Conquer Work?</h4>
+<p>假设我们拥有一个数组：[4, 8, 7, 2, 11, 1, 3]</p>
 <ol>
-<li>将 query 分割成多个长度为 $W$ 的重叠 words (W-mers)；</li>
-<li>寻找每一个 word 的相似 words (neighborhood)；</li>
-<li>在 hash table 中寻找每一个 word 的 neighborhood，以将它们定位在出现这些 words 的数据库中，将这些 words 成为 seeds，$S$ 为这些 seeds 的集合；</li>
-<li>延伸集合 $S$ 中的这些 seeds 直到比对分数低于给定的阈值 $X$；</li>
-<li>输出整体得分最高的比对。</li>
+<li>
+<p><strong>Divide</strong>，我们通过公式 <code>mid = len(array)//2</code> 来计算数组长度的中值；</p>
+</li>
+<li>
+<p><strong>Conquer</strong>，我们在计算中值的帮助下将数组进行拆分得到子数组，直到拆分后的数组中只存在一个元素（因为只含有一个元素的数组肯定是完成排序的）；</p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/dividing-example-array-merge-sort.webp" alt="Dividing Array in merge sort" style="zoom: 33%;" />
+</li>
+<li>
+<p><strong>Combine</strong>，最后一步就是我们按照排序组合拆分的数组。</p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/merging-example-array-merge-sort.webp" alt="Combining Array in merge sort" style="zoom:33%;" />
+</li>
 </ol>
-<p>在 BLAST 进行预处理时会确保所有的 words 都包含在数据库中。在 step1 中，通过考虑 query 中 words 连续核苷酸的所有子字符串来分割 query；在 step2 中，为了寻找 W-mers 的 neighborhood，我们通过轻微地替换序列和计算它们之间的相似性去调整这些序列，逐渐生成越来越不相似的 words，直到 neighborhood 的相似分数低于给定阈值 $T$，这使我们能够更加灵活地寻找到那些没有完全连续匹配上，但是又有足够的匹配被认为是相似的 ( 高于特定的阈值 )。</p>
-<p>BLAST 算法基础的步骤图如下：</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blastalgroithm-1679104809024-3.png" alt="blastalgroithm" style="zoom: 50%;" />
-<h4 id="Seeding">Seeding</h4>
-<p>BLAST 认为具有显著性的比对应该具有相同的 words。当在进行两条序列比对时，BLAST 首先确定 query 和 database 具有相同 words 的区域，这个过程被称为 word hit，只有这些具有 word hit 的区域才能被用作进行接下来比对的 seeds，通过这种方式，BLAST 能够忽略很多 search space，节约了时间和空间。</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0502.gif" alt="blst_0502" style="zoom: 80%;" />
-<p>正确的依赖于 scoring matrix 的 $T$ 值是平衡算法速度和灵敏性的重要参数，高的 $T$ 值来逐渐移出更多的 word hits，同时减少更多的 search space，这会使 BLAST 拥有更快的运行速度，同时也会增加错过比对的机率。</p>
-<p>Word Size ($W$) 是另一个控制 word hits 数量的参数，$W$ 和 $T$ 之间的相互作用以及 scoring matrix 是非常关键的，慎重地选择它们是控制 BLAST 算法速度和敏感性的最佳方法。</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0504.gif" alt="blst_0504" style="zoom:80%;" />
-<p>从上图中我们可以注意到，有一些 word hit 趋向于沿着 search space 的对角线成簇出现。The two-hit algorithm，利用这个特征去要求位于相同对角线上的两个 word hits 需要满足给定的最小距离。不难理解，给定的最小距离越小，就会出现更多的 isolated word，进而较少更多的 search space。The two-hit algorithm 是移出不相似的 word hits 以及提升 BLAST 运行速度的有效方法。</p>
-<h4 id="Extension">Extension</h4>
-<p>当 search space 中有 seed 的存在，alignments 可以从各个独立的 seeds 生成，我们可以从下图中如箭头所示的两个方向进行延伸 seeds。</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0505.gif" alt="blst_0505" style="zoom:80%;" />
-<p>在 Smith-Waterman 算法中，最佳比对的终点是确定的，在整条序列比对完之后，但是 BLAST 只是在整个序列空间中的一个子空间进行比对，所有 BLAST 需要一个方法来确定何时停止延伸步骤。</p>
-<p>不难理解，当序列结尾处出现多个不匹配时，我们应该及时停止延伸，为了达到此目的，我们创建一个变量 $X$，表示当前的比对记录，$\chi$ 表示在达到上一个极值时允许 drop off 的值。接下来，我们举一个 $\chi$ 为 5 的栗子，我们同时记录总得分和 drop off 得分。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">The</span> quick brown fox jump</span><br><span class="line"><span class="attribute">The</span> quiet brown cat purr</span><br><span class="line"><span class="attribute">123</span> <span class="number">45654</span> <span class="number">56789</span> <span class="number">876</span> <span class="number">5654</span>  &lt;- score</span><br><span class="line"><span class="attribute">000</span> <span class="number">00012</span> <span class="number">10000</span> <span class="number">123</span> <span class="number">4345</span>  &lt;- drop <span class="literal">off</span> score</span><br></pre></td></tr></table></figure>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0506.gif" alt="blst_0506" style="zoom:80%;" />
-<p>从栗子和上图中可以得到比对的最大分数为 9，同时延伸会在 drop off 分数下降到 4 时停止。不难发现，在比对过程中，我们可能会陷入局部最优解的情况，所以为了较少此类情况发生的风险，我们应该更合理地去考虑 seeds 相关的一些参数取值。</p>
-<p>以上展示的只是 gapless 的延伸算法，被用于最初版本的 BLAST，目前我们使用的 BLAST 版本是允许 gap，通过动态规划的算法实现。</p>
-<h4 id="Evaluation">Evaluation</h4>
-<p>一旦 seeds 从不同的方向进行延伸得到 alignments，这个 alignments 应该通过计算去确定它们之间的匹配是否具有统计学意义。</p>
-<p>最常用的计算概率的方法叫做 Expect value, or E-value：</p>
+<h3 id="Python-Programs-for-Merge-Sort">Python Programs for Merge Sort</h3>
+<p><strong>算法步骤：</strong></p>
 <ul>
-<li>**定义：**由于随机事件的发生，导致出现另外一个比给定分数 $S$ 更相似的比对的概率。</li>
+<li>递归：
+<ol>
+<li>将输入的数组根据该数组长度的中值进行拆分，拆分为长度相近的两个子数组（数组长度为偶数时，两个子数组长度相同；数组长度为奇数时，两个子数组长度相差 1）；</li>
+<li>将拆分后的子数组按照上述步骤进一步拆分，直到拆分后的子数组长度为 1，此时跳出递归循环。</li>
+</ol>
+</li>
+<li>归并：
+<ol>
+<li>创建一个新的数组空间，用于存放已经完成排序的序列；</li>
+<li>设置两个指针，初始位置为两个完成排序数组的起始位置；</li>
+<li>两个数组比较各自指针所指的位置元素的大小，选择相对较小的元素放入合并空间，同时移动该数组的指针到下个位置；</li>
+<li>重复步骤 3 直到某一的数组的指针到达数组末端；</li>
+<li>将指针未到达末端的数组中指针后的元素加入到合并空间。</li>
+</ol>
+</li>
 </ul>
-<p>这里举一个 BLAST search 的栗子，target 核苷酸序列为：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ggtaagtcctctagtacaaacacccccaatattgtgatataattaaaattatattcatat </span></span><br><span class="line"><span class="attribute">tctgttgccagaaaaaacacttttaggctatattagagccatcttctttgaagcgttgtc</span></span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>Sequences producing significant alignments:</th>
-<th>Score (S)</th>
-<th>E (bits)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>gi|40730|emb|X07547.1|CTPLAS75 C. trachomatis plasmid DNA f…</td>
-<td>238</td>
-<td>2e-60</td>
-</tr>
-<tr>
-<td>gi|144607|gb|M19487.1|PLMORF Chlamydia trachomatis plasmid…</td>
-<td>206</td>
-<td>7e-51</td>
-</tr>
-<tr>
-<td>gi|16555445|emb|AL139418.9|Human DNA sequence from clone R…</td>
-<td>44</td>
-<td>0.058</td>
-</tr>
-</tbody>
-</table>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">merge_sort</span>(<span class="params">arr</span>):</span><br><span class="line">    <span class="comment"># Set recursion exit condition</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(arr) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create sub_array1 &lt;- array[start..mid] and sub_array2 &lt;- array[mid+1..end]</span></span><br><span class="line">    mid = <span class="built_in">len</span>(arr) // <span class="number">2</span></span><br><span class="line">    arr1, arr2 = arr[:mid], arr[mid:]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Sort the two halves</span></span><br><span class="line">    arr1 = merge_sort(arr1)</span><br><span class="line">    arr2 = merge_sort(arr2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Initial values for pointers that we use to keep track of where we are in each array</span></span><br><span class="line">    i = j = k = <span class="number">0</span></span><br><span class="line">    res = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Until we reach the end of either start or end, pick larger among</span></span><br><span class="line">    <span class="comment"># elements start and end and place them in the correct position in the sorted array</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(arr1) <span class="keyword">and</span> j &lt; <span class="built_in">len</span>(arr2):</span><br><span class="line">        <span class="keyword">if</span> arr1[i] &lt; arr2[j]:</span><br><span class="line">            res.append(arr1[i])</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res.append(arr2[j])</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># When all elements are traversed in either arr1 or arr2,</span></span><br><span class="line">    <span class="comment"># pick up the remaining elements and put in sorted array</span></span><br><span class="line">    res = res + arr1[i:]</span><br><span class="line">    res = res + arr2[j:]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h3 id="Time-and-Space-Complexity">Time and Space Complexity</h3>
+<p><strong>空间复杂度</strong></p>
+<p>从上述栗子中不难发现，我们需要额外最大的辅助空间为 <code>O(n)</code></p>
+<p><strong>时间复杂度</strong></p>
 <ul>
-<li>S 表示 query 与数据库中序列之间相似性的定量数值；</li>
-<li>E-value 表示 S 分数的的可信程度。</li>
+<li>Best Case: 进行比较的两个完成排序的数组中，一个数组最大值小于另一个数组最小值，此时只需要 $min{m,n}$ 次比较，其中 $m$, $n$ 分别为两个数组的长度。</li>
+<li>Worst Case: 进行比较的两个完成排序的数组中，各个元素为互相交叉排序，此时需要 $m+n+1$ 次比较。</li>
 </ul>
-<p>E-value 具体的计算公式如下：<br>
+<p>设 $n$ 为待排序数组长度，$T(n)$ 为算法需要的时间复杂度，则<br>
 $$<br>
-E = Kmne^{-\lambda S}<br>
+T(n) = 2 \ T(\frac{n}{2}) + C(n)<br>
 $$<br>
-其中，$K$ 和 $\lambda$ 分别表示 search space 的尺度和 scoring system，$m$ 表示 query 的长度，$n$ 表示数据库中比对序列的长度，$S$ 表示比对的分数。</p>
-<p>通常而言，BLAST search 中 E-value 标准的阈值是 $10^{-5}$ 或者更低。</p>
+其中 $n &gt; 1$，$C(n)$ 表示将两个数组合并为一个数组所需的比较次数。</p>
+<p><strong>Best Case ( $C(n) = \frac{n}{2}$ )：</strong><br>
+$$<br>
+\begin{align}<br>
+T(n) &amp;= 2 \ T(\frac{n}{2}) + \frac{n}{2} \<br>
+&amp;= 2 \ (2 \ T(\frac{n}{4}) + \frac{n}{4}) + \frac{n}{2} \<br>
+&amp; \ \vdots \<br>
+&amp;= 2^{k} \ T(\frac{n}{2_{k}}) + k \ \frac{n}{2} \<br>
+&amp;= n \ T(1) + \frac{n\log_{2}{n}}{2} \<br>
+&amp;= \frac{n\log_{2}{n}}{2} \in O(n\log_{2}{n})</p>
+<p>\end{align}<br>
+$$<br>
+<strong>Worst Case ( $C(n) = n-1$ )：</strong><br>
+$$<br>
+\begin{align}<br>
+T(n) &amp;= 2 \ T(\frac{n}{2}) + n - 1 \<br>
+&amp;= 2 \ (2 \ T(\frac{n}{2}) + \frac{n}{2} - 1) + n - 1 \<br>
+&amp; \ \vdots \<br>
+&amp;= 2^{k} \ T(\frac{n}{2^{k}}) + k \ n - 1 - 2 - 4 - \cdots - 2^{k - 1} \<br>
+&amp;= 2^{k} \ T(\frac{n}{2^{k}}) + k \ n + 1 - 2^k \<br>
+&amp;= n \ T(1) + n \log_{2}{n} + 1 - n \<br>
+&amp;= n\log_{2}{n} + 1 - n \in O(n\log_{2}{n})<br>
+\end{align}<br>
+$$</p>
 <h3 id="Reference">Reference</h3>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096/#:~:text=BLAST%20is%20a%20computer%20algorithm,tool%20in%20ongoing%20genomic%20research">https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096/#:~:text=BLAST is a computer algorithm,tool in ongoing genomic research</a>.</p>
-<p><a target="_blank" rel="noopener" href="http://www.biocomp.unibo.it/casadio/LMBIOTEC/evalue">http://www.biocomp.unibo.it/casadio/LMBIOTEC/evalue</a></p>
-<p><a target="_blank" rel="noopener" href="https://bio.libretexts.org/Bookshelves/Computational_Biology/Book%3A_Computational_Biology_-_Genomes_Networks_and_Evolution_(Kellis_et_al.)/03%3A_Rapid_Sequence_Alignment_and_Database_Search/3.05%3A_The_BLAST_algorithm_(Basic_Local_Alignment_Search_Tool)">https://bio.libretexts.org/Bookshelves/Computational_Biology/Book%3A_Computational_Biology_-_Genomes_Networks_and_Evolution_(Kellis_et_al.)/03%3A_Rapid_Sequence_Alignment_and_Database_Search/3.05%3A_The_BLAST_algorithm_(Basic_Local_Alignment_Search_Tool)</a></p>
-<p><a target="_blank" rel="noopener" href="https://omicstutorials.com/basic-local-alignment-search-tool-blast-for-bioinformatics/">https://omicstutorials.com/basic-local-alignment-search-tool-blast-for-bioinformatics/</a></p>
-<p><a target="_blank" rel="noopener" href="http://etutorials.org/Misc/blast/Part+III+Practice/Chapter+5.+BLAST/5.2+The+BLAST+Algorithm/">http://etutorials.org/Misc/blast/Part+III+Practice/Chapter+5.+BLAST/5.2+The+BLAST+Algorithm/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/merge-sort-algorithm-java-c-python">https://www.digitalocean.com/community/tutorials/merge-sort-algorithm-java-c-python</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.scaler.com/topics/merge-sort-in-python/">https://www.scaler.com/topics/merge-sort-in-python/</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/341225128">归并排序时间复杂度分析 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6990373549160546335">Python实现顺序表的归并排序 - 掘金 (juejin.cn)</a></p>
 </blockquote>
 
     </div>
@@ -364,7 +356,7 @@ $$<br>
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="https://mrwuuu.github.io/2023/03/17/BLAST-Algorithm/" title="BLAST Algorithm">https://mrwuuu.github.io/2023/03/17/BLAST-Algorithm/</a>
+    <a href="https://mrwuuu.github.io/2023/03/22/Merge-Sort-Algorithm/" title="归并排序算法 (Merge Sort Algorithm)">https://mrwuuu.github.io/2023/03/22/Merge-Sort-Algorithm/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -376,7 +368,7 @@ $$<br>
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
-              <a href="/tags/Bioinformatics/" rel="tag"># Bioinformatics</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
           </div>
 
         
@@ -385,13 +377,10 @@ $$<br>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/03/15/Object-Oriented-Programming-1/" rel="prev" title="Object Oriented Programming">
-      <i class="fa fa-chevron-left"></i> Object Oriented Programming
+    <a href="/2023/03/22/Stacks-Queues-and-Deques/" rel="prev" title="Stacks Queues and Deques">
+      <i class="fa fa-chevron-left"></i> Stacks Queues and Deques
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/03/20/Wilcoxon-Test/" rel="next" title="Wilcoxon Test">
-      Wilcoxon Test <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -450,7 +439,7 @@ $$<br>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps"><span class="nav-number">1.</span> <span class="nav-text">Steps</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Seeding"><span class="nav-number">1.1.</span> <span class="nav-text">Seeding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extension"><span class="nav-number">1.2.</span> <span class="nav-text">Extension</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Evaluation"><span class="nav-number">1.3.</span> <span class="nav-text">Evaluation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#How-does-Divide-and-Conquer-Work"><span class="nav-number">1.1.</span> <span class="nav-text">How does Divide and Conquer Work?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-Programs-for-Merge-Sort"><span class="nav-number">2.</span> <span class="nav-text">Python Programs for Merge Sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-and-Space-Complexity"><span class="nav-number">3.</span> <span class="nav-text">Time and Space Complexity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
