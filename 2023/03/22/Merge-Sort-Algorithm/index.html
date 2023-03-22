@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/dividing-example-array-merge-sort.webp">
 <meta property="og:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/merging-example-array-merge-sort.webp">
 <meta property="article:published_time" content="2023-03-22T10:40:12.000Z">
-<meta property="article:modified_time" content="2023-03-22T12:44:42.817Z">
+<meta property="article:modified_time" content="2023-03-22T12:50:38.984Z">
 <meta property="article:author" content="Zell Wu">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
@@ -201,7 +201,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-03-22 18:40:12 / Modified: 20:44:42" itemprop="dateCreated datePublished" datetime="2023-03-22T18:40:12+08:00">2023-03-22</time>
+              <time title="Created: 2023-03-22 18:40:12 / Modified: 20:50:38" itemprop="dateCreated datePublished" datetime="2023-03-22T18:40:12+08:00">2023-03-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,7 +226,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.5k</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -301,18 +301,18 @@ $$<br>
 其中 $n &gt; 1$，$C(n)$ 表示将两个数组合并为一个数组所需的比较次数。</p>
 <p><strong>Best Case ( $C(n) = \frac{n}{2}$ )：</strong><br>
 $$<br>
-\begin{align}<br>
+\begin{array}{ll}<br>
 T(n) &amp;= 2 \ T(\frac{n}{2}) + \frac{n}{2} \<br>
 &amp;= 2 \ (2 \ T(\frac{n}{4}) + \frac{n}{4}) + \frac{n}{2} \<br>
 &amp; \ \vdots \<br>
 &amp;= 2^{k} \ T(\frac{n}{2_{k}}) + k \ \frac{n}{2} \<br>
 &amp;= n \ T(1) + \frac{n\log_{2}{n}}{2} \<br>
-&amp;= \frac{n\log_{2}{n}}{2} \in O(n\log_{2}{n})</p>
-<p>\end{align}<br>
+&amp;= \frac{n\log_{2}{n}}{2} \in O(n\log_{2}{n})<br>
+\end{array}<br>
 $$<br>
 <strong>Worst Case ( $C(n) = n-1$ )：</strong><br>
 $$<br>
-\begin{align}<br>
+\begin{array}{ll}<br>
 T(n) &amp;= 2 \ T(\frac{n}{2}) + n - 1 \<br>
 &amp;= 2 \ (2 \ T(\frac{n}{2}) + \frac{n}{2} - 1) + n - 1 \<br>
 &amp; \ \vdots \<br>
@@ -320,7 +320,7 @@ T(n) &amp;= 2 \ T(\frac{n}{2}) + n - 1 \<br>
 &amp;= 2^{k} \ T(\frac{n}{2^{k}}) + k \ n + 1 - 2^k \<br>
 &amp;= n \ T(1) + n \log_{2}{n} + 1 - n \<br>
 &amp;= n\log_{2}{n} + 1 - n \in O(n\log_{2}{n})<br>
-\end{align}<br>
+\end{array}<br>
 $$</p>
 <h3 id="Reference">Reference</h3>
 <blockquote>
