@@ -254,11 +254,10 @@
 
       
         <p>BLAST (<strong>B</strong>asic <strong>L</strong>ocal <strong>A</strong>lignment <strong>S</strong>earch <strong>T</strong>ool) 是一种计算机算法，可以在 <a target="_blank" rel="noopener" href="https://www.ncbi.nlm.nih.gov/">NCBI</a> 网站以及许多其它网站上在线使用。BLAST 可以迅速将 query 序列与数据库中的序列进行比对。</p>
-<p>BLAST 是基于 word 的启发式方法 (heuristic) ，BLAST 是建立在 Smith-Waterman 算法基础上，它比对的速度很快，因为它寻找短 word 的精确匹配，而不是寻找由于 gap 而匹配的相似序列，它使用的相似性矩阵中的数值来对每个匹配进行打分。</p>
+<p>BLAST 是基于 word 的启发式方法 (heuristic) ，BLAST 是建立在 Smith-Waterman 算法基础上，它比对的速度很快，因为它寻找短 word 的精确匹配，而不是寻找由于 gap 而匹配的相似序列，它使用的相似性矩阵中的数值来对每个匹配进行打分。 </p>
 <p>由于目前对 BLAST 算法有各种拓展，所以本文将对 BLAST 算法的基本原理进行介绍。</p>
 <span id="more"></span>
-<h3 id="Steps">Steps</h3>
-<p>BLAST 的基本步骤如下：</p>
+<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h3><p>BLAST 的基本步骤如下：</p>
 <ol>
 <li>将 query 分割成多个长度为 $W$ 的重叠 words (W-mers)；</li>
 <li>寻找每一个 word 的相似 words (neighborhood)；</li>
@@ -268,31 +267,29 @@
 </ol>
 <p>在 BLAST 进行预处理时会确保所有的 words 都包含在数据库中。在 step1 中，通过考虑 query 中 words 连续核苷酸的所有子字符串来分割 query；在 step2 中，为了寻找 W-mers 的 neighborhood，我们通过轻微地替换序列和计算它们之间的相似性去调整这些序列，逐渐生成越来越不相似的 words，直到 neighborhood 的相似分数低于给定阈值 $T$，这使我们能够更加灵活地寻找到那些没有完全连续匹配上，但是又有足够的匹配被认为是相似的 ( 高于特定的阈值 )。</p>
 <p>BLAST 算法基础的步骤图如下：</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blastalgroithm-1679104809024-3.png" alt="blastalgroithm" style="zoom: 50%;" />
-<h4 id="Seeding">Seeding</h4>
-<p>BLAST 认为具有显著性的比对应该具有相同的 words。当在进行两条序列比对时，BLAST 首先确定 query 和 database 具有相同 words 的区域，这个过程被称为 word hit，只有这些具有 word hit 的区域才能被用作进行接下来比对的 seeds，通过这种方式，BLAST 能够忽略很多 search space，节约了时间和空间。</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0502.gif" alt="blst_0502" style="zoom: 80%;" />
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blastalgroithm-1679104809024-3.png" alt="blastalgroithm" style="zoom: 50%;" /></p>
+<h4 id="Seeding"><a href="#Seeding" class="headerlink" title="Seeding"></a>Seeding</h4><p>BLAST 认为具有显著性的比对应该具有相同的 words。当在进行两条序列比对时，BLAST 首先确定 query 和 database 具有相同 words 的区域，这个过程被称为 word hit，只有这些具有 word hit 的区域才能被用作进行接下来比对的 seeds，通过这种方式，BLAST 能够忽略很多 search space，节约了时间和空间。</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0502.gif" alt="blst_0502" style="zoom: 80%;" /></p>
 <p>正确的依赖于 scoring matrix 的 $T$ 值是平衡算法速度和灵敏性的重要参数，高的 $T$ 值来逐渐移出更多的 word hits，同时减少更多的 search space，这会使 BLAST 拥有更快的运行速度，同时也会增加错过比对的机率。</p>
 <p>Word Size ($W$) 是另一个控制 word hits 数量的参数，$W$ 和 $T$ 之间的相互作用以及 scoring matrix 是非常关键的，慎重地选择它们是控制 BLAST 算法速度和敏感性的最佳方法。</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0504.gif" alt="blst_0504" style="zoom:80%;" />
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0504.gif" alt="blst_0504" style="zoom:80%;" /></p>
 <p>从上图中我们可以注意到，有一些 word hit 趋向于沿着 search space 的对角线成簇出现。The two-hit algorithm，利用这个特征去要求位于相同对角线上的两个 word hits 需要满足给定的最小距离。不难理解，给定的最小距离越小，就会出现更多的 isolated word，进而较少更多的 search space。The two-hit algorithm 是移出不相似的 word hits 以及提升 BLAST 运行速度的有效方法。</p>
-<h4 id="Extension">Extension</h4>
-<p>当 search space 中有 seed 的存在，alignments 可以从各个独立的 seeds 生成，我们可以从下图中如箭头所示的两个方向进行延伸 seeds。</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0505.gif" alt="blst_0505" style="zoom:80%;" />
+<h4 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h4><p>当 search space 中有 seed 的存在，alignments 可以从各个独立的 seeds 生成，我们可以从下图中如箭头所示的两个方向进行延伸 seeds。</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0505.gif" alt="blst_0505" style="zoom:80%;" /></p>
 <p>在 Smith-Waterman 算法中，最佳比对的终点是确定的，在整条序列比对完之后，但是 BLAST 只是在整个序列空间中的一个子空间进行比对，所有 BLAST 需要一个方法来确定何时停止延伸步骤。</p>
 <p>不难理解，当序列结尾处出现多个不匹配时，我们应该及时停止延伸，为了达到此目的，我们创建一个变量 $X$，表示当前的比对记录，$\chi$ 表示在达到上一个极值时允许 drop off 的值。接下来，我们举一个 $\chi$ 为 5 的栗子，我们同时记录总得分和 drop off 得分。</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">The</span> quick brown fox jump</span><br><span class="line"><span class="attribute">The</span> quiet brown cat purr</span><br><span class="line"><span class="attribute">123</span> <span class="number">45654</span> <span class="number">56789</span> <span class="number">876</span> <span class="number">5654</span>  &lt;- score</span><br><span class="line"><span class="attribute">000</span> <span class="number">00012</span> <span class="number">10000</span> <span class="number">123</span> <span class="number">4345</span>  &lt;- drop <span class="literal">off</span> score</span><br></pre></td></tr></table></figure>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0506.gif" alt="blst_0506" style="zoom:80%;" />
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0506.gif" alt="blst_0506" style="zoom:80%;" /></p>
 <p>从栗子和上图中可以得到比对的最大分数为 9，同时延伸会在 drop off 分数下降到 4 时停止。不难发现，在比对过程中，我们可能会陷入局部最优解的情况，所以为了较少此类情况发生的风险，我们应该更合理地去考虑 seeds 相关的一些参数取值。</p>
 <p>以上展示的只是 gapless 的延伸算法，被用于最初版本的 BLAST，目前我们使用的 BLAST 版本是允许 gap，通过动态规划的算法实现。</p>
-<h4 id="Evaluation">Evaluation</h4>
-<p>一旦 seeds 从不同的方向进行延伸得到 alignments，这个 alignments 应该通过计算去确定它们之间的匹配是否具有统计学意义。</p>
+<h4 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h4><p>一旦 seeds 从不同的方向进行延伸得到 alignments，这个 alignments 应该通过计算去确定它们之间的匹配是否具有统计学意义。</p>
 <p>最常用的计算概率的方法叫做 Expect value, or E-value：</p>
 <ul>
-<li>**定义：**由于随机事件的发生，导致出现另外一个比给定分数 $S$ 更相似的比对的概率。</li>
+<li><strong>定义：</strong>由于随机事件的发生，导致出现另外一个比给定分数 $S$ 更相似的比对的概率。</li>
 </ul>
 <p>这里举一个 BLAST search 的栗子，target 核苷酸序列为：</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ggtaagtcctctagtacaaacacccccaatattgtgatataattaaaattatattcatat </span></span><br><span class="line"><span class="attribute">tctgttgccagaaaaaacacttttaggctatattagagccatcttctttgaagcgttgtc</span></span><br></pre></td></tr></table></figure>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -303,37 +300,35 @@
 </thead>
 <tbody>
 <tr>
-<td>gi|40730|emb|X07547.1|CTPLAS75 C. trachomatis plasmid DNA f…</td>
+<td>gi&#124;40730&#124;emb&#124;X07547.1&#124;CTPLAS75 C. trachomatis plasmid DNA f…</td>
 <td>238</td>
 <td>2e-60</td>
 </tr>
 <tr>
-<td>gi|144607|gb|M19487.1|PLMORF Chlamydia trachomatis plasmid…</td>
+<td>gi&#124;144607&#124;gb&#124;M19487.1&#124;PLMORF Chlamydia trachomatis plasmid…</td>
 <td>206</td>
 <td>7e-51</td>
 </tr>
 <tr>
-<td>gi|16555445|emb|AL139418.9|Human DNA sequence from clone R…</td>
+<td>gi&#124;16555445&#124;emb&#124;AL139418.9&#124;Human DNA sequence from clone R…</td>
 <td>44</td>
 <td>0.058</td>
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li>S 表示 query 与数据库中序列之间相似性的定量数值；</li>
 <li>E-value 表示 S 分数的的可信程度。</li>
 </ul>
-<p>E-value 具体的计算公式如下：<br>
-$$<br>
-E = Kmne^{-\lambda S}<br>
-$$<br>
-其中，$K$ 和 $\lambda$ 分别表示 search space 的尺度和 scoring system，$m$ 表示 query 的长度，$n$ 表示数据库中比对序列的长度，$S$ 表示比对的分数。</p>
+<p>E-value 具体的计算公式如下：</p>
+<script type="math/tex; mode=display">
+E = Kmne^{-\lambda S}</script><p>其中，$K$ 和 $\lambda$ 分别表示 search space 的尺度和 scoring system，$m$ 表示 query 的长度，$n$ 表示数据库中比对序列的长度，$S$ 表示比对的分数。</p>
 <p>通常而言，BLAST search 中 E-value 标准的阈值是 $10^{-5}$ 或者更低。</p>
-<h3 id="Reference">Reference</h3>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096/#:~:text=BLAST%20is%20a%20computer%20algorithm,tool%20in%20ongoing%20genomic%20research">https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096/#:~:text=BLAST is a computer algorithm,tool in ongoing genomic research</a>.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096/#:~:text=BLAST%20is%20a%20computer%20algorithm,tool%20in%20ongoing%20genomic%20research">https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096/#:~:text=BLAST%20is%20a%20computer%20algorithm,tool%20in%20ongoing%20genomic%20research</a>.</p>
 <p><a target="_blank" rel="noopener" href="http://www.biocomp.unibo.it/casadio/LMBIOTEC/evalue">http://www.biocomp.unibo.it/casadio/LMBIOTEC/evalue</a></p>
-<p><a target="_blank" rel="noopener" href="https://bio.libretexts.org/Bookshelves/Computational_Biology/Book%3A_Computational_Biology_-_Genomes_Networks_and_Evolution_(Kellis_et_al.)/03%3A_Rapid_Sequence_Alignment_and_Database_Search/3.05%3A_The_BLAST_algorithm_(Basic_Local_Alignment_Search_Tool)">https://bio.libretexts.org/Bookshelves/Computational_Biology/Book%3A_Computational_Biology_-_Genomes_Networks_and_Evolution_(Kellis_et_al.)/03%3A_Rapid_Sequence_Alignment_and_Database_Search/3.05%3A_The_BLAST_algorithm_(Basic_Local_Alignment_Search_Tool)</a></p>
+<p><a target="_blank" rel="noopener" href="https://bio.libretexts.org/Bookshelves/Computational_Biology/Book%3A_Computational_Biology_-_Genomes_Networks_and_Evolution_(Kellis_et_al.)/03%3A_Rapid_Sequence_Alignment_and_Database_Search/3.05%3A_The_BLAST_algorithm_(Basic_Local_Alignment_Search_Tool">https://bio.libretexts.org/Bookshelves/Computational_Biology/Book%3A_Computational_Biology_-_Genomes_Networks_and_Evolution_(Kellis_et_al.)/03%3A_Rapid_Sequence_Alignment_and_Database_Search/3.05%3A_The_BLAST_algorithm_(Basic_Local_Alignment_Search_Tool</a>)</p>
 <p><a target="_blank" rel="noopener" href="https://omicstutorials.com/basic-local-alignment-search-tool-blast-for-bioinformatics/">https://omicstutorials.com/basic-local-alignment-search-tool-blast-for-bioinformatics/</a></p>
 <p><a target="_blank" rel="noopener" href="http://etutorials.org/Misc/blast/Part+III+Practice/Chapter+5.+BLAST/5.2+The+BLAST+Algorithm/">http://etutorials.org/Misc/blast/Part+III+Practice/Chapter+5.+BLAST/5.2+The+BLAST+Algorithm/</a></p>
 </blockquote>
