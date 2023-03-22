@@ -1,5 +1,5 @@
+https://mrwuuu.github.io/2023/03/22/Stacks-Queues-and-Deques/
 https://mrwuuu.github.io/2023/03/20/Wilcoxon-Test/
 https://mrwuuu.github.io/2023/03/17/BLAST-Algorithm/
 https://mrwuuu.github.io/2023/03/15/Object-Oriented-Programming-1/
 https://mrwuuu.github.io/2023/03/15/Algorithm-Analysis-1/
-https://mrwuuu.github.io/2023/03/15/Recursion-0/
