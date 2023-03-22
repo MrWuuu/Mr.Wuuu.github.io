@@ -257,39 +257,39 @@
 <p>BLAST 是基于 word 的启发式方法 (heuristic) ，BLAST 是建立在 Smith-Waterman 算法基础上，它比对的速度很快，因为它寻找短 word 的精确匹配，而不是寻找由于 gap 而匹配的相似序列，它使用的相似性矩阵中的数值来对每个匹配进行打分。</p>
 <p>由于目前对 BLAST 算法有各种拓展，所以本文将对 BLAST 算法的基本原理进行介绍。</p>
 <span id="more"></span>
-<h3 id="steps"><a class="markdownIt-Anchor" href="#steps"></a> Steps</h3>
+<h3 id="Steps">Steps</h3>
 <p>BLAST 的基本步骤如下：</p>
 <ol>
-<li>将 query 分割成多个长度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span> 的重叠 words (W-mers)；</li>
+<li>将 query 分割成多个长度为 $W$ 的重叠 words (W-mers)；</li>
 <li>寻找每一个 word 的相似 words (neighborhood)；</li>
-<li>在 hash table 中寻找每一个 word 的 neighborhood，以将它们定位在出现这些 words 的数据库中，将这些 words 成为 seeds，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> 为这些 seeds 的集合；</li>
-<li>延伸集合 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> 中的这些 seeds 直到比对分数低于给定的阈值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span>；</li>
+<li>在 hash table 中寻找每一个 word 的 neighborhood，以将它们定位在出现这些 words 的数据库中，将这些 words 成为 seeds，$S$ 为这些 seeds 的集合；</li>
+<li>延伸集合 $S$ 中的这些 seeds 直到比对分数低于给定的阈值 $X$；</li>
 <li>输出整体得分最高的比对。</li>
 </ol>
-<p>在 BLAST 进行预处理时会确保所有的 words 都包含在数据库中。在 step1 中，通过考虑 query 中 words 连续核苷酸的所有子字符串来分割 query；在 step2 中，为了寻找 W-mers 的 neighborhood，我们通过轻微地替换序列和计算它们之间的相似性去调整这些序列，逐渐生成越来越不相似的 words，直到 neighborhood 的相似分数低于给定阈值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span>，这使我们能够更加灵活地寻找到那些没有完全连续匹配上，但是又有足够的匹配被认为是相似的 ( 高于特定的阈值 )。</p>
+<p>在 BLAST 进行预处理时会确保所有的 words 都包含在数据库中。在 step1 中，通过考虑 query 中 words 连续核苷酸的所有子字符串来分割 query；在 step2 中，为了寻找 W-mers 的 neighborhood，我们通过轻微地替换序列和计算它们之间的相似性去调整这些序列，逐渐生成越来越不相似的 words，直到 neighborhood 的相似分数低于给定阈值 $T$，这使我们能够更加灵活地寻找到那些没有完全连续匹配上，但是又有足够的匹配被认为是相似的 ( 高于特定的阈值 )。</p>
 <p>BLAST 算法基础的步骤图如下：</p>
 <img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blastalgroithm-1679104809024-3.png" alt="blastalgroithm" style="zoom: 50%;" />
-<h4 id="seeding"><a class="markdownIt-Anchor" href="#seeding"></a> Seeding</h4>
+<h4 id="Seeding">Seeding</h4>
 <p>BLAST 认为具有显著性的比对应该具有相同的 words。当在进行两条序列比对时，BLAST 首先确定 query 和 database 具有相同 words 的区域，这个过程被称为 word hit，只有这些具有 word hit 的区域才能被用作进行接下来比对的 seeds，通过这种方式，BLAST 能够忽略很多 search space，节约了时间和空间。</p>
 <img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0502.gif" alt="blst_0502" style="zoom: 80%;" />
-<p>正确的依赖于 scoring matrix 的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span> 值是平衡算法速度和灵敏性的重要参数，高的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span> 值来逐渐移出更多的 word hits，同时减少更多的 search space，这会使 BLAST 拥有更快的运行速度，同时也会增加错过比对的机率。</p>
-<p>Word Size (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span>) 是另一个控制 word hits 数量的参数，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span> 之间的相互作用以及 scoring matrix 是非常关键的，慎重地选择它们是控制 BLAST 算法速度和敏感性的最佳方法。</p>
+<p>正确的依赖于 scoring matrix 的 $T$ 值是平衡算法速度和灵敏性的重要参数，高的 $T$ 值来逐渐移出更多的 word hits，同时减少更多的 search space，这会使 BLAST 拥有更快的运行速度，同时也会增加错过比对的机率。</p>
+<p>Word Size ($W$) 是另一个控制 word hits 数量的参数，$W$ 和 $T$ 之间的相互作用以及 scoring matrix 是非常关键的，慎重地选择它们是控制 BLAST 算法速度和敏感性的最佳方法。</p>
 <img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0504.gif" alt="blst_0504" style="zoom:80%;" />
 <p>从上图中我们可以注意到，有一些 word hit 趋向于沿着 search space 的对角线成簇出现。The two-hit algorithm，利用这个特征去要求位于相同对角线上的两个 word hits 需要满足给定的最小距离。不难理解，给定的最小距离越小，就会出现更多的 isolated word，进而较少更多的 search space。The two-hit algorithm 是移出不相似的 word hits 以及提升 BLAST 运行速度的有效方法。</p>
-<h4 id="extension"><a class="markdownIt-Anchor" href="#extension"></a> Extension</h4>
+<h4 id="Extension">Extension</h4>
 <p>当 search space 中有 seed 的存在，alignments 可以从各个独立的 seeds 生成，我们可以从下图中如箭头所示的两个方向进行延伸 seeds。</p>
 <img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0505.gif" alt="blst_0505" style="zoom:80%;" />
 <p>在 Smith-Waterman 算法中，最佳比对的终点是确定的，在整条序列比对完之后，但是 BLAST 只是在整个序列空间中的一个子空间进行比对，所有 BLAST 需要一个方法来确定何时停止延伸步骤。</p>
-<p>不难理解，当序列结尾处出现多个不匹配时，我们应该及时停止延伸，为了达到此目的，我们创建一个变量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span>，表示当前的比对记录，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi></mrow><annotation encoding="application/x-tex">\chi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">χ</span></span></span></span> 表示在达到上一个极值时允许 drop off 的值。接下来，我们举一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi></mrow><annotation encoding="application/x-tex">\chi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">χ</span></span></span></span> 为 5 的栗子，我们同时记录总得分和 drop off 得分。</p>
+<p>不难理解，当序列结尾处出现多个不匹配时，我们应该及时停止延伸，为了达到此目的，我们创建一个变量 $X$，表示当前的比对记录，$\chi$ 表示在达到上一个极值时允许 drop off 的值。接下来，我们举一个 $\chi$ 为 5 的栗子，我们同时记录总得分和 drop off 得分。</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">The</span> quick brown fox jump</span><br><span class="line"><span class="attribute">The</span> quiet brown cat purr</span><br><span class="line"><span class="attribute">123</span> <span class="number">45654</span> <span class="number">56789</span> <span class="number">876</span> <span class="number">5654</span>  &lt;- score</span><br><span class="line"><span class="attribute">000</span> <span class="number">00012</span> <span class="number">10000</span> <span class="number">123</span> <span class="number">4345</span>  &lt;- drop <span class="literal">off</span> score</span><br></pre></td></tr></table></figure>
 <img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/blst_0506.gif" alt="blst_0506" style="zoom:80%;" />
 <p>从栗子和上图中可以得到比对的最大分数为 9，同时延伸会在 drop off 分数下降到 4 时停止。不难发现，在比对过程中，我们可能会陷入局部最优解的情况，所以为了较少此类情况发生的风险，我们应该更合理地去考虑 seeds 相关的一些参数取值。</p>
 <p>以上展示的只是 gapless 的延伸算法，被用于最初版本的 BLAST，目前我们使用的 BLAST 版本是允许 gap，通过动态规划的算法实现。</p>
-<h4 id="evaluation"><a class="markdownIt-Anchor" href="#evaluation"></a> Evaluation</h4>
+<h4 id="Evaluation">Evaluation</h4>
 <p>一旦 seeds 从不同的方向进行延伸得到 alignments，这个 alignments 应该通过计算去确定它们之间的匹配是否具有统计学意义。</p>
 <p>最常用的计算概率的方法叫做 Expect value, or E-value：</p>
 <ul>
-<li>**定义：**由于随机事件的发生，导致出现另外一个比给定分数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> 更相似的比对的概率。</li>
+<li>**定义：**由于随机事件的发生，导致出现另外一个比给定分数 $S$ 更相似的比对的概率。</li>
 </ul>
 <p>这里举一个 BLAST search 的栗子，target 核苷酸序列为：</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ggtaagtcctctagtacaaacacccccaatattgtgatataattaaaattatattcatat </span></span><br><span class="line"><span class="attribute">tctgttgccagaaaaaacacttttaggctatattagagccatcttctttgaagcgttgtc</span></span><br></pre></td></tr></table></figure>
@@ -323,12 +323,13 @@
 <li>S 表示 query 与数据库中序列之间相似性的定量数值；</li>
 <li>E-value 表示 S 分数的的可信程度。</li>
 </ul>
-<p>E-value 具体的计算公式如下：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>=</mo><mi>K</mi><mi>m</mi><mi>n</mi><msup><mi>e</mi><mrow><mo>−</mo><mi>λ</mi><mi>S</mi></mrow></msup></mrow><annotation encoding="application/x-tex">E = Kmne^{-\lambda S}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8991079999999999em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mord mathnormal">m</span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">λ</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
-<p>其中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">λ</span></span></span></span> 分别表示 search space 的尺度和 scoring system，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">m</span></span></span></span> 表示 query 的长度，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 表示数据库中比对序列的长度，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> 表示比对的分数。</p>
-<p>通常而言，BLAST search 中 E-value 标准的阈值是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>5</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span></span> 或者更低。</p>
-<h3 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h3>
+<p>E-value 具体的计算公式如下：<br>
+$$<br>
+E = Kmne^{-\lambda S}<br>
+$$<br>
+其中，$K$ 和 $\lambda$ 分别表示 search space 的尺度和 scoring system，$m$ 表示 query 的长度，$n$ 表示数据库中比对序列的长度，$S$ 表示比对的分数。</p>
+<p>通常而言，BLAST search 中 E-value 标准的阈值是 $10^{-5}$ 或者更低。</p>
+<h3 id="Reference">Reference</h3>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096/#:~:text=BLAST%20is%20a%20computer%20algorithm,tool%20in%20ongoing%20genomic%20research">https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096/#:~:text=BLAST is a computer algorithm,tool in ongoing genomic research</a>.</p>
 <p><a target="_blank" rel="noopener" href="http://www.biocomp.unibo.it/casadio/LMBIOTEC/evalue">http://www.biocomp.unibo.it/casadio/LMBIOTEC/evalue</a></p>
@@ -449,7 +450,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#steps"><span class="nav-number">1.</span> <span class="nav-text"> Steps</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#seeding"><span class="nav-number">1.1.</span> <span class="nav-text"> Seeding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#extension"><span class="nav-number">1.2.</span> <span class="nav-text"> Extension</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#evaluation"><span class="nav-number">1.3.</span> <span class="nav-text"> Evaluation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reference"><span class="nav-number">2.</span> <span class="nav-text"> Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps"><span class="nav-number">1.</span> <span class="nav-text">Steps</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Seeding"><span class="nav-number">1.1.</span> <span class="nav-text">Seeding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extension"><span class="nav-number">1.2.</span> <span class="nav-text">Extension</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Evaluation"><span class="nav-number">1.3.</span> <span class="nav-text">Evaluation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -525,12 +526,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">84k</span>
+    <span title="Symbols count total">81k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:16</span>
+    <span title="Reading time total">1:14</span>
 </div>
 
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
@@ -605,63 +606,6 @@
 
 
   
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
