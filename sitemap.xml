@@ -263,13 +263,6 @@
 
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/Python/</loc>
-    <lastmod>2023-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/tags/Algorithm/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -284,7 +277,7 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/LaTeX/</loc>
+    <loc>https://mrwuuu.github.io/tags/Python/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -326,6 +319,13 @@
   </url>
   
   <url>
+    <loc>https://mrwuuu.github.io/tags/LaTeX/</loc>
+    <lastmod>2023-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://mrwuuu.github.io/tags/R/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -361,13 +361,6 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/Statistics/</loc>
-    <lastmod>2023-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/tags/Writing/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -389,6 +382,13 @@
   </url>
   
   <url>
+    <loc>https://mrwuuu.github.io/tags/Statistics/</loc>
+    <lastmod>2023-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://mrwuuu.github.io/tags/Hexo/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -398,13 +398,6 @@
 
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Data-Structures-Algorithm/</loc>
-    <lastmod>2023-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/categories/Bioinformatics/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -412,7 +405,7 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/LaTeX/</loc>
+    <loc>https://mrwuuu.github.io/categories/Data-Structures-Algorithm/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -433,6 +426,13 @@
   </url>
   
   <url>
+    <loc>https://mrwuuu.github.io/categories/LaTeX/</loc>
+    <lastmod>2023-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://mrwuuu.github.io/categories/Medician/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -447,14 +447,14 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Statistics/</loc>
+    <loc>https://mrwuuu.github.io/categories/Writing/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Writing/</loc>
+    <loc>https://mrwuuu.github.io/categories/Statistics/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
