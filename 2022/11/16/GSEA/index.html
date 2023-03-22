@@ -37,8 +37,8 @@
 <meta property="article:published_time" content="2022-11-16T03:08:59.000Z">
 <meta property="article:modified_time" content="2023-02-25T06:25:08.025Z">
 <meta property="article:author" content="Zell Wu">
-<meta property="article:tag" content="R">
 <meta property="article:tag" content="Bioinformatics">
+<meta property="article:tag" content="R">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/figure_gsea_local.png">
 
@@ -234,7 +234,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.7k</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -255,8 +255,8 @@
       
         <p>GSEA（Gene Set Enrichment Analysis），即基因集富集分析，它的基本思想是使用预定义的基因集（通常来自功能注释或先前实验的结果），将基因按照在两类样本中的差异表达程度排序，然后检验预先设定的基因集合是否在这个排序表的顶端或者底端富集。</p>
 <span id="more"></span>
-<h2 id="基因集富集分析-gene-set-enrichment-analysis-gsea"><a class="markdownIt-Anchor" href="#基因集富集分析-gene-set-enrichment-analysis-gsea"></a> 基因集富集分析 (Gene Set Enrichment Analysis, GSEA)</h2>
-<h3 id="what-is-the-gsea"><a class="markdownIt-Anchor" href="#what-is-the-gsea"></a> What is the GSEA?</h3>
+<h2 id="基因集富集分析-Gene-Set-Enrichment-Analysis-GSEA">基因集富集分析 (Gene Set Enrichment Analysis, GSEA)</h2>
+<h3 id="What-is-the-GSEA">What is the GSEA?</h3>
 <p>Gene Set Enrichment Analysis (GSEA) 是一种确定一组先验定义的基因是否在两种生物状态（比如表型）之间显示出在统计学上显著的、一致的差异的计算方法。</p>
 <p>GSEA 的基本思想是使用预定义的基因集（通常是来自功能注释或先前实验的结果），将基因按照在两类样本中的差异表达程度进行排序，然后检验预先设定的基因集合在这个排序表的上端或下端富集。</p>
 <p>从 GSEA 的基本思想上可以看出它分析的不是单个基因的表达变化，而是整个基因集合的表达变化，因此可以包含一些细微的表达变化，预期得到更为理想的结果。</p>
@@ -266,7 +266,7 @@
 <li>计算 ES 的显著水平：通过执行基于表型的排列测试来计算，以产生ES的零分布。</li>
 <li>矫正多重假设检验：每一组的富集分数被归一化，并计算一个错误发现率 (false discovery rate) ，以防止第一类错误（假阳性）。</li>
 </ol>
-<h3 id="the-safe-frame-work"><a class="markdownIt-Anchor" href="#the-safe-frame-work"></a> The ‘SAFE’ frame work</h3>
+<h3 id="The-‘SAFE’-frame-work">The ‘SAFE’ frame work</h3>
 <p>GSEA 属于第二代通路分析（significance analysis of function and expression, SAFE）的工具。</p>
 <p>SAFE 框架包括四个步骤：</p>
 <ol>
@@ -275,40 +275,41 @@
 <li>Determine significance of the global statistic</li>
 <li>Adjust for multiple testing</li>
 </ol>
-<h4 id="safe-step-1-local-statistic"><a class="markdownIt-Anchor" href="#safe-step-1-local-statistic"></a> SAFE Step 1. Local statistic</h4>
+<h4 id="SAFE-Step-1-Local-statistic">SAFE Step 1. Local statistic</h4>
 <p>在这一步中，我们描述 local or gene-level 的计算被用于排序基因，在 GSEA 的术语中，为 ‘rank metric’ 。首先，我们根据差异分析得到基因的 P 值用于将 RNA-Seq 数据集处理成一个单一的基因列表。我们简单描述该步骤的过程：</p>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/figure_gsea_local.png" alt="image" /></p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/figure_gsea_local.png" alt="image"></p>
 <center> <b>Figure 1.</b> Deriving the GSEA local statistic: Rank metric.  </center>
-<p>rank metric 的值是通过差异基因表达的模式（Up or Down）和 P 值在计算出来的：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>s</mi><mi>i</mi></msub><mo>=</mo><mi>s</mi><mo stretchy="false">(</mo><msub><mi>P</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mi>s</mi><mi>i</mi><mi>g</mi><mi>n</mi><mo stretchy="false">(</mo><mi>f</mi><mi>o</mi><mi>l</mi><mi>d</mi><mtext> </mtext><mi>c</mi><mi>h</mi><mi>a</mi><mi>n</mi><mi>g</mi><mi>e</mi><mtext> </mtext><mi>g</mi><mi>e</mi><mi>n</mi><mi>e</mi><mtext> </mtext><mi>i</mi><mo stretchy="false">)</mo><mo>⋅</mo><mo>−</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>10</mn></msub><mo stretchy="false">(</mo><msub><mi>P</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s_i = s(P_i) = sign(fold \ change \ gene \ i) \cdot -log_{10}(P_i)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">d</span><span class="mspace"> </span><span class="mord mathnormal">c</span><span class="mord mathnormal">h</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mspace"> </span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">e</span><span class="mspace"> </span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
-<h4 id="safe-step-2-global-statistic"><a class="markdownIt-Anchor" href="#safe-step-2-global-statistic"></a> SAFE Step 2. Global statistic</h4>
+<p>rank metric 的值是通过差异基因表达的模式（Up or Down）和 P 值在计算出来的：<br>
+$$<br>
+s_i = s(P_i) = sign(fold \ change \ gene \ i) \cdot -log_{10}(P_i)<br>
+$$</p>
+<h4 id="SAFE-Step-2-Global-statistic">SAFE Step 2. Global statistic</h4>
 <p>Global statistic 是 GSEA 中最核心的一步，接下来我们处理 Figure 1 中排列好的基因：</p>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/figure_gsea_global.png" alt="image" /></p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/figure_gsea_global.png" alt="image"></p>
 <center> <b>Figure 2.</b> Sample calculation of global statistic: The GSEA enrichment score.  </center>
 <p>GSEA 一次考虑一个 candidate gene sets ，为了计算 enrichment score ，GSEA 从 ranked gene list 顶部开始。如果一个基因在 candidate gene sets 中，那么就增加 running sum ，否则就减去。对于每个 ranked gene list 中的基因进行重复操作进行计算，其中 running sum 中绝对值最大的值作为 enrichment score 输出。</p>
 <p>以上只是最原始的计算方法，目前使用的方法是计算具有权重的 enrichment score ，因为涉及很多公式，笔者就不在这罗列了，感兴趣的可以移步到我最下方的参考资料。</p>
-<h4 id="safe-step-3-significance-testing"><a class="markdownIt-Anchor" href="#safe-step-3-significance-testing"></a> SAFE Step 3. Significance testing</h4>
+<h4 id="SAFE-Step-3-Significance-testing">SAFE Step 3. Significance testing</h4>
 <p>现在的主要问题是哪个分数表明了富集？在假设检验术语中，我们希望确定每个全局统计量的统计意义。我们通过推导出一个 P 值在实现，为了做到这个，我们首先需要了解这些统计量是如何分布的。</p>
-<h5 id="null-distributions"><a class="markdownIt-Anchor" href="#null-distributions"></a> Null distributions</h5>
+<h5 id="Null-distributions">Null distributions</h5>
 <p>从我们对 global statistic 的讨论来看，使用加权的 enrichment score 使我们没有对它们的 Null distributions 的分析描述。也就是说，用 local statistic 对 enrichment score 进行加权，就会偏离了经典的 Kolmogorov-Smirnov statistic ，该统计量通常遵循k-s样分布。</p>
 <p>GSEA 采用 ‘resampling’ or ‘bottstrap’ 方法来推导出每个 gene set 的 enrichment score 的 Null distributions 的经验样本。</p>
 <p>GSEA 软件提供两种排列方法的选择：</p>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/figure_gsea_null.jpg" alt="image" /></p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/figure_gsea_null.jpg" alt="image"></p>
 <center> <b>Figure 4.</b> GSEA uses permutation methods to generate null distributions for each gene set. </center>
-<h4 id="safe-step-4-multiple-testing-correction"><a class="markdownIt-Anchor" href="#safe-step-4-multiple-testing-correction"></a> SAFE Step 4. Multiple testing correction</h4>
+<h4 id="SAFE-Step-4-Multiple-testing-correction">SAFE Step 4. Multiple testing correction</h4>
 <p>当我们检验一系列假设时，观察到 P 值小的统计量的机会增加，当小于显著水平时，它们就会被错误地分类，Multiple testing 步骤尝试去量化和控制这种现象。</p>
 <p>在 GSEA 中，它们推荐使用 false discovery rate (FDR) 去量化错误。</p>
-<h3 id="gsea-with-clusterprofiler"><a class="markdownIt-Anchor" href="#gsea-with-clusterprofiler"></a> GSEA with ClusterProfiler</h3>
-<h4 id="install-and-load-required-packages"><a class="markdownIt-Anchor" href="#install-and-load-required-packages"></a> Install and load required packages</h4>
+<h3 id="GSEA-with-ClusterProfiler">GSEA with ClusterProfiler</h3>
+<h4 id="Install-and-load-required-packages">Install and load required packages</h4>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BiocManager<span class="operator">::</span>install<span class="punctuation">(</span><span class="string">&quot;clusterProfiler&quot;</span><span class="punctuation">,</span> version <span class="operator">=</span> <span class="string">&quot;3.8&quot;</span><span class="punctuation">)</span></span><br><span class="line">BiocManager<span class="operator">::</span>install<span class="punctuation">(</span><span class="string">&quot;pathview&quot;</span><span class="punctuation">)</span></span><br><span class="line">BiocManager<span class="operator">::</span>install<span class="punctuation">(</span><span class="string">&quot;enrichplot&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>clusterProfiler<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>enrichplot<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<h4 id="data"><a class="markdownIt-Anchor" href="#data"></a> Data</h4>
+<h4 id="Data">Data</h4>
 <p>CSV 文件包括基因的 name 和 log2 fold change values ，这些数据通常使用一些差异表达的工具得到，比如 DESeq2，下载 sample data <a target="_blank" rel="noopener" href="https://learn.gencore.bio.nyu.edu/wp-content/uploads/2019/10/drosphila_example_de.csv">here</a>。</p>
-<h4 id="annotations"><a class="markdownIt-Anchor" href="#annotations"></a> Annotations</h4>
+<h4 id="Annotations">Annotations</h4>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">organism <span class="operator">=</span> <span class="string">&quot;org.Dm.eg.db&quot;</span></span><br><span class="line">BiocManager<span class="operator">::</span>install<span class="punctuation">(</span>organism<span class="punctuation">,</span> character.only <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>organism<span class="punctuation">,</span> character.only <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<h4 id="prepare-input"><a class="markdownIt-Anchor" href="#prepare-input"></a> Prepare Input</h4>
+<h4 id="Prepare-Input">Prepare Input</h4>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># reading in data from deseq2</span></span><br><span class="line">df <span class="operator">=</span> read.csv<span class="punctuation">(</span><span class="string">&quot;drosphila_example_de.csv&quot;</span><span class="punctuation">,</span> header <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># we want the log2 fold change </span></span><br><span class="line">original_gene_list <span class="operator">&lt;-</span> df<span class="operator">$</span>log2FoldChange</span><br><span class="line"></span><br><span class="line"><span class="comment"># name the vector</span></span><br><span class="line"><span class="built_in">names</span><span class="punctuation">(</span>original_gene_list<span class="punctuation">)</span> <span class="operator">&lt;-</span> df<span class="operator">$</span>X</span><br><span class="line"></span><br><span class="line"><span class="comment"># omit any NA values </span></span><br><span class="line">gene_list <span class="operator">&lt;-</span> na.omit<span class="punctuation">(</span>original_gene_list<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sort the list in decreasing order (required for clusterProfiler)</span></span><br><span class="line">gene_list <span class="operator">=</span> sort<span class="punctuation">(</span>gene_list<span class="punctuation">,</span> decreasing <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<h4 id="gene-set-enrichment"><a class="markdownIt-Anchor" href="#gene-set-enrichment"></a> Gene Set Enrichment</h4>
+<h4 id="Gene-Set-Enrichment">Gene Set Enrichment</h4>
 <p>参数：</p>
 <p><code>ketType</code> 是注释的来源 (gene ids)，比如在 <code>org.Dm.eg.db</code> 中，有这些选项：</p>
 <p>“ACCNUM” “ALIAS” “ENSEMBL” “ENSEMBLPROT” “ENSEMBLTRANS” “ENTREZID” “ENZYME” “EVIDENCE” “EVIDENCEALL” “FLYBASE” “FLYBASECG” “FLYBASEPROT” “GENENAME” “GO” “GOALL” “MAP” “ONTOLOGY” “ONTOLOGYALL” “PATH” “PMID” “REFSEQ” “SYMBOL” “UNIGENE” “UNIPROT”</p>
@@ -380,13 +381,13 @@
 </tbody>
 </table>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">gse <span class="operator">&lt;-</span> gseGO<span class="punctuation">(</span>geneList<span class="operator">=</span>gene_list<span class="punctuation">,</span> </span><br><span class="line">             ont <span class="operator">=</span><span class="string">&quot;ALL&quot;</span><span class="punctuation">,</span> </span><br><span class="line">             keyType <span class="operator">=</span> <span class="string">&quot;ENSEMBL&quot;</span><span class="punctuation">,</span> </span><br><span class="line">             nPerm <span class="operator">=</span> <span class="number">10000</span><span class="punctuation">,</span> </span><br><span class="line">             minGSSize <span class="operator">=</span> <span class="number">3</span><span class="punctuation">,</span> </span><br><span class="line">             maxGSSize <span class="operator">=</span> <span class="number">800</span><span class="punctuation">,</span> </span><br><span class="line">             pvalueCutoff <span class="operator">=</span> <span class="number">0.05</span><span class="punctuation">,</span> </span><br><span class="line">             verbose <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> </span><br><span class="line">             OrgDb <span class="operator">=</span> organism<span class="punctuation">,</span> </span><br><span class="line">             pAdjustMethod <span class="operator">=</span> <span class="string">&quot;none&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<h4 id="output"><a class="markdownIt-Anchor" href="#output"></a> Output</h4>
-<h5 id="dotplot"><a class="markdownIt-Anchor" href="#dotplot"></a> Dotplot</h5>
+<h4 id="Output">Output</h4>
+<h5 id="Dotplot">Dotplot</h5>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require<span class="punctuation">(</span>DOSE<span class="punctuation">)</span></span><br><span class="line">dotplot<span class="punctuation">(</span>gse<span class="punctuation">,</span> showCategory<span class="operator">=</span><span class="number">10</span><span class="punctuation">,</span> split<span class="operator">=</span><span class="string">&quot;.sign&quot;</span><span class="punctuation">)</span> <span class="operator">+</span> facet_grid<span class="punctuation">(</span>.<span class="operator">~</span>.sign<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/f9f46f7e89618a256dc739b37aa37a4.png" alt="f9f46f7e89618a256dc739b37aa37a4" /></p>
-<h5 id="enrichment-map"><a class="markdownIt-Anchor" href="#enrichment-map"></a> Enrichment Map</h5>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/f9f46f7e89618a256dc739b37aa37a4.png" alt="f9f46f7e89618a256dc739b37aa37a4"></p>
+<h5 id="Enrichment-Map">Enrichment Map</h5>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emapplot<span class="punctuation">(</span>gse<span class="punctuation">,</span> showCategory <span class="operator">=</span> <span class="number">10</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/2d6fdf5082e9246e086fda5b640781d.png" alt="2d6fdf5082e9246e086fda5b640781d" /></p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/2d6fdf5082e9246e086fda5b640781d.png" alt="2d6fdf5082e9246e086fda5b640781d"></p>
 <p>还可以绘制很多图，还可以分析 kegg，感兴趣的可以去深入研究。</p>
 <p>最后膜拜一下 Y 叔。</p>
 <blockquote>
@@ -433,8 +434,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/R/" rel="tag"># R</a>
               <a href="/tags/Bioinformatics/" rel="tag"># Bioinformatics</a>
+              <a href="/tags/R/" rel="tag"># R</a>
           </div>
 
         
@@ -508,7 +509,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E5%9B%A0%E9%9B%86%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90-gene-set-enrichment-analysis-gsea"><span class="nav-number">1.</span> <span class="nav-text"> 基因集富集分析 (Gene Set Enrichment Analysis, GSEA)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#what-is-the-gsea"><span class="nav-number">1.1.</span> <span class="nav-text"> What is the GSEA?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-safe-frame-work"><span class="nav-number">1.2.</span> <span class="nav-text"> The ‘SAFE’ frame work</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#safe-step-1-local-statistic"><span class="nav-number">1.2.1.</span> <span class="nav-text"> SAFE Step 1. Local statistic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#safe-step-2-global-statistic"><span class="nav-number">1.2.2.</span> <span class="nav-text"> SAFE Step 2. Global statistic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#safe-step-3-significance-testing"><span class="nav-number">1.2.3.</span> <span class="nav-text"> SAFE Step 3. Significance testing</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#null-distributions"><span class="nav-number">1.2.3.1.</span> <span class="nav-text"> Null distributions</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#safe-step-4-multiple-testing-correction"><span class="nav-number">1.2.4.</span> <span class="nav-text"> SAFE Step 4. Multiple testing correction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gsea-with-clusterprofiler"><span class="nav-number">1.3.</span> <span class="nav-text"> GSEA with ClusterProfiler</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#install-and-load-required-packages"><span class="nav-number">1.3.1.</span> <span class="nav-text"> Install and load required packages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data"><span class="nav-number">1.3.2.</span> <span class="nav-text"> Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#annotations"><span class="nav-number">1.3.3.</span> <span class="nav-text"> Annotations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#prepare-input"><span class="nav-number">1.3.4.</span> <span class="nav-text"> Prepare Input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gene-set-enrichment"><span class="nav-number">1.3.5.</span> <span class="nav-text"> Gene Set Enrichment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#output"><span class="nav-number">1.3.6.</span> <span class="nav-text"> Output</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#dotplot"><span class="nav-number">1.3.6.1.</span> <span class="nav-text"> Dotplot</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#enrichment-map"><span class="nav-number">1.3.6.2.</span> <span class="nav-text"> Enrichment Map</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E5%9B%A0%E9%9B%86%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90-Gene-Set-Enrichment-Analysis-GSEA"><span class="nav-number">1.</span> <span class="nav-text">基因集富集分析 (Gene Set Enrichment Analysis, GSEA)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-GSEA"><span class="nav-number">1.1.</span> <span class="nav-text">What is the GSEA?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-%E2%80%98SAFE%E2%80%99-frame-work"><span class="nav-number">1.2.</span> <span class="nav-text">The ‘SAFE’ frame work</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SAFE-Step-1-Local-statistic"><span class="nav-number">1.2.1.</span> <span class="nav-text">SAFE Step 1. Local statistic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SAFE-Step-2-Global-statistic"><span class="nav-number">1.2.2.</span> <span class="nav-text">SAFE Step 2. Global statistic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SAFE-Step-3-Significance-testing"><span class="nav-number">1.2.3.</span> <span class="nav-text">SAFE Step 3. Significance testing</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Null-distributions"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Null distributions</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SAFE-Step-4-Multiple-testing-correction"><span class="nav-number">1.2.4.</span> <span class="nav-text">SAFE Step 4. Multiple testing correction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GSEA-with-ClusterProfiler"><span class="nav-number">1.3.</span> <span class="nav-text">GSEA with ClusterProfiler</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Install-and-load-required-packages"><span class="nav-number">1.3.1.</span> <span class="nav-text">Install and load required packages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data"><span class="nav-number">1.3.2.</span> <span class="nav-text">Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Annotations"><span class="nav-number">1.3.3.</span> <span class="nav-text">Annotations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prepare-Input"><span class="nav-number">1.3.4.</span> <span class="nav-text">Prepare Input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gene-Set-Enrichment"><span class="nav-number">1.3.5.</span> <span class="nav-text">Gene Set Enrichment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output"><span class="nav-number">1.3.6.</span> <span class="nav-text">Output</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Dotplot"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">Dotplot</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Enrichment-Map"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">Enrichment Map</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -584,12 +585,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">83k</span>
+    <span title="Symbols count total">81k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:16</span>
+    <span title="Reading time total">1:14</span>
 </div>
 
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
