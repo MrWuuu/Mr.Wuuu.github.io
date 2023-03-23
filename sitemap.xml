@@ -293,13 +293,6 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/LaTeX/</loc>
-    <lastmod>2023-03-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/tags/Matlab/</loc>
     <lastmod>2023-03-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -315,6 +308,13 @@
   
   <url>
     <loc>https://mrwuuu.github.io/tags/Discriminant-Analysis/</loc>
+    <lastmod>2023-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/LaTeX/</loc>
     <lastmod>2023-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -421,14 +421,14 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/LaTeX/</loc>
+    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
     <lastmod>2023-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
+    <loc>https://mrwuuu.github.io/categories/LaTeX/</loc>
     <lastmod>2023-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
