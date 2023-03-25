@@ -256,74 +256,57 @@
       
         <p>Illumina Sequencing Technology</p>
 <span id="more"></span>
-<h3 id="Introduction">Introduction</h3>
-<p>Illumina Sequencing Technology 利用了克隆阵列 (clonal array) 的信息和特有的可逆终止子技术 (reversible terminator technology) 去实现快速、准确的进行大规模的测序。</p>
-<h3 id="Sample-Preparation">Sample Preparation</h3>
-<ul>
-<li>
-<p>核酸片段化 (Nucleic acid fragmentation)</p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Illumina Sequencing Technology 利用了克隆阵列 (clonal array) 的信息和特有的可逆终止子技术 (reversible terminator technology) 去实现快速、准确的进行大规模的测序。</p>
+<h3 id="Sample-Preparation"><a href="#Sample-Preparation" class="headerlink" title="Sample Preparation"></a>Sample Preparation</h3><ul>
+<li><p>核酸片段化 (Nucleic acid fragmentation)</p>
 <p>每个核酸样本被打断成一个个小片段，以便于它们能够进行大规模的平行测序。最合适的片段大小取决于测序仪器和测序应用。</p>
 </li>
-<li>
-<p>接头连接 (Adapter ligation)</p>
+<li><p>接头连接 (Adapter ligation)</p>
 <p>接头是一些可以在片段序列上与启动寡核苷酸互补的寡核苷酸。为了能够进行测序，核苷酸片段也被接头所连接。因为接头序列对于测序平台来说是特异的，Illumina 接头不能够相互交换。</p>
 </li>
 </ul>
-<h3 id="Cluster-Generation">Cluster Generation</h3>
-<ul>
-<li>
-<p>测序的模板被固定在专门的流动池 (flow cell) 表面，这种表面能够在确保设备在接触酶的同时又确保表面与模板结合的高度稳定性，以及模板与荧光标签核苷酸结合的低非特异性的方式，DNA 则以这样的形式出现。</p>
+<h3 id="Cluster-Generation"><a href="#Cluster-Generation" class="headerlink" title="Cluster Generation"></a>Cluster Generation</h3><ul>
+<li><p>测序的模板被固定在专门的流动池 (flow cell) 表面，这种表面能够在确保设备在接触酶的同时又确保表面与模板结合的高度稳定性，以及模板与荧光标签核苷酸结合的低非特异性的方式，DNA 则以这样的形式出现。</p>
 </li>
-<li>
-<p>固相扩增使每个单模板分子可以创造出接近 1,000 完全相同的拷贝。</p>
+<li><p>固相扩增使每个单模板分子可以创造出接近 1,000 完全相同的拷贝。</p>
 <ol>
-<li>
-<p>在流动池表面随机结合单链片段；</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227211816270-1677504978590-1.png" alt="image-20230227211816270" style="zoom:50%;" />
+<li><p>在流动池表面随机结合单链片段；</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227211816270-1677504978590-1.png" alt="image-20230227211816270" style="zoom:50%;" /></p>
 <center>Figure. 1 Attach DNA to Surface</center>
 </li>
-<li>
-<p>添加没有标记的核苷酸和聚合酶起始固相桥式扩增；</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212035378-1677504978590-2.png" alt="image-20230227212035378" style="zoom:50%;" />
+<li><p>添加没有标记的核苷酸和聚合酶起始固相桥式扩增；</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212035378-1677504978590-2.png" alt="image-20230227212035378" style="zoom:50%;" /></p>
 <center>Figure. 2 Bridge Amplification</center>
 </li>
-<li>
-<p>酶在固相底部合并两条核苷酸形成双链桥；</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212222786-1677504978590-3.png" alt="image-20230227212222786" style="zoom:50%;" />
+<li><p>酶在固相底部合并两条核苷酸形成双链桥；</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212222786-1677504978590-3.png" alt="image-20230227212222786" style="zoom:50%;" /></p>
 <center>Figure. 3 Fragments Become Double Stranded</center>
 </li>
-<li>
-<p>退火留下单链模板停留在底部；</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212401334-1677504978590-4.png" alt="image-20230227212401334" style="zoom:50%;" />
+<li><p>退火留下单链模板停留在底部；</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212401334-1677504978590-4.png" alt="image-20230227212401334" style="zoom:50%;" /></p>
 <center>Figure. 4 Denature the Double-Stranded Molecules</center>
 </li>
-<li>
-<p>数百万密集的双链 DNA 簇在流动池的每个通道被生成；</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212713450-1677504978591-5.png" alt="image-20230227212713450" style="zoom:50%;" />
+<li><p>数百万密集的双链 DNA 簇在流动池的每个通道被生成；</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212713450-1677504978591-5.png" alt="image-20230227212713450" style="zoom:50%;" /></p>
 <center>Figure. 5 Complete Amplification</center>
 </li>
-<li>
-<p>第一个测序循环通过添加四种可逆终止子、引物和 DNA 聚合酶开始；</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212916758-1677504978591-6.png" alt="image-20230227212916758" style="zoom:50%;" />
+<li><p>第一个测序循环通过添加四种可逆终止子、引物和 DNA 聚合酶开始；</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230227212916758-1677504978591-6.png" alt="image-20230227212916758" style="zoom:50%;" /></p>
 <center>Figure. 6 Determine First Base</center>
 </li>
-<li>
-<p>在激光激发后，从不同簇中发射的荧光被捕获，同时第一个碱基被识别；</p>
+<li><p>在激光激发后，从不同簇中发射的荧光被捕获，同时第一个碱基被识别；</p>
 </li>
-<li>
-<p>进入循环直到完全测序。</p>
+<li><p>进入循环直到完全测序。</p>
 </li>
 </ol>
 </li>
 </ul>
-<h3 id="Error-sources-for-Illumina-sequencing">Error sources for Illumina sequencing</h3>
-<p>最主要的错误是由于同一个点中大量分子由于化学本质的随机性本质而造成的异步性。</p>
+<h3 id="Error-sources-for-Illumina-sequencing"><a href="#Error-sources-for-Illumina-sequencing" class="headerlink" title="Error sources for Illumina sequencing"></a>Error sources for Illumina sequencing</h3><p>最主要的错误是由于同一个点中大量分子由于化学本质的随机性本质而造成的异步性。</p>
 <ul>
 <li>在洗去 dNTPs 的环节中，小的 dNTPs 片段不可避免的残留，因此，对于一些 DNA 分子来说，DNA 聚合酶会不仅会接触到 ddNTP，还会接触到 dNTP。这个过程不会结束，并且聚合酶最终会同时结合一个 dNTP 和一个 ddNTP。这样的结果会导致在一些链中会比正常的链多出一个甚至更多的碱基，我们将这种现象称为 <em>leading</em>。</li>
 <li>由于酶的含量不够充分，终止子没有在冲洗循环中被反转，可能会导致另一类错误出现。因此一些链会错过一个循环或者比正常的链少一个碱基，我们将这种现象称为 <em>lagging</em>。</li>
 </ul>
-<h3 id="Reference">Reference</h3>
-<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.illumina.com/science/technology/next-generation-sequencing/sequencing-technology.html">https://www.illumina.com/science/technology/next-generation-sequencing/sequencing-technology.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.thermofisher.cn/cn/zh/home/life-science/cloning/cloning-learning-center/invitrogen-school-of-molecular-biology/next-generation-sequencing/illumina-workflow.html">https://www.thermofisher.cn/cn/zh/home/life-science/cloning/cloning-learning-center/invitrogen-school-of-molecular-biology/next-generation-sequencing/illumina-workflow.html</a></p>
 </blockquote>
@@ -516,12 +499,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">85k</span>
+    <span title="Symbols count total">87k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:18</span>
+    <span title="Reading time total">1:19</span>
 </div>
 
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>

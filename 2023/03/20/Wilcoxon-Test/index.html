@@ -245,18 +245,15 @@
       
         <p>The Wilcoxon signed-rank test 是一种非参数检验，用于检验基于样本数据的 population location，或使用两个 paired samples 比较 population location。The one-sample 版本的目的与 one-sample Student’s t-test 相似。对于两个 paired samples，它是一个配对差异检验，如同 paired Student’s t-test。当群体平均数不受关注时，the Wilcoxon test 可以作为 t-test 的一个很好的替代方法；例如，当人们希望检验一个群体的中位数是否为非零，或者一个群体的样本是否比另一个群体的样本高 50% 以上。</p>
 <span id="more"></span>
-<h3 id="Understanding-the-Wilcoxon-Test">Understanding the Wilcoxon Test</h3>
-<p>The rank sum and signed rank tests 都是由美国统计学家弗兰克-威尔考克斯在1945年发表的一篇开创性的研究论文中提出的。</p>
+<h3 id="Understanding-the-Wilcoxon-Test"><a href="#Understanding-the-Wilcoxon-Test" class="headerlink" title="Understanding the Wilcoxon Test"></a>Understanding the Wilcoxon Test</h3><p>The rank sum and signed rank tests 都是由美国统计学家弗兰克-威尔考克斯在1945年发表的一篇开创性的研究论文中提出的。</p>
 <p>这些检验为非参数统计学的假设检验奠定了基础，非参数统计学用于可排序但没有数值的群体数据，如客户满意度或音乐评论。非参数分布没有参数，不能像参数分布那样由方程来定义。</p>
 <p>Wilcoxon test 可以帮助回答的问题类型包括 (比如)：</p>
 <ul>
 <li>同一个学生从五年级到六年级的考试成绩是否发生变化？</li>
 <li>对同一个患者进行药物实验，该药物是否起作用？</li>
 </ul>
-<h3 id="Types-of-the-Wilcoxon-Test">Types of the Wilcoxon Test</h3>
-<ul>
-<li>The Wilcoxon rank sum test 可以用来检验两个群体具有相同的连续分布的零假设。零假设认为两个群体或变量之间没有显著差异。采用 rank sum test 所需的基本假设是：
-<ul>
+<h3 id="Types-of-the-Wilcoxon-Test"><a href="#Types-of-the-Wilcoxon-Test" class="headerlink" title="Types of the Wilcoxon Test"></a>Types of the Wilcoxon Test</h3><ul>
+<li>The Wilcoxon rank sum test 可以用来检验两个群体具有相同的连续分布的零假设。零假设认为两个群体或变量之间没有显著差异。采用 rank sum test 所需的基本假设是：<ul>
 <li>数据来自同一人群，并且是成对的；</li>
 <li>数据至少可以用区间尺度来衡量；</li>
 <li>数据是随机的，独立的。</li>
@@ -264,9 +261,9 @@
 </li>
 <li>The Wilcoxon signed rank test 假定成对观测值之间的差异的大小和符号存在信息。作为 paired student’s t-test 的非参数替代，当群体数据不遵循正态分布时，the signed rank test 可以作为 t-test 的替代方法。</li>
 </ul>
-<h3 id="Wilcoxon-Rank-Sum-Test">Wilcoxon Rank Sum Test</h3>
-<p>下面通过一个栗子来进行介绍：</p>
+<h3 id="Wilcoxon-Rank-Sum-Test"><a href="#Wilcoxon-Rank-Sum-Test" class="headerlink" title="Wilcoxon Rank Sum Test"></a>Wilcoxon Rank Sum Test</h3><p>下面通过一个栗子来进行介绍：</p>
 <p>考虑一项 II 期的临床试验，旨在研究一种新药对减少儿童哮喘症状的有效性。共有 n=10 名参与者被随机分配接受 new drag 或 placebo。参与者被要求记录在接受指定治疗后 1 周内呼吸急促发作的次数。数据显示如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -297,33 +294,28 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>下图是呼吸急促发作的次数的频率分布图，很明显可以看出该变量不服从正态分布。</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Example1.png" alt="Frequency histogram of episodes of shortness of breath" style="zoom: 33%;" />
-<p>另外，该样本数量非常少 ($n_1=n_2=5$)，所以应当使用非参数检验。假设如下（$\alpha=0.05$）：<br>
-$$<br>
-H_0:\text{两个群体呼吸急促发作的次数没有差异} \quad H_1:\text{两个群体呼吸急促发作的次数有差异}<br>
-$$<br>
-首先，我们需要将数据从小到大进行排序：</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230320212509784.png" alt="image-20230320212509784" style="zoom:50%;" />
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Example1.png" alt="Frequency histogram of episodes of shortness of breath" style="zoom: 33%;" /></p>
+<p>另外，该样本数量非常少 ($n_1=n_2=5$)，所以应当使用非参数检验。假设如下（$\alpha=0.05$）：</p>
+<script type="math/tex; mode=display">
+H_0:\text{两个群体呼吸急促发作的次数没有差异} \quad H_1:\text{两个群体呼吸急促发作的次数有差异}</script><p>首先，我们需要将数据从小到大进行排序：</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/image-20230320212509784.png" alt="image-20230320212509784" style="zoom:50%;" /></p>
 <p>然后，我们计算每一个 Group 的秩和，比如在 placebo group 中，秩和为 37；在 new drag group 中，秩和为 18。上述两个秩和的和总是等于 $n(n+1)/2$，在这个栗子中，$n(n+1)/2=10(11)/2=55=37+18$。</p>
 <p>接下来我们令 $R_1$ 表示 group1 的秩和，$R_2$ 表示 group2 的秩和，如果 $H_0$ 假设成立，我们则希望 $R_1$ 与 $R_2$ 相等，可是我们发现 lower ranks 聚集在 placebo group，而 high ranks 聚集在 new drag group 中，这个发现究竟是因为它们之间真的存在差异，还是只是由于随机现象造成的呢？接下来，我们需要进行统计量的检验。</p>
-<p>令统计量 $U$ 为 $U_1$ 和 $U_2$ 中最小值，$U_1$ 、$U_2$ 定义如下：<br>
-$$<br>
-U_1=n_1n_2+\frac{n_1(n_1+1)}{2}-R_1 \<br>
-U2=n_1n_2+\frac{n_2(n_2+1)}{2}-R_2<br>
-$$<br>
-通过上述栗子和公式我们可以计算：<br>
-$$<br>
-U_1 = 5\times5+\frac{5\times6}{2}-37=3 \<br>
-U_2 = 5\times5+\frac{5\times6}{2}-18=22<br>
-$$<br>
-在我们的栗子中，计算得到统计量 $U=3$，接下来我们对统计量进行查表，得到在 $\alpha=0.05$ 的情况下，$H_0$ 的拒绝域为 $U\leq2$，所以我们不能拒绝 $H_0$ 假设，即我们没有足够的统计显著性证据说明呼吸急促发作的次数在 placebo group 中大于 new drug group。</p>
+<p>令统计量 $U$ 为 $U_1$ 和 $U_2$ 中最小值，$U_1$ 、$U_2$ 定义如下：</p>
+<script type="math/tex; mode=display">
+U_1=n_1n_2+\frac{n_1(n_1+1)}{2}-R_1 \\
+U2=n_1n_2+\frac{n_2(n_2+1)}{2}-R_2</script><p>通过上述栗子和公式我们可以计算：</p>
+<script type="math/tex; mode=display">
+U_1 = 5\times5+\frac{5\times6}{2}-37=3 \\
+U_2 = 5\times5+\frac{5\times6}{2}-18=22</script><p>在我们的栗子中，计算得到统计量 $U=3$，接下来我们对统计量进行查表，得到在 $\alpha=0.05$ 的情况下，$H_0$ 的拒绝域为 $U\leq2$，所以我们不能拒绝 $H_0$ 假设，即我们没有足够的统计显著性证据说明呼吸急促发作的次数在 placebo group 中大于 new drug group。</p>
 <blockquote>
 <p>需要注意的是，在统计量的计算结果中，$U_1+U_2$ 始终是等于 $n_1\times n_2$ 的。</p>
 </blockquote>
-<h3 id="Wilcoxon-Signed-Rank-Test">Wilcoxon Signed Rank Test</h3>
-<p>下面通过一个栗子来进行介绍：</p>
+<h3 id="Wilcoxon-Signed-Rank-Test"><a href="#Wilcoxon-Signed-Rank-Test" class="headerlink" title="Wilcoxon Signed Rank Test"></a>Wilcoxon Signed Rank Test</h3><p>下面通过一个栗子来进行介绍：</p>
 <p>有一项研究评估了一种旨在减少自闭症儿童重复性行为的新药的有效性。共有 8 名自闭症儿童参加了这项研究，在治疗前和服用新药后的三小时观察期内，每个孩子从事重复性行为的时间被测量，为期一周。数据显示如下。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -375,7 +367,9 @@ $$<br>
 </tr>
 </tbody>
 </table>
+</div>
 <p>首先，我们对上表中的数据进行求差：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -436,7 +430,9 @@ $$<br>
 </tr>
 </tbody>
 </table>
+</div>
 <p>接下来，我们对计算出来的差值进行排序，我们首先对差值的绝对值进行排序，从 1 到 n 给最小到最大的差值的绝对值分配分数，当差异分数的绝对值出现并列时，分配平均的分数。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -488,7 +484,9 @@ $$<br>
 </tr>
 </tbody>
 </table>
-<p>最后一步是将符号 (“+” or “-”) 添加给每个排序。</p>
+</div>
+<p>最后一步是将符号 (“+” or “-“) 添加给每个排序。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -549,16 +547,13 @@ $$<br>
 </tr>
 </tbody>
 </table>
-<p>接下来的过程与上面介绍的 Sign Test 相似，首先提出假设（$\alpha=0.05$）：<br>
-$$<br>
-H_0:\text{两个群体的中位数没有差异} \quad H_1:\text{两个群体中位数的差值为正数}<br>
-$$<br>
-令统计量 $W$ 为 $W_{+}$ 和 $W_{-}$ 中最小值，$W_{+}$ 、$W_{-}$ 分别表示正排序的总和和负排序的总和，通过计算我们可以得到 $W_{+} = 32$，$W_{-} = 4$，统计量$W = 4$，然后我们通过查表得到拒绝域为 $W \leq 6$，因此我们有足够的统计学显著证据表明两个样本中位数的差值为正值。</p>
-<h3 id="R-function">R function</h3>
-<p>R 中的函数 <code>wilcox.test()</code> 如下：</p>
+</div>
+<p>接下来的过程与上面介绍的 Sign Test 相似，首先提出假设（$\alpha=0.05$）：</p>
+<script type="math/tex; mode=display">
+H_0:\text{两个群体的中位数没有差异} \quad H_1:\text{两个群体中位数的差值为正数}</script><p>令统计量 $W$ 为 $W<em>{+}$ 和 $W</em>{-}$ 中最小值，$W<em>{+}$ 、$W</em>{-}$ 分别表示正排序的总和和负排序的总和，通过计算我们可以得到 $W<em>{+} = 32$，$W</em>{-} = 4$，统计量$W = 4$，然后我们通过查表得到拒绝域为 $W \leq 6$，因此我们有足够的统计学显著证据表明两个样本中位数的差值为正值。</p>
+<h3 id="R-function"><a href="#R-function" class="headerlink" title="R function"></a>R function</h3><p>R 中的函数 <code>wilcox.test()</code> 如下：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wilcox.test<span class="punctuation">(</span>x<span class="punctuation">,</span> y <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span></span><br><span class="line">            alternative <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;two.sided&quot;</span><span class="punctuation">,</span> <span class="string">&quot;less&quot;</span><span class="punctuation">,</span> <span class="string">&quot;greater&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            mu <span class="operator">=</span> <span class="number">0</span><span class="punctuation">,</span> paired <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span> exact <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span> correct <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span></span><br><span class="line">            conf.int <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span> conf.level <span class="operator">=</span> <span class="number">0.95</span><span class="punctuation">,</span> …<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<h4 id="Example-Wilcoxon-Rank-Sum-Test">Example: Wilcoxon Rank Sum Test</h4>
-<p>首先准备检验的数据：</p>
+<h4 id="Example-Wilcoxon-Rank-Sum-Test"><a href="#Example-Wilcoxon-Rank-Sum-Test" class="headerlink" title="Example: Wilcoxon Rank Sum Test"></a>Example: Wilcoxon Rank Sum Test</h4><p>首先准备检验的数据：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Data in two numeric vectors</span></span><br><span class="line">women_weight <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">38.9</span><span class="punctuation">,</span> <span class="number">61.2</span><span class="punctuation">,</span> <span class="number">73.3</span><span class="punctuation">,</span> <span class="number">21.8</span><span class="punctuation">,</span> <span class="number">63.4</span><span class="punctuation">,</span> <span class="number">64.6</span><span class="punctuation">,</span> <span class="number">48.4</span><span class="punctuation">,</span> <span class="number">48.8</span><span class="punctuation">,</span> <span class="number">48.5</span><span class="punctuation">)</span></span><br><span class="line">men_weight <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">67.8</span><span class="punctuation">,</span> <span class="number">60</span><span class="punctuation">,</span> <span class="number">63.4</span><span class="punctuation">,</span> <span class="number">76</span><span class="punctuation">,</span> <span class="number">89.4</span><span class="punctuation">,</span> <span class="number">73.3</span><span class="punctuation">,</span> <span class="number">67.3</span><span class="punctuation">,</span> <span class="number">61.3</span><span class="punctuation">,</span> <span class="number">62.4</span><span class="punctuation">)</span> </span><br><span class="line"><span class="comment"># Create a data frame</span></span><br><span class="line">my_data <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span> </span><br><span class="line">                group <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;Woman&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Man&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> each <span class="operator">=</span> <span class="number">9</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                weight <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>women_weight<span class="punctuation">,</span>  men_weight<span class="punctuation">)</span></span><br><span class="line">                <span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
 <p>查看数据：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print<span class="punctuation">(</span>my_data<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
@@ -572,13 +567,12 @@ $$<br>
 </ol>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res <span class="operator">&lt;-</span> wilcox.test<span class="punctuation">(</span>women_weight<span class="punctuation">,</span> men_weight<span class="punctuation">)</span></span><br><span class="line">res</span><br></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Wilcoxon rank <span class="built_in">sum</span> test with continuity correction</span><br><span class="line">data<span class="operator">:</span>  women_weight and men_weight</span><br><span class="line">W <span class="operator">=</span> <span class="number">15</span><span class="punctuation">,</span> p<span class="operator">-</span>value <span class="operator">=</span> <span class="number">0.02712</span></span><br><span class="line">alternative hypothesis<span class="operator">:</span> true location shift is not equal to <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
+<ol>
 <li>第二种是通过公式导入进行检验：</li>
 </ol>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">res <span class="operator">&lt;-</span> wilcox.test<span class="punctuation">(</span>weight <span class="operator">~</span> group<span class="punctuation">,</span> data <span class="operator">=</span> my_data<span class="punctuation">,</span></span><br><span class="line">                   exact <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line">res</span><br></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Wilcoxon rank <span class="built_in">sum</span> test with continuity correction</span><br><span class="line">data<span class="operator">:</span>  weight by group</span><br><span class="line">W <span class="operator">=</span> <span class="number">66</span><span class="punctuation">,</span> p<span class="operator">-</span>value <span class="operator">=</span> <span class="number">0.02712</span></span><br><span class="line">alternative hypothesis<span class="operator">:</span> true location shift is not equal to <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h4 id="Example-Wilcoxon-Signed-Rank-Test">Example: Wilcoxon Signed Rank Test</h4>
-<p>首先准备检验的数据：</p>
+<h4 id="Example-Wilcoxon-Signed-Rank-Test"><a href="#Example-Wilcoxon-Signed-Rank-Test" class="headerlink" title="Example: Wilcoxon Signed Rank Test"></a>Example: Wilcoxon Signed Rank Test</h4><p> 首先准备检验的数据：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Weight of the mice before treatment</span></span><br><span class="line">before <span class="operator">&lt;-</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">200.1</span><span class="punctuation">,</span> <span class="number">190.9</span><span class="punctuation">,</span> <span class="number">192.7</span><span class="punctuation">,</span> <span class="number">213</span><span class="punctuation">,</span> <span class="number">241.4</span><span class="punctuation">,</span> <span class="number">196.9</span><span class="punctuation">,</span> <span class="number">172.2</span><span class="punctuation">,</span> <span class="number">185.5</span><span class="punctuation">,</span> <span class="number">205.2</span><span class="punctuation">,</span> <span class="number">193.7</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># Weight of the mice after treatment</span></span><br><span class="line">after <span class="operator">&lt;-</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">392.9</span><span class="punctuation">,</span> <span class="number">393.2</span><span class="punctuation">,</span> <span class="number">345.1</span><span class="punctuation">,</span> <span class="number">393</span><span class="punctuation">,</span> <span class="number">434</span><span class="punctuation">,</span> <span class="number">427.9</span><span class="punctuation">,</span> <span class="number">422</span><span class="punctuation">,</span> <span class="number">383.9</span><span class="punctuation">,</span> <span class="number">392.3</span><span class="punctuation">,</span> <span class="number">352.2</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># Create a data frame</span></span><br><span class="line">my_data <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span> </span><br><span class="line">                group <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;before&quot;</span><span class="punctuation">,</span> <span class="string">&quot;after&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> each <span class="operator">=</span> <span class="number">10</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                weight <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>before<span class="punctuation">,</span>  after<span class="punctuation">)</span></span><br><span class="line">                <span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
 <p>查看数据：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print<span class="punctuation">(</span>my_data<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
@@ -592,16 +586,15 @@ $$<br>
 </ol>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res <span class="operator">&lt;-</span> wilcox.test<span class="punctuation">(</span>before<span class="punctuation">,</span> after<span class="punctuation">,</span> paired <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br><span class="line">res</span><br></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Wilcoxon signed rank test</span><br><span class="line">data<span class="operator">:</span>  before and after</span><br><span class="line">V <span class="operator">=</span> <span class="number">0</span><span class="punctuation">,</span> p<span class="operator">-</span>value <span class="operator">=</span> <span class="number">0.001953</span></span><br><span class="line">alternative hypothesis<span class="operator">:</span> true location shift is not equal to <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
+<ol>
 <li>第二种是通过公式导入进行检验：</li>
 </ol>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res <span class="operator">&lt;-</span> wilcox.test<span class="punctuation">(</span>weight <span class="operator">~</span> group<span class="punctuation">,</span> data <span class="operator">=</span> my_data<span class="punctuation">,</span> paired <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br><span class="line">res</span><br></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Wilcoxon signed rank test</span><br><span class="line">data<span class="operator">:</span>  weight by group</span><br><span class="line">V <span class="operator">=</span> <span class="number">55</span><span class="punctuation">,</span> p<span class="operator">-</span>value <span class="operator">=</span> <span class="number">0.001953</span></span><br><span class="line">alternative hypothesis<span class="operator">:</span> true location shift is not equal to <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h3 id="Reference">Reference</h3>
-<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><blockquote>
 <p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test">https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test</a></p>
 <p><a target="_blank" rel="noopener" href="https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_nonparametric/BS704_Nonparametric6.html">https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_nonparametric/BS704_Nonparametric6.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_nonparametric/bs704_nonparametric4.html#:~:text=The%20Mann%20Whitney%20U%20test%2C%20sometimes%20called%20the%20Mann%20Whitney,populations%20have%20the%20same%20shape">https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_nonparametric/bs704_nonparametric4.html#:~:text=The Mann Whitney U test%2C sometimes called the Mann Whitney,populations have the same shape</a>).</p>
+<p><a target="_blank" rel="noopener" href="https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_nonparametric/bs704_nonparametric4.html#:~:text=The%20Mann%20Whitney%20U%20test%2C%20sometimes%20called%20the%20Mann%20Whitney,populations%20have%20the%20same%20shape">https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_nonparametric/bs704_nonparametric4.html#:~:text=The%20Mann%20Whitney%20U%20test%2C%20sometimes%20called%20the%20Mann%20Whitney,populations%20have%20the%20same%20shape</a>).</p>
 <p><a target="_blank" rel="noopener" href="https://www.investopedia.com/terms/w/wilcoxon-test.asp">https://www.investopedia.com/terms/w/wilcoxon-test.asp</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.sthda.com/english/wiki/unpaired-two-samples-wilcoxon-test-in-r">http://www.sthda.com/english/wiki/unpaired-two-samples-wilcoxon-test-in-r</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.sthda.com/english/wiki/paired-samples-wilcoxon-test-in-r">http://www.sthda.com/english/wiki/paired-samples-wilcoxon-test-in-r</a></p>
@@ -795,12 +788,12 @@ $$<br>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">85k</span>
+    <span title="Symbols count total">87k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:18</span>
+    <span title="Reading time total">1:19</span>
 </div>
 
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>

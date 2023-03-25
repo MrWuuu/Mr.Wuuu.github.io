@@ -226,7 +226,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.6k</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -247,35 +247,27 @@
       
         <p>在计算机科学中，归并排序 (Merge Sort) 是一种基于比较的高效而通用的排序算法，大多数的执行会产生一个稳定的排序，即如果出现相同元素时，输入和输出的顺序是相同的。</p>
 <span id="more"></span>
-<h3 id="Introduction">Introduction</h3>
-<p>在归并排序中，首先把所给的数组拆分成数量上大致相同的子数组，这些子数组被进一步拆分，直到拆分成数组中只含有一个元素；之后我们将成对的子数组进行合并，最终得到完成排序的完整数组。整个算法的大致过程如下图：</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/introduction-to-merge-sort-1679482236308-3.webp" alt="introduction to merge sort in python" style="zoom:15%;" />
-<h4 id="How-does-Divide-and-Conquer-Work">How does Divide and Conquer Work?</h4>
-<p>假设我们拥有一个数组：[4, 8, 7, 2, 11, 1, 3]</p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>在归并排序中，首先把所给的数组拆分成数量上大致相同的子数组，这些子数组被进一步拆分，直到拆分成数组中只含有一个元素；之后我们将成对的子数组进行合并，最终得到完成排序的完整数组。整个算法的大致过程如下图：</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/introduction-to-merge-sort-1679482236308-3.webp" alt="introduction to merge sort in python" style="zoom:15%;" /></p>
+<h4 id="How-does-Divide-and-Conquer-Work"><a href="#How-does-Divide-and-Conquer-Work" class="headerlink" title="How does Divide and Conquer Work?"></a>How does Divide and Conquer Work?</h4><p>假设我们拥有一个数组：[4, 8, 7, 2, 11, 1, 3]</p>
 <ol>
-<li>
-<p><strong>Divide</strong>，我们通过公式 <code>mid = len(array)//2</code> 来计算数组长度的中值；</p>
+<li><p><strong>Divide</strong>，我们通过公式 <code>mid = len(array)//2</code> 来计算数组长度的中值；</p>
 </li>
-<li>
-<p><strong>Conquer</strong>，我们在计算中值的帮助下将数组进行拆分得到子数组，直到拆分后的数组中只存在一个元素（因为只含有一个元素的数组肯定是完成排序的）；</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/dividing-example-array-merge-sort.webp" alt="Dividing Array in merge sort" style="zoom: 15%;" />
+<li><p><strong>Conquer</strong>，我们在计算中值的帮助下将数组进行拆分得到子数组，直到拆分后的数组中只存在一个元素（因为只含有一个元素的数组肯定是完成排序的）；</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/dividing-example-array-merge-sort.webp" alt="Dividing Array in merge sort" style="zoom: 15%;" /></p>
 </li>
-<li>
-<p><strong>Combine</strong>，最后一步就是我们按照排序组合拆分的数组。</p>
-<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/merging-example-array-merge-sort.webp" alt="Combining Array in merge sort" style="zoom:15%;" />
+<li><p><strong>Combine</strong>，最后一步就是我们按照排序组合拆分的数组。</p>
+<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/merging-example-array-merge-sort.webp" alt="Combining Array in merge sort" style="zoom:15%;" /></p>
 </li>
 </ol>
-<h3 id="Python-Programs-for-Merge-Sort">Python Programs for Merge Sort</h3>
-<p><strong>算法步骤：</strong></p>
+<h3 id="Python-Programs-for-Merge-Sort"><a href="#Python-Programs-for-Merge-Sort" class="headerlink" title="Python Programs for Merge Sort"></a>Python Programs for Merge Sort</h3><p><strong>算法步骤：</strong></p>
 <ul>
-<li>递归：
-<ol>
+<li>递归：<ol>
 <li>将输入的数组根据该数组长度的中值进行拆分，拆分为长度相近的两个子数组（数组长度为偶数时，两个子数组长度相同；数组长度为奇数时，两个子数组长度相差 1）；</li>
 <li>将拆分后的子数组按照上述步骤进一步拆分，直到拆分后的子数组长度为 1，此时跳出递归循环。</li>
 </ol>
 </li>
-<li>归并：
-<ol>
+<li>归并：<ol>
 <li>创建一个新的数组空间，用于存放已经完成排序的序列；</li>
 <li>设置两个指针，初始位置为两个完成排序数组的起始位置；</li>
 <li>两个数组比较各自指针所指的位置元素的大小，选择相对较小的元素放入合并空间，同时移动该数组的指针到下个位置；</li>
@@ -286,44 +278,36 @@
 </ul>
 <p><strong>代码实现：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">merge_sort</span>(<span class="params">arr</span>):</span><br><span class="line">    <span class="comment"># Set recursion exit condition</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(arr) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create sub_array1 &lt;- array[start..mid] and sub_array2 &lt;- array[mid+1..end]</span></span><br><span class="line">    mid = <span class="built_in">len</span>(arr) // <span class="number">2</span></span><br><span class="line">    arr1, arr2 = arr[:mid], arr[mid:]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Sort the two halves</span></span><br><span class="line">    arr1 = merge_sort(arr1)</span><br><span class="line">    arr2 = merge_sort(arr2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Initial values for pointers that we use to keep track of where we are in each array</span></span><br><span class="line">    i = j = k = <span class="number">0</span></span><br><span class="line">    res = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Until we reach the end of either start or end, pick larger among</span></span><br><span class="line">    <span class="comment"># elements start and end and place them in the correct position in the sorted array</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(arr1) <span class="keyword">and</span> j &lt; <span class="built_in">len</span>(arr2):</span><br><span class="line">        <span class="keyword">if</span> arr1[i] &lt; arr2[j]:</span><br><span class="line">            res.append(arr1[i])</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res.append(arr2[j])</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># When all elements are traversed in either arr1 or arr2,</span></span><br><span class="line">    <span class="comment"># pick up the remaining elements and put in sorted array</span></span><br><span class="line">    res = res + arr1[i:]</span><br><span class="line">    res = res + arr2[j:]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<h3 id="Time-and-Space-Complexity">Time and Space Complexity</h3>
-<p><strong>空间复杂度</strong></p>
+<h3 id="Time-and-Space-Complexity"><a href="#Time-and-Space-Complexity" class="headerlink" title="Time and Space Complexity"></a>Time and Space Complexity</h3><p><strong>空间复杂度</strong></p>
 <p>从上述栗子中不难发现，我们需要额外最大的辅助空间为 <code>O(n)</code></p>
 <p><strong>时间复杂度</strong></p>
 <ul>
 <li>Best Case: 进行比较的两个完成排序的数组中，一个数组最大值小于另一个数组最小值，此时只需要 $min { m,n } $ 次比较，其中 $m$, $n$ 分别为两个数组的长度。</li>
 <li>Worst Case: 进行比较的两个完成排序的数组中，各个元素为互相交叉排序，此时需要 $m+n+1$ 次比较。</li>
 </ul>
-<p>设 $n$ 为待排序数组长度，$T(n)$ 为算法需要的时间复杂度，则<br>
-$$<br>
-T(n) = 2 \ T(\frac{n}{2}) + C(n)<br>
-$$<br>
-其中 $n &gt; 1$，$C(n)$ 表示将两个数组合并为一个数组所需的比较次数。</p>
-<p><strong>Best Case ( $C(n) = \frac{n}{2}$ )：</strong><br>
-$$<br>
-\begin{aligned}<br>
-T(n) &amp;= 2 \ T(\frac{n}{2}) + \frac{n}{2} \\<br>
-&amp;= 2 \ (2 \ T(\frac{n}{4}) + \frac{n}{4}) + \frac{n}{2} \\<br>
-&amp; \ \vdots \\<br>
-&amp;= 2^{k} \ T(\frac{n}{2_{k}}) + k \ \frac{n}{2} \\<br>
-&amp;= n \ T(1) + \frac{n\log_{2}{n}}{2} \\<br>
-&amp;= \frac{n\log_{2}{n}}{2} \in O(n\log_{2}{n})<br>
-\end{aligned}<br>
-$$<br>
-<strong>Worst Case ( $C(n) = n-1$ )：</strong><br>
-$$<br>
-\begin{aligned}<br>
-T(n) &amp;= 2 \ T(\frac{n}{2}) + n - 1 \\<br>
-&amp;= 2 \ (2 \ T(\frac{n}{2}) + \frac{n}{2} - 1) + n - 1 \\<br>
-&amp; \ \vdots \\<br>
-&amp;= 2^{k} \ T(\frac{n}{2^{k}}) + k \ n - 1 - 2 - 4 - \cdots - 2^{k - 1} \\<br>
-&amp;= 2^{k} \ T(\frac{n}{2^{k}}) + k \ n + 1 - 2^k \\<br>
-&amp;= n \ T(1) + n \log_{2}{n} + 1 - n \\<br>
-&amp;= n\log_{2}{n} + 1 - n \in O(n\log_{2}{n})<br>
-\end{aligned}<br>
-$$</p>
-<h3 id="Reference">Reference</h3>
-<blockquote>
+<p>设 $n$ 为待排序数组长度，$T(n)$ 为算法需要的时间复杂度，则</p>
+<script type="math/tex; mode=display">
+T(n) = 2 \ T(\frac{n}{2}) + C(n)</script><p>其中 $n &gt; 1$，$C(n)$ 表示将两个数组合并为一个数组所需的比较次数。</p>
+<p><strong>Best Case ( $C(n) = \frac{n}{2}$ )：</strong></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+T(n) &= 2 \ T(\frac{n}{2}) + \frac{n}{2} \\\\
+     &= 2 \ (2 \ T(\frac{n}{4}) + \frac{n}{4}) + \frac{n}{2} \\\\
+     & \ \vdots \\\\
+     &= 2^{k} \ T(\frac{n}{2_{k}}) + k \ \frac{n}{2} \\\\
+     &= n \ T(1) + \frac{n\log_{2}{n}}{2} \\\\
+     &= \frac{n\log_{2}{n}}{2} \in O(n\log_{2}{n})
+\end{aligned}</script><p><strong>Worst Case ( $C(n) = n-1$ )：</strong></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+T(n) &= 2 \ T(\frac{n}{2}) + n - 1 \\\\
+     &= 2 \ (2 \ T(\frac{n}{2}) + \frac{n}{2} - 1) + n - 1 \\\\
+     & \ \vdots \\\\
+     &= 2^{k} \ T(\frac{n}{2^{k}}) + k \ n - 1 - 2 - 4 - \cdots - 2^{k - 1} \\\\
+     &= 2^{k} \ T(\frac{n}{2^{k}}) + k \ n + 1 - 2^k \\\\
+     &= n \ T(1) + n \log_{2}{n} + 1 - n \\\\
+     &= n\log_{2}{n} + 1 - n \in O(n\log_{2}{n})
+\end{aligned}</script><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/merge-sort-algorithm-java-c-python">https://www.digitalocean.com/community/tutorials/merge-sort-algorithm-java-c-python</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.scaler.com/topics/merge-sort-in-python/">https://www.scaler.com/topics/merge-sort-in-python/</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/341225128">归并排序时间复杂度分析 - 知乎 (zhihu.com)</a></p>
@@ -518,12 +502,12 @@ $$</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">85k</span>
+    <span title="Symbols count total">87k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:18</span>
+    <span title="Reading time total">1:19</span>
 </div>
 
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
