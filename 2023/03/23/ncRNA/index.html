@@ -257,13 +257,15 @@
         <p>ncRNAs (non-coding RNA) 是由 DNA 转录出来而不翻译成蛋白质的功能性 RNA 分子。ncRNAs 在真核生物中无处不在，虽然在真核生物体内有 90 % 的基因组被转录，但是只有 1-2% 被翻译成蛋白质，大部分被转录为 ncRNAs。ncRNAs 在基因表达的表观遗传调控中发挥着重要作用，它包括小非编码 RNA (sncRNAs)  和长非编码 RNA (lncRNAs)。</p>
 <p>本文主要对《生物信息学》第二版（樊龙江主编）第九章内容进行学习并作记录。</p>
 <span id="more"></span>
-<h3 id="sncRNAs-的计算识别与靶基因预测"><a href="#sncRNAs-的计算识别与靶基因预测" class="headerlink" title="sncRNAs 的计算识别与靶基因预测"></a>sncRNAs 的计算识别与靶基因预测</h3><h4 id="miRNA-MicroRNAs"><a href="#miRNA-MicroRNAs" class="headerlink" title="miRNA (MicroRNAs)"></a>miRNA (MicroRNAs)</h4><h5 id="miRNA-主要特征"><a href="#miRNA-主要特征" class="headerlink" title="miRNA 主要特征"></a>miRNA 主要特征</h5><p>miRNA 在动植物中存在着明显的差异，这对于 miRNA 的及其靶基因预测至关重要。</p>
+<h3 id="sncRNAs-的计算识别与靶基因预测">sncRNAs 的计算识别与靶基因预测</h3>
+<h4 id="miRNA-MicroRNAs">miRNA (MicroRNAs)</h4>
+<h5 id="miRNA-主要特征">miRNA 主要特征</h5>
+<p>miRNA 在动植物中存在着明显的差异，这对于 miRNA 的及其靶基因预测至关重要。</p>
 <p>在植物中，miRNA 的生成源于一种 miRNA 的初级转录物 (pri-miRNA)，它由 miRNA 的基因进行转录然后被折叠形成具有茎环结构的 miRNA 前体 (pre-miRNA)。随后在 DCL1 酶 (Dicer-like enzyme 1) 等酶的共同催化下，miRNA 的前体茎环结构被切割形成 miRNA：miRNA* 的双链复合结构，该 miRNA 复合体结构的 3’ 端在 HEN1 (DsRBD protein-like protein 1) 酶的作用下形成甲基化，并由 HEN1 蛋白质输出到细胞质。</p>
 <p>在细胞质中，miRNA 与 AGO (argonaute) 蛋白形成 <em>RISC</em> (RNA-induced silencing complex) 复合体，该复合体通过碱基互补配对原则作用到靶基因，从而调节目标靶基因在植物体中的表达，而与成熟 miRNA 成互补结构的 miRNA* 在通常情况下都会被降解并且不具有调控基因表达的功能。大部分植物 miRNA 和靶基因会形成完全或近似完全的匹配，根据与靶位点结合的紧密程度决定了其对目标 mRNA 切割或是抑制其表达。</p>
 <p>下图为植物中 miRNA 和 RISC 的形成以及调控过程：</p>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/fpls-10-00360-g001.jpg" alt="img" style="zoom: 20%;" /></p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/fpls-10-00360-g001.jpg" alt="img" style="zoom: 20%;" />
 <center><b>Figure 1.</b> Regulation of miRNA biogenesis, RISC loading, and action in plants.</center>
-
 <p>动植物体内 miRNA 存在差异，其中主要差异体现在：</p>
 <ol>
 <li>前体序列长度不同。植物 miRNA 前体的茎环结构更大、更复杂，大约是动物的三倍长；</li>
@@ -274,11 +276,15 @@
 <li>加工方式不同。植物中细胞核内编码 miRNA 的基因转录与加工是耦联的，即 miRNA 的相乘过程是在细胞核中完成的；</li>
 <li>作用机制不同。在动物中，多数 miRNA 以不完全互补方式与其靶 mRNA 的 3’ 端非翻译区（UTR）的识别位点结合，从而阻碍该 mRNA 的翻译来调控基因表达，但不影响 mRNA 的稳定性。植物中的 miRNA 与相应的靶 mRNA 近似完全配对，并且互补区域散布在靶 mRNA 的转录区域内而非局限于 3’-UTR，使得 miRNA 结合到包括编码区域在内的多个位点上，从而能够直接降解 mRNA，引发基因沉默。</li>
 </ol>
-<p>基于 miRNA 前体的二级结构，miRNA 前体有较低的最小折叠自由能 (minimal folding free energy, MFE)，由于 MFE 跟序列长度有关，Zhang 等（2006b）提出了最小折叠自由能指标 (minimal folding free energy index, MFEI) 的概念，将序列长度考虑进来，从而为不同长度 miRNA 前体的 MFE 比较提供了一个标准，并将 0.85 作为 miRNA 区别于其他类型 RNA 的 MFEI 阈值。MFEI 的具体计算公式为：</p>
-<script type="math/tex; mode=display">
-\text{MFEI}=\frac{100 \times \text{MFE}/L}{(G + C) \ \%}</script><p>式中，$L$ 表示前体序列的长度，$\text{MFE}$ 表示最小折叠自由能。</p>
-<h5 id="miRNA-的计算识别"><a href="#miRNA-的计算识别" class="headerlink" title="miRNA 的计算识别"></a>miRNA 的计算识别</h5><ul>
-<li><p>同源比对</p>
+<p>基于 miRNA 前体的二级结构，miRNA 前体有较低的最小折叠自由能 (minimal folding free energy, MFE)，由于 MFE 跟序列长度有关，Zhang 等（2006b）提出了最小折叠自由能指标 (minimal folding free energy index, MFEI) 的概念，将序列长度考虑进来，从而为不同长度 miRNA 前体的 MFE 比较提供了一个标准，并将 0.85 作为 miRNA 区别于其他类型 RNA 的 MFEI 阈值。MFEI 的具体计算公式为：<br>
+$$<br>
+\text{MFEI}=\frac{100 \times \text{MFE}/L}{(G + C) \ %}<br>
+$$<br>
+式中，$L$ 表示前体序列的长度，$\text{MFE}$ 表示最小折叠自由能。</p>
+<h5 id="miRNA-的计算识别">miRNA 的计算识别</h5>
+<ul>
+<li>
+<p>同源比对</p>
 <p>同源比对的方法主要通过已知保守 miRNA 在不同物种间的序列相似性，进行同源序列搜索预测 miRNA。对于全基因组已测序或正在测序的模式生物，可利用其全基因组或大规模测序数据；对于基因组序列并未获得的物种，EST 等表达序列也是很好的数据资源。</p>
 <p>同源比对的方法需要注意：</p>
 <ol>
@@ -289,38 +295,48 @@
 <p>如果所以以上标准均符合，那么该位点即为候选的 miRNA 基因。</p>
 <p>Software: BLAST, ERPIN, microHARVESTRE, miRAlign …</p>
 </li>
-<li><p>邻近茎环结构搜索</p>
+<li>
+<p>邻近茎环结构搜索</p>
 <p>基于动物 miRNA 经常成簇存在于基因组上的特点，通过对已知 miRNA 附近区域进行茎环结构预测来发现成簇存在的 miRNA。</p>
 </li>
-<li><p>基于比较基因组学的算法</p>
+<li>
+<p>基于比较基因组学的算法</p>
 <p>比较基因组学的基础是相关生物基因组的共线性。如果生物之间存在很近的亲缘关系，那么它们的基因组就会表现出共线性，即基因序列的部分或全部保守。这样就可以利用基因组之间编码顺序上和结构上的同源性，通过已知基因组的作图信息定位其它基因组中的基因，从而揭示基因潜在的功能、阐明物种进化关系及基因组的内在结构。需要指出的是，因为基因组中 tRNA、逆转座子等元件均能形成发卡结构，因此要注意前期序列过滤和最终候选结构筛选。</p>
 </li>
-<li><p>基于高通量 miRNA 测序数据的发掘方法</p>
+<li>
+<p>基于高通量 miRNA 测序数据的发掘方法</p>
 <p>以上方法，大多都是依靠 miRNA 序列的保守性。随着第二代测序技术的成熟和推广，大规模基因组数据和转录组数据不断产生。通过 miRNA 特有的形成特征和表达模式，利用高通量技术对 miRNA 进行测序和大规模进行 miRNA 的鉴定。</p>
 </li>
 </ul>
-<h4 id="siRNA-small-interfering-RNA"><a href="#siRNA-small-interfering-RNA" class="headerlink" title="siRNA (small interfering RNA)"></a>siRNA (small interfering RNA)</h4><h5 id="siRNA-和-ta-siRNA-的主要特征"><a href="#siRNA-和-ta-siRNA-的主要特征" class="headerlink" title="siRNA 和 ta-siRNA 的主要特征"></a>siRNA 和 ta-siRNA 的主要特征</h5><p>与 miRNA 不同，siRNA 主要通过长的双链 RNA 复合体在 DCL 酶的切割下产生，并能够激发与其的 mRNA 沉默。这个现象称为 RNA 干扰现象。</p>
+<h4 id="siRNA-small-interfering-RNA">siRNA (small interfering RNA)</h4>
+<h5 id="siRNA-和-ta-siRNA-的主要特征">siRNA 和 ta-siRNA 的主要特征</h5>
+<p>与 miRNA 不同，siRNA 主要通过长的双链 RNA 复合体在 DCL 酶的切割下产生，并能够激发与其的 mRNA 沉默。这个现象称为 RNA 干扰现象。</p>
 <p>产生 siRNA 的双链复合体可有多种来源：生物体内存在的反向重复序列，自然存在的顺反转录对，由 RNA 聚合酶将单链 RNA 合成双链 RNA，通过病毒 RNA 复制得到的双链 RNA，以及体内存在的大量转录元件等。</p>
 <p>ta-siRNA 的形成主要是通过 miRNA 介导的按 21nt 相位排列的 siRNA (phasiRNA) 的剪接（$\leq 12$ 个相位）。</p>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Ta-siRNA_Biogenesis_in_Arabidopsis.png" alt="File:Ta-siRNA Biogenesis in Arabidopsis.png" style="zoom: 67%;" /></p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Ta-siRNA_Biogenesis_in_Arabidopsis.png" alt="File:Ta-siRNA Biogenesis in Arabidopsis.png" style="zoom: 67%;" />
 <center><b>Figure 2.</b> ta-siRNA Biogenesis in arabidopsis.</center>
-
-<h5 id="ta-siRNA-的计算识别"><a href="#ta-siRNA-的计算识别" class="headerlink" title="ta-siRNA 的计算识别"></a>ta-siRNA 的计算识别</h5><ol>
+<h5 id="ta-siRNA-的计算识别">ta-siRNA 的计算识别</h5>
+<ol>
 <li>基于读序相位信号值</li>
 <li>基于相位读序分布的统计测验</li>
 </ol>
 <p>下面的视频讲述的是 miRNA 和 siRNA 的产生和作用：</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5YsTW5i0Xro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<h4 id="小-RNA-靶基因预测"><a href="#小-RNA-靶基因预测" class="headerlink" title="小 RNA 靶基因预测"></a>小 RNA 靶基因预测</h4><h5 id="miRNA-靶基因预测"><a href="#miRNA-靶基因预测" class="headerlink" title="miRNA 靶基因预测"></a>miRNA 靶基因预测</h5><p>动物 miRNA 结合靶基因的机制相对复杂，植物 miRNA 主要通过接近完美的互补配对结合到靶位点，对目标 mRNA 直接切割。植物 miRNA 和靶位点的结合有如下特征：</p>
+<h4 id="小-RNA-靶基因预测">小 RNA 靶基因预测</h4>
+<h5 id="miRNA-靶基因预测">miRNA 靶基因预测</h5>
+<p>动物 miRNA 结合靶基因的机制相对复杂，植物 miRNA 主要通过接近完美的互补配对结合到靶位点，对目标 mRNA 直接切割。植物 miRNA 和靶位点的结合有如下特征：</p>
 <ol>
 <li>一般不超过三个碱基的错配；</li>
 <li>5’ 端前 10 个碱基结合很紧密，一般只允许一个碱基的错配；</li>
 <li>5’ 端第 1、11、12 个碱基因为剪接功能的关系一般不允许有错配；</li>
 <li>一般没有连续的错配（$\geq$ 3 个）出现。</li>
 </ol>
-<h5 id="siRNA-靶基因预测"><a href="#siRNA-靶基因预测" class="headerlink" title="siRNA 靶基因预测"></a>siRNA 靶基因预测</h5><p>尽管 siRNA 有丰富的类型，但其行使功能还是通过与靶基因位点的序列互补来实现，因此，miRNA 靶基因的预测软件也同样适用于 siRNA 的靶基因预测。</p>
-<h3 id="长非编码-RNA-鉴定与功能预测"><a href="#长非编码-RNA-鉴定与功能预测" class="headerlink" title="长非编码 RNA 鉴定与功能预测"></a>长非编码 RNA 鉴定与功能预测</h3><h4 id="lncRNA-鉴定与功能预测"><a href="#lncRNA-鉴定与功能预测" class="headerlink" title="lncRNA 鉴定与功能预测"></a>lncRNA 鉴定与功能预测</h4><h5 id="lncRNA-特征"><a href="#lncRNA-特征" class="headerlink" title="lncRNA 特征"></a>lncRNA 特征</h5><p>lncRNA 是一类长度大于 200 个核苷酸并且不能翻译成蛋白质的转录本。根据 lncRNA 与蛋白编码基因在基因组上的位置关系，可以将 lncRNA 分为五类：</p>
+<h5 id="siRNA-靶基因预测">siRNA 靶基因预测</h5>
+<p>尽管 siRNA 有丰富的类型，但其行使功能还是通过与靶基因位点的序列互补来实现，因此，miRNA 靶基因的预测软件也同样适用于 siRNA 的靶基因预测。</p>
+<h3 id="长非编码-RNA-鉴定与功能预测">长非编码 RNA 鉴定与功能预测</h3>
+<h4 id="lncRNA-鉴定与功能预测">lncRNA 鉴定与功能预测</h4>
+<h5 id="lncRNA-特征">lncRNA 特征</h5>
+<p>lncRNA 是一类长度大于 200 个核苷酸并且不能翻译成蛋白质的转录本。根据 lncRNA 与蛋白编码基因在基因组上的位置关系，可以将 lncRNA 分为五类：</p>
 <ol>
 <li>反义 lncRNA (antisense lncRNA，与 mRNA 所在位置相同，但是为反向互补关系)；</li>
 <li>增强子 lncRNA (enhancer lncRNA，在 mRNA 的增强子区域)；</li>
@@ -328,19 +344,21 @@
 <li>双向 lncRNA (bidirectional lncRNA，启动子区域与 mRNA 相同，但是为反向转录)；</li>
 <li>内含子 lncRNA (intronic lncRNA，在 mRNA 的内含子区域)。</li>
 </ol>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/fmed-02-00023-g001-1679707777081-5.jpg" alt="img" style="zoom:50%;" /></p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/fmed-02-00023-g001-1679707777081-5.jpg" alt="img" style="zoom:50%;" />
 <center><b>Figure 3.</b> Models of lncRNA functions.</center>
-
-<h5 id="lncRNA-的鉴定"><a href="#lncRNA-的鉴定" class="headerlink" title="lncRNA 的鉴定"></a>lncRNA 的鉴定</h5><p>首先，需要将转录组数据比对到基因组上；再利用 <code>Cufflink</code> 等转录组拼接软件可以得到心得转录本，用于之后 lncRNA 的鉴别。鉴定 lncRNA 最大的难点是确定转录组的非编码性，主要是通过排除编码蛋白质的转录本来实现。对于编码蛋白质的 mRNA 来说，其开放阅读框 (ORF) 长度一般大于 300nt，也就是是其编码的蛋白质链长度大于 100 个氨基酸。当然，仅通过这种方法来鉴别 lncRNA 风险是很大的。因此，可以先根据 ORF 的保守性，采用比较基因组学的方法进行鉴别，可以将转录本的数据与已知蛋白质数据库进行比对，根据据比对得到的同源相似性得分来判别是否可能为 lncRNA，不过值得注意的是，一些由 mRNA 进化而来的 lncRNA 也可能被误判为 mRNA。</p>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Identification-pipeline-for-lncRNAs-Each-step-is-described-in-detail-in-the-Methods.png" alt="Identification pipeline for lncRNAs. Each step is described in detail in the Methods section" style="zoom:67%;" /></p>
+<h5 id="lncRNA-的鉴定">lncRNA 的鉴定</h5>
+<p>首先，需要将转录组数据比对到基因组上；再利用 <code>Cufflink</code> 等转录组拼接软件可以得到心得转录本，用于之后 lncRNA 的鉴别。鉴定 lncRNA 最大的难点是确定转录组的非编码性，主要是通过排除编码蛋白质的转录本来实现。对于编码蛋白质的 mRNA 来说，其开放阅读框 (ORF) 长度一般大于 300nt，也就是是其编码的蛋白质链长度大于 100 个氨基酸。当然，仅通过这种方法来鉴别 lncRNA 风险是很大的。因此，可以先根据 ORF 的保守性，采用比较基因组学的方法进行鉴别，可以将转录本的数据与已知蛋白质数据库进行比对，根据据比对得到的同源相似性得分来判别是否可能为 lncRNA，不过值得注意的是，一些由 mRNA 进化而来的 lncRNA 也可能被误判为 mRNA。</p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/Identification-pipeline-for-lncRNAs-Each-step-is-described-in-detail-in-the-Methods.png" alt="Identification pipeline for lncRNAs. Each step is described in detail in the Methods section" style="zoom:67%;" />
 <center><b>Figure 4.</b> Identification pipeline for lncRNAs.</center>
-
-<h5 id="lncRNA-功能预测"><a href="#lncRNA-功能预测" class="headerlink" title="lncRNA 功能预测"></a>lncRNA 功能预测</h5><ol>
+<h5 id="lncRNA-功能预测">lncRNA 功能预测</h5>
+<ol>
 <li>lncRNA 与 RNA 分子互作预测</li>
 <li>lncRNA 与蛋白质分子互作预测</li>
 <li>lncRNA 功能注释在线平台</li>
 </ol>
-<h4 id="circRNA-鉴定与功能预测"><a href="#circRNA-鉴定与功能预测" class="headerlink" title="circRNA 鉴定与功能预测"></a>circRNA 鉴定与功能预测</h4><h5 id="circRNA-特征"><a href="#circRNA-特征" class="headerlink" title="circRNA 特征"></a>circRNA 特征</h5><p>环状 RNA 分子是一类由反向剪接 (backdsplicing) 形成的非编码 RNA。</p>
+<h4 id="circRNA-鉴定与功能预测">circRNA 鉴定与功能预测</h4>
+<h5 id="circRNA-特征">circRNA 特征</h5>
+<p>环状 RNA 分子是一类由反向剪接 (backdsplicing) 形成的非编码 RNA。</p>
 <p>环状 RNA 具有以下特点：</p>
 <ol>
 <li>环状 RNA 是一个闭合环状 RNA 分子，存在于大部分物种之中；</li>
@@ -353,28 +371,37 @@
 <li>环状 RNA 在正常条件和应激条件下都会发生降解；</li>
 <li>环状 RNA 存在反向可变剪接和内部可变剪接现象。</li>
 </ol>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/figure1.jpeg" alt="img" style="zoom:25%;" /></p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/figure1.jpeg" alt="img" style="zoom:25%;" />
 <center><b>Figure 5.</b> Circular RNA biogenesis mechanisms and the biological role of circular RNA.</center>
-
-<h5 id="circRNA-鉴定"><a href="#circRNA-鉴定" class="headerlink" title="circRNA 鉴定"></a>circRNA 鉴定</h5><ol>
-<li><p>候选分子方法：首先根据基因组注释信息构建出许多理论上存在的环状 RNA 分子，然后利用 RNA-Seq 读序去比对这些理想的环状 RNA 分子，如果读序能刚好比对到反向剪接的切口处，则认为此环状 RNA 分子是存在的。然而这样的方法需要基因组注释信息，对于没有完全基因组注释信息的基因组则无能为力，而且对于 RNA-Seq 的低覆盖度区域也不是很有效。</p>
+<h5 id="circRNA-鉴定">circRNA 鉴定</h5>
+<ol>
+<li>
+<p>候选分子方法：首先根据基因组注释信息构建出许多理论上存在的环状 RNA 分子，然后利用 RNA-Seq 读序去比对这些理想的环状 RNA 分子，如果读序能刚好比对到反向剪接的切口处，则认为此环状 RNA 分子是存在的。然而这样的方法需要基因组注释信息，对于没有完全基因组注释信息的基因组则无能为力，而且对于 RNA-Seq 的低覆盖度区域也不是很有效。</p>
 </li>
-<li><p>亚读序比对：这种方法的一般步骤是将不能比对到基因组上的读序（可能来自反向剪接位点）分割成两段，分别比对到参考基因组并且得到交替比对情况，最后经过过滤筛选得到候选环 RNA。</p>
-<p><img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/41598_2019_39977_Fig1_HTML.png" alt="A genome-wide map of circular RNAs in adult zebrafish | Scientific Reports" style="zoom:67%;" /></p>
+<li>
+<p>亚读序比对：这种方法的一般步骤是将不能比对到基因组上的读序（可能来自反向剪接位点）分割成两段，分别比对到参考基因组并且得到交替比对情况，最后经过过滤筛选得到候选环 RNA。</p>
+<img src="https://zywu-blog-image.oss-cn-nanjing.aliyuncs.com/images/41598_2019_39977_Fig1_HTML.png" alt="A genome-wide map of circular RNAs in adult zebrafish | Scientific Reports" style="zoom:67%;" />
 <center><b>Figure 6.</b> Schematic description of the bioinfomatics analysis pipeline used for the discovery and validation of novel circular RNAs.</center>
 </li>
-<li><p>机器学习类的方法</p>
+<li>
+<p>机器学习类的方法</p>
 </li>
-<li>全长拼接方法</li>
-<li>环状 RNA 数据库搜索鉴定</li>
+<li>
+<p>全长拼接方法</p>
+</li>
+<li>
+<p>环状 RNA 数据库搜索鉴定</p>
+</li>
 </ol>
-<h4 id="circRNA-功能预测"><a href="#circRNA-功能预测" class="headerlink" title="circRNA 功能预测"></a>circRNA 功能预测</h4><ol>
+<h4 id="circRNA-功能预测">circRNA 功能预测</h4>
+<ol>
 <li>circRNA 与 miRNA 互作预测</li>
 <li>circRNA 编码潜能预测</li>
 </ol>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><blockquote>
+<h3 id="Reference">Reference</h3>
+<blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.creative-biolabs.com/gene-therapy/non-coding-nucleic-acids.htm?gclid=Cj0KCQjw8e-gBhD0ARIsAJiDsaWEqBKSEhyQ9jPc3GaM6nwqTGd37qaPIzk-fJI4BB2EOR8w1Et6SdEaAuK4EALw_wcB">https://www.creative-biolabs.com/gene-therapy/non-coding-nucleic-acids.htm?gclid=Cj0KCQjw8e-gBhD0ARIsAJiDsaWEqBKSEhyQ9jPc3GaM6nwqTGd37qaPIzk-fJI4BB2EOR8w1Et6SdEaAuK4EALw_wcB</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.news-medical.net/life-sciences/What-is-SiRNA.aspx#:~:text=siRNA%20is%20a%20double-stranded,%20and%20phosphorylated%205%20ends">https://www.news-medical.net/life-sciences/What-is-SiRNA.aspx#:~:text=siRNA%20is%20a%20double-stranded,%20and%20phosphorylated%205%20ends</a>.</p>
+<p><a target="_blank" rel="noopener" href="https://www.news-medical.net/life-sciences/What-is-SiRNA.aspx#:~:text=siRNA%20is%20a%20double-stranded,%20and%20phosphorylated%205%20ends">https://www.news-medical.net/life-sciences/What-is-SiRNA.aspx#:~:text=siRNA is a double-stranded, and phosphorylated 5 ends</a>.</p>
 </blockquote>
 
     </div>
@@ -427,7 +454,10 @@
     <a href="/2023/03/22/Merge-Sort-Algorithm/" rel="prev" title="归并排序算法 (Merge Sort Algorithm)">
       <i class="fa fa-chevron-left"></i> 归并排序算法 (Merge Sort Algorithm)
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/03/30/Linked-Lists/" rel="next" title="Linked Lists">
+      Linked Lists <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -502,7 +532,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
