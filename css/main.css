@@ -193,6 +193,7 @@ h1 {
   margin-top: 32px;
   margin-bottom: 22px;
   border-bottom: 1px solid #f3f3f3;
+  font-size: 1.3em !important;
 }
 h2 {
   font-family: 'Cinzel Decorative', "Amstelvar", 'Noto Serif SC', sans-serif;
@@ -200,6 +201,7 @@ h2 {
   line-height: 1.5;
   margin-top: 32px;
   margin-bottom: 22px;
+  font-size: 1.3em !important;
 }
 h3 {
   color: #002379 !important;
@@ -1324,7 +1326,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #c2129d;
+  background: #946087;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
