@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://mrwuuu.github.io/2023/03/30/Linked-Lists/</loc>
-    
-    <lastmod>2023-03-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/2023/03/23/ncRNA/</loc>
     
     <lastmod>2023-03-25</lastmod>
@@ -290,6 +281,13 @@
 
   
   <url>
+    <loc>https://mrwuuu.github.io/tags/Python/</loc>
+    <lastmod>2023-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://mrwuuu.github.io/tags/Algorithm/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -304,14 +302,21 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/Python/</loc>
+    <loc>https://mrwuuu.github.io/tags/LaTeX/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/LaTeX/</loc>
+    <loc>https://mrwuuu.github.io/tags/Linux/</loc>
+    <lastmod>2023-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrwuuu.github.io/tags/Bug/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -339,14 +344,7 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/Linux/</loc>
-    <lastmod>2023-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrwuuu.github.io/tags/Bug/</loc>
+    <loc>https://mrwuuu.github.io/tags/R/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -367,13 +365,6 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/tags/R/</loc>
-    <lastmod>2023-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://mrwuuu.github.io/tags/Sequencing/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -388,6 +379,13 @@
   </url>
   
   <url>
+    <loc>https://mrwuuu.github.io/tags/Statistics/</loc>
+    <lastmod>2023-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://mrwuuu.github.io/tags/Life/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -396,13 +394,6 @@
   
   <url>
     <loc>https://mrwuuu.github.io/tags/Hello-World/</loc>
-    <lastmod>2023-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrwuuu.github.io/tags/Statistics/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -432,14 +423,14 @@
 
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Bioinformatics/</loc>
+    <loc>https://mrwuuu.github.io/categories/Data-Structures-Algorithm/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Data-Structures-Algorithm/</loc>
+    <loc>https://mrwuuu.github.io/categories/Bioinformatics/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -453,14 +444,14 @@
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
+    <loc>https://mrwuuu.github.io/categories/Bug/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mrwuuu.github.io/categories/Bug/</loc>
+    <loc>https://mrwuuu.github.io/categories/Algorithm/</loc>
     <lastmod>2023-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
